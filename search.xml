@@ -2,17 +2,17 @@
 <search>
   <entry>
     <title><![CDATA[为找工作而准备着]]></title>
-    <url>%2F2017%2F06%2F17%2F%E4%B8%BA%E6%89%BE%E5%B7%A5%E4%BD%9C%E8%80%8C%E5%87%86%E5%A4%87%E7%9D%80%2F</url>
+    <url>%2F%E4%B8%BA%E6%89%BE%E5%B7%A5%E4%BD%9C%E8%80%8C%E5%87%86%E5%A4%87%E7%9D%80.html</url>
     <content type="text"><![CDATA[]]></content>
   </entry>
   <entry>
     <title><![CDATA[在百度实习的日子]]></title>
-    <url>%2F2017%2F06%2F17%2F%E5%9C%A8%E7%99%BE%E5%BA%A6%E5%AE%9E%E4%B9%A0%E7%9A%84%E6%97%A5%E5%AD%90%2F</url>
+    <url>%2F%E5%9C%A8%E7%99%BE%E5%BA%A6%E5%AE%9E%E4%B9%A0%E7%9A%84%E6%97%A5%E5%AD%90.html</url>
     <content type="text"><![CDATA[]]></content>
   </entry>
   <entry>
     <title><![CDATA[Hexo之重新初始化]]></title>
-    <url>%2F2017%2F06%2F15%2FHexo%E4%B9%8B%E9%87%8D%E6%96%B0%E5%88%9D%E5%A7%8B%E5%8C%96%2F</url>
+    <url>%2FHexo%E4%B9%8B%E9%87%8D%E6%96%B0%E5%88%9D%E5%A7%8B%E5%8C%96.html</url>
     <content type="text"><![CDATA[站在巨人的肩膀上，搭建Hexo，事半功倍。但是巨人太多，选择好的巨人很重要，不然就不得其法，回到原点。 Hexo参考文档 [NexT]: http://theme-next.iissnan.com/getting-started.html “NexT” Hexo搭建问题记录 多说评论替换 背景效果 腾讯云搭建Hexo 自己更换电脑，没有保存Hexo的源文件，借此机会重新部署学习，完善自己的博客。]]></content>
       <categories>
         <category>教程</category>
@@ -23,7 +23,7 @@
   </entry>
   <entry>
     <title><![CDATA[Hello World]]></title>
-    <url>%2F2017%2F06%2F14%2Fhello-world%2F</url>
+    <url>%2Fhello-world.html</url>
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
   </entry>
 </search>
