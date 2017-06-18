@@ -1,4 +1,4 @@
-https://lincentma.men/prepare_for_work.html
-https://lincentma.men/internship_in_baidu.html
-https://lincentma.men/hexo_init.html
-https://lincentma.men/hello-world.html
+http://lincentma.men/prepare_for_work.html
+http://lincentma.men/internship_in_baidu.html
+http://lincentma.men/hexo_init.html
+http://lincentma.men/hello-world.html

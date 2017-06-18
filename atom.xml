@@ -4,9 +4,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://lincentma.men/"/>
+  <link href="http://lincentma.men/"/>
   <updated>2017-06-17T08:57:30.795Z</updated>
-  <id>https://lincentma.men/</id>
+  <id>http://lincentma.men/</id>
   
   <author>
     <name>LicentMa</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>为找工作而准备着</title>
-    <link href="https://lincentma.men/prepare_for_work.html"/>
-    <id>https://lincentma.men/prepare_for_work.html</id>
+    <link href="http://lincentma.men/prepare_for_work.html"/>
+    <id>http://lincentma.men/prepare_for_work.html</id>
     <published>2017-06-17T08:57:30.000Z</published>
     <updated>2017-06-17T08:57:30.795Z</updated>
     
@@ -35,8 +35,8 @@
   
   <entry>
     <title>在百度实习的日子</title>
-    <link href="https://lincentma.men/internship_in_baidu.html"/>
-    <id>https://lincentma.men/internship_in_baidu.html</id>
+    <link href="http://lincentma.men/internship_in_baidu.html"/>
+    <id>http://lincentma.men/internship_in_baidu.html</id>
     <published>2017-06-17T08:57:10.000Z</published>
     <updated>2017-06-17T08:57:10.911Z</updated>
     
@@ -53,8 +53,8 @@
   
   <entry>
     <title>Hexo之重新初始化</title>
-    <link href="https://lincentma.men/hexo_init.html"/>
-    <id>https://lincentma.men/hexo_init.html</id>
+    <link href="http://lincentma.men/hexo_init.html"/>
+    <id>http://lincentma.men/hexo_init.html</id>
     <published>2017-06-15T07:04:32.000Z</published>
     <updated>2017-06-15T08:05:24.320Z</updated>
     
@@ -77,17 +77,17 @@
     
     </summary>
     
-      <category term="教程" scheme="https://lincentma.men/categories/%E6%95%99%E7%A8%8B/"/>
+      <category term="教程" scheme="http://lincentma.men/categories/%E6%95%99%E7%A8%8B/"/>
     
     
-      <category term="hexo" scheme="https://lincentma.men/tags/hexo/"/>
+      <category term="hexo" scheme="http://lincentma.men/tags/hexo/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="https://lincentma.men/hello-world.html"/>
-    <id>https://lincentma.men/hello-world.html</id>
+    <link href="http://lincentma.men/hello-world.html"/>
+    <id>http://lincentma.men/hello-world.html</id>
     <published>2017-06-14T03:59:09.224Z</published>
     <updated>2017-06-14T03:59:09.224Z</updated>
     
