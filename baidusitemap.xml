@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://lincentma.men/prepare_for_work.html</loc>
+    <lastmod>2017-06-21T06:07:29.337Z</lastmod>
+    <data>
+        <display>
+        <title>为找工作而准备着</title>
+        <pubTime>2017-06-17T08:57:30.000Z</pubTime>
+        
+        <tag>job</tag>
+         
+         
+           
+             
+              <breadCrumb title="job" url="http://lincentma.men/categories/job/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://lincentma.men/rank.html</loc>
     <lastmod>2017-06-21T04:30:56.670Z</lastmod>
     <data>
@@ -43,21 +63,6 @@
     </url>
 
     
-    
-  <url>
-    <loc>http://lincentma.men/prepare_for_work.html</loc>
-    <lastmod>2017-06-17T08:57:30.795Z</lastmod>
-    <data>
-        <display>
-        <title>为找工作而准备着</title>
-        <pubTime>2017-06-17T08:57:30.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://lincentma.men/hexo_init.html</loc>
