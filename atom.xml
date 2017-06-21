@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lincentma.men/"/>
-  <updated>2017-06-17T08:57:30.795Z</updated>
+  <updated>2017-06-21T04:15:11.121Z</updated>
   <id>http://lincentma.men/</id>
   
   <author>
@@ -14,6 +14,59 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Rank小记</title>
+    <link href="http://lincentma.men/rank.html"/>
+    <id>http://lincentma.men/rank.html</id>
+    <published>2017-06-21T04:13:27.000Z</published>
+    <updated>2017-06-21T04:15:11.121Z</updated>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p>搜索引擎，你每天用的，知其然，不知其所以然。</p>
+<pre><code>——读《搜索引擎 : 信息检索实践》
+</code></pre><p>信息检索的定义<br>信息检索是关于信息的结构、分析、组织、存储、搜索和检索的领域——Gerard Salton<br>搜索引擎的指标<br>处理数十亿网页的商业化网络搜索引擎时代的今天，搜索引擎的指标体现在以下五个方面：</p>
+<ol>
+<li>全</li>
+<li>新</li>
+<li>准</li>
+<li>快</li>
+<li>稳<br>其中Rank的目标就是准</li>
+</ol>
+<p>Rank<br>如何所搜即所得是Rank的目的。</p>
+<ul>
+<li>海量网页快速排序</li>
+<li>相关性：搜索结果与用户需求的匹配程度<br>相关性</li>
+</ul>
+<ol>
+<li>多样性（Query对应多个结果，通过用户行为数据进行选择和匹配）</li>
+<li>权威性（被引用次数，链接分析。类似于学术文章的因子。）</li>
+<li>时效性（Query的频次随时间的变化趋势）</li>
+<li>个性化（构建用户个人数据，计算结果与用户喜好匹配程度）</li>
+<li>用户成本<br>如何排序</li>
+</ol>
+<p>自己的理解，排序就是算分，按照分数来进行排序，key是算分。</p>
+<p>经典IR模型[^TF-IDF是一种统计方法，用以评估一字词对于一个文件集或一个语料库中的其中一份文件的重要程度。字词的重要性随着它在文件中出现的次数成正比增加，但同时会随着它在语料库中出现的频率成反比下降。TF-IDF加权的各种形式常被搜索引擎应用，作为文件与用户查询之间相关程度的度量或评级。]<br>距离特征<br>Boolean Model[^布尔（Boolean）模型是基于集合论和布尔代数的一种简单检索模型。它的特点是查找那些于某个查询词返回为“真”的文档。在该模型中，一个查询词就是一个布尔表达式，包括关键词以及逻辑运算符。通过布尔表达式，可以表达用户希望文档所具有的特征。]<br>Vetor-Space[^VSM概念简单，把对文本内容的处理简化为向量空间中的向量运算，并且它以空间上的相似度表达语义的相似度，直观易懂。当文档被表示为文档空间的向量，就可以通过计算向量之间的相似性来度量文档间的相似性。文本处理中最常用的相似性度量方式是余弦距离。]<br>Rank关键技术</p>
+<p>倒排索引<br>在线计算转为离线计算<br>分布式计算系统<br>Cache<br>辣鸡信息</p>
+<p>找出特征，计算分数，剔除。<br>人工识别与机器学习。<br>Learning to Rank</p>
+<p>找了一些文档博客，慢慢学习~</p>
+<p>Point-Wise：RankSVM<br>Pair-Wise：RankNet<br>List-Wise：RankForest<br>其他的文章：</p>
+<p>努力学算法一定可以搞懂的！</p>
+<h1 id="rank"><a href="#rank" class="headerlink" title="rank"></a>rank</h1>]]></content>
+    
+    <summary type="html">
+    
+      &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;搜索引擎，你每天用的，知其然，不知其所以然。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;——读《搜索引擎 : 信息检索实践》
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;信息检索的定义&lt;br&gt;信息检
+    
+    </summary>
+    
+      <category term="intern" scheme="http://lincentma.men/categories/intern/"/>
+    
+    
+      <category term="rank" scheme="http://lincentma.men/tags/rank/"/>
+    
+  </entry>
   
   <entry>
     <title>为找工作而准备着</title>
@@ -38,16 +91,26 @@
     <link href="http://lincentma.men/internship_in_baidu.html"/>
     <id>http://lincentma.men/internship_in_baidu.html</id>
     <published>2017-06-17T08:57:10.000Z</published>
-    <updated>2017-06-17T08:57:10.911Z</updated>
+    <updated>2017-06-21T04:16:51.357Z</updated>
     
-    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script>]]></content>
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="在百度实习的日子"><a href="#在百度实习的日子" class="headerlink" title="在百度实习的日子"></a>在百度实习的日子</h1><blockquote>
+<p>转眼从百度离开回到了在学校的日子。也应该记录下自己在帝都，在百度的255天。</p>
+</blockquote>
+<h2 id="在百度糯米"><a href="#在百度糯米" class="headerlink" title="在百度糯米"></a>在百度糯米</h2><p>在百度糯米第一次接触了规范的开发流程，公司庞大的知识储备库，让自己如同海绵一样广泛吸水般吸收知识。有非常nice团队来让我迅速适应这样的开发环境，让我熟悉开发流程，带我一起和产品交流、和运营交流、和测试交流。</p>
+<h2 id="在百度搜索"><a href="#在百度搜索" class="headerlink" title="在百度搜索"></a>在百度搜索</h2><p>在百度搜索我接触到了搜索是如何运转，自己尝试接触Sug的海量数据进行数据分析监控，第一次理解亲身理解大数据所蕴含的价值。<br>一次次的技术分享，让我更加深刻理解百度搜索里面的核心技术的深度，自己仍有很长的路要走。</p>
+<h2 id="在百度"><a href="#在百度" class="headerlink" title="在百度"></a>在百度</h2><p>目前为止我见过最好的办公环境，nice的伙食，健身设备，班车交通，让我每个周末也来公司给自己充电。<br>每天的问好，晚上的坐上班车返回住所，每一天任务的完成带给自己的充实感让自己不断向前。<br>体验过996，体验过封闭开发，体验过部门内分享，体验过酸甜苦辣。<br>感谢百度，感谢曾经的同事，感谢让自己不断成长。</p>
+]]></content>
     
     <summary type="html">
     
-      &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;
+      &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;在百度实习的日子&quot;&gt;&lt;a href=&quot;#在百度实习的日子&quot; class=&quot;headerlink&quot; title=&quot;在百度实习的日子&quot;&gt;&lt;/a&gt;在百度实习的日子&lt;/h1
     
     </summary>
     
+      <category term="intern" scheme="http://lincentma.men/categories/intern/"/>
+    
+    
+      <category term="intern" scheme="http://lincentma.men/tags/intern/"/>
     
   </entry>
   
