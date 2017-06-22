@@ -1,5 +1,5 @@
+http://lincentma.men/hello-world.html
 http://lincentma.men/rank.html
 http://lincentma.men/prepare_for_work.html
 http://lincentma.men/internship_in_baidu.html
 http://lincentma.men/hexo_init.html
-http://lincentma.men/hello-world.html

@@ -4,6 +4,21 @@
 
     
   <url>
+    <loc>http://lincentma.men/hello-world.html</loc>
+    <lastmod>2017-06-22T03:03:59.667Z</lastmod>
+    <data>
+        <display>
+        <title>Hello World</title>
+        <pubTime>2017-06-22T03:03:59.667Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://lincentma.men/prepare_for_work.html</loc>
     <lastmod>2017-06-21T06:07:29.337Z</lastmod>
     <data>
@@ -85,19 +100,4 @@
 
     
     
-    
-  <url>
-    <loc>http://lincentma.men/hello-world.html</loc>
-    <lastmod>2017-06-14T03:59:09.224Z</lastmod>
-    <data>
-        <display>
-        <title>Hello World</title>
-        <pubTime>2017-06-14T03:59:09.224Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
 </urlset>

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://lincentma.men/hello-world.html</loc>
+    
+    <lastmod>2017-06-22T03:03:59.667Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://lincentma.men/prepare_for_work.html</loc>
     
     <lastmod>2017-06-21T06:07:29.337Z</lastmod>
@@ -47,13 +54,6 @@
     <loc>http://lincentma.men/categories/index.html</loc>
     
     <lastmod>2017-06-15T07:18:28.114Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lincentma.men/hello-world.html</loc>
-    
-    <lastmod>2017-06-14T03:59:09.224Z</lastmod>
     
   </url>
   
