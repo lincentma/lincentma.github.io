@@ -4,43 +4,8 @@
 
     
   <url>
-    <loc>http://lincentma.men/hello-world.html</loc>
-    <lastmod>2017-06-22T03:03:59.667Z</lastmod>
-    <data>
-        <display>
-        <title>Hello World</title>
-        <pubTime>2017-06-22T03:03:59.667Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://lincentma.men/prepare_for_work.html</loc>
-    <lastmod>2017-06-21T06:07:29.337Z</lastmod>
-    <data>
-        <display>
-        <title>为找工作而准备着</title>
-        <pubTime>2017-06-17T08:57:30.000Z</pubTime>
-        
-        <tag>job</tag>
-         
-         
-           
-             
-              <breadCrumb title="job" url="http://lincentma.men/categories/job/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://lincentma.men/rank.html</loc>
-    <lastmod>2017-06-21T04:30:56.670Z</lastmod>
+    <loc>http://lincentma.men/learn_rank.html</loc>
+    <lastmod>2017-06-22T03:16:46.299Z</lastmod>
     <data>
         <display>
         <title>Rank小记</title>
@@ -60,7 +25,7 @@
     
   <url>
     <loc>http://lincentma.men/internship_in_baidu.html</loc>
-    <lastmod>2017-06-21T04:16:51.357Z</lastmod>
+    <lastmod>2017-06-22T03:16:19.535Z</lastmod>
     <data>
         <display>
         <title>在百度实习的日子</title>
@@ -78,10 +43,9 @@
     </url>
 
     
-    
   <url>
     <loc>http://lincentma.men/hexo_init.html</loc>
-    <lastmod>2017-06-15T08:05:24.320Z</lastmod>
+    <lastmod>2017-06-22T03:16:05.087Z</lastmod>
     <data>
         <display>
         <title>Hexo之重新初始化</title>
@@ -98,6 +62,27 @@
     </data>
     </url>
 
+    
+  <url>
+    <loc>http://lincentma.men/prepare_for_work.html</loc>
+    <lastmod>2017-06-22T03:15:06.575Z</lastmod>
+    <data>
+        <display>
+        <title>为找工作而准备着</title>
+        <pubTime>2017-06-17T08:57:30.000Z</pubTime>
+        
+        <tag>job</tag>
+         
+         
+           
+             
+              <breadCrumb title="job" url="http://lincentma.men/categories/job/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
     
 </urlset>
