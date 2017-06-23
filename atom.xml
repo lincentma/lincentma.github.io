@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lincentma.men/"/>
-  <updated>2017-06-23T16:02:05.022Z</updated>
+  <updated>2017-06-23T16:07:27.662Z</updated>
   <id>http://lincentma.men/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://lincentma.men/program_language_virtual_machine.html"/>
     <id>http://lincentma.men/program_language_virtual_machine.html</id>
     <published>2017-06-23T15:59:24.000Z</published>
-    <updated>2017-06-23T16:02:05.022Z</updated>
+    <updated>2017-06-23T16:07:27.662Z</updated>
     
-    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="Java、Python与PHP的虚拟机异同"><a href="#Java、Python与PHP的虚拟机异同" class="headerlink" title="Java、Python与PHP的虚拟机异同"></a>Java、Python与PHP的虚拟机异同</h1><h1 id="Java-JVM"><a href="#Java-JVM" class="headerlink" title="Java-JVM"></a>Java-JVM</h1><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><ul>
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h2 id="Java-JVM"><a href="#Java-JVM" class="headerlink" title="Java-JVM"></a>Java-JVM</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><ul>
 <li>JDK(Java Development Kit) 是 Java 语言的软件开发工具包（SDK）。JDK 物理存在，是 programming tools、JRE 和 JVM 的一个集合</li>
 <li>JRE（Java Runtime Environment）Java 运行时环境，JRE 物理存在，主要由Java API 和 JVM 组成，提供了用于执行 java 应用程序最低要求的环境。</li>
 <li>JVM(Java Virtual Machine) 是一种软件实现，执行像物理机程序的机器（即电脑）。JVM 通过执行 Java bytecode 可以使 java 代码在不改变的情况下运行在各种硬件之上。JVM是基于栈的。</li>
@@ -101,26 +101,26 @@
 <li><p>[Java GC的那些事（下）]: <a href="http://www.importnew.com/23640.html" target="_blank" rel="external">http://www.importnew.com/23640.html</a></p>
 </li>
 </ol>
-<h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><h3 id="PVM"><a href="#PVM" class="headerlink" title="PVM"></a>PVM</h3><p>PVM是Python的运行引擎。他通常表现为python系统的一部分。并且他是实际运行脚本的组件。</p>
+<h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><h3 id="PVM"><a href="#PVM" class="headerlink" title="PVM"></a>PVM</h3><p>PVM是Python的运行引擎。他通常表现为python系统的一部分。并且他是实际运行脚本的组件。</p>
 <p>编译器：将源码编译成运行在虚拟机上执行的opcode(pyc文件)，pyc文件是在python虚拟机上执行的一种跨平台字节码。</p>
 <p>运行时：虚拟机解释器把opcode(pyc文件)解释成具体机器的机器码，执行。</p>
 <h3 id="JVM与PVM"><a href="#JVM与PVM" class="headerlink" title="JVM与PVM"></a>JVM与PVM</h3><ul>
 <li>Java代码从源程序到执行，要经过的过程是：编译器(javac)把源代码转化为字节码，然后解释器（Java.exe）把字节码转换为计算机理解的机器码来执行。其中编译器和解释器都是Java虚拟机（JVM）的一部分，由于针对不同的硬件与OS，Java解释器有所不同，因此可以实现“一次编译、到处执行”。所以JVM是Java跨平台特性的关键所在。</li>
 <li>对于Python，其源代码到执行也要经过如下过程：源代码—&gt;字节码—&gt;机器码。与Java不同的是，Python使用的虚拟机是基于其他语言实现的，比如我们一般使用的Python实际为Cpython，也就是其虚拟机由C实现，这个虚拟机负责把Python源码编译为字节码，再解释执行。另外，还有Jypython、Ironpython等。</li>
 </ul>
-<h1 id="PHP-Zend-amp-HHVM"><a href="#PHP-Zend-amp-HHVM" class="headerlink" title="PHP-Zend&amp;HHVM"></a>PHP-Zend&amp;HHVM</h1><p><img src="http://img.it-home.org/data/attachment/forum/2016pic3/20141226102950_924.jpg" alt=""></p>
+<h2 id="PHP-Zend-amp-HHVM"><a href="#PHP-Zend-amp-HHVM" class="headerlink" title="PHP-Zend&amp;HHVM"></a>PHP-Zend&amp;HHVM</h2><p><img src="http://img.it-home.org/data/attachment/forum/2016pic3/20141226102950_924.jpg" alt=""></p>
 <ul>
 <li>Zend引擎默认做法，是先编译为opcode，然后再逐条执行，通常每条指令对应的是C语言级别的函数。如果我们产生大量重复的opcode（纯PHP写的代码和函数），对应的则是Zend多次逐条执行这些C代码。</li>
 <li>HHVM生成和执行PHP的中间字节码（HHVM生成自己格式的中间字节码），执行时通过JIT（Just In Time，即时编译是种软件优化技术，指在运行时才会去编译字节码为机器码）转为机器码执行。JIT将大量重复执行的字节码在运行的时候编译为机器码，达到提高执行效率的目的。通常，触发JIT的条件是代码或者函数被多次重复调用。</li>
 </ul>
-<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>时间匆忙，囫囵吞枣，努力完善。</p>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>时间匆忙，囫囵吞枣，努力完善。</p>
 <p>后端开发离不开Java，python和php，深入学习原理，比较异同，最佳使用。</p>
 <p>2017.06.23</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;Java、Python与PHP的虚拟机异同&quot;&gt;&lt;a href=&quot;#Java、Python与PHP的虚拟机异同&quot; class=&quot;headerlink&quot; title=&quot;
+      &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;Java-JVM&quot;&gt;&lt;a href=&quot;#Java-JVM&quot; class=&quot;headerlink&quot; title=&quot;Java-JVM&quot;&gt;&lt;/a&gt;Java-JVM&lt;/h2
     
     </summary>
     
