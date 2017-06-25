@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://lincentma.men/hexo_init.html</loc>
+    <lastmod>2017-06-25T18:23:16.170Z</lastmod>
+    <data>
+        <display>
+        <title>Hexo之重新初始化</title>
+        <pubTime>2017-06-15T07:04:32.000Z</pubTime>
+        
+        <tag>hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="教程" url="http://lincentma.men/categories/%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://lincentma.men/java_skills_for_interview.html</loc>
     <lastmod>2017-06-25T17:45:20.950Z</lastmod>
     <data>
@@ -127,26 +147,6 @@
            
              
               <breadCrumb title="intern" url="http://lincentma.men/categories/intern/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://lincentma.men/hexo_init.html</loc>
-    <lastmod>2017-06-22T03:16:05.087Z</lastmod>
-    <data>
-        <display>
-        <title>Hexo之重新初始化</title>
-        <pubTime>2017-06-15T07:04:32.000Z</pubTime>
-        
-        <tag>hexo</tag>
-         
-         
-           
-             
-              <breadCrumb title="教程" url="http://lincentma.men/categories/%E6%95%99%E7%A8%8B/"/>
           
         </display>
     </data>

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://lincentma.men/hexo_init.html</loc>
+    
+    <lastmod>2017-06-25T18:23:16.170Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://lincentma.men/java_skills_for_interview.html</loc>
     
     <lastmod>2017-06-25T17:45:20.950Z</lastmod>
@@ -40,13 +47,6 @@
     <loc>http://lincentma.men/internship_in_baidu.html</loc>
     
     <lastmod>2017-06-22T03:16:19.535Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lincentma.men/hexo_init.html</loc>
-    
-    <lastmod>2017-06-22T03:16:05.087Z</lastmod>
     
   </url>
   

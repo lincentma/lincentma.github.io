@@ -514,17 +514,20 @@
     <link href="http://lincentma.men/hexo_init.html"/>
     <id>http://lincentma.men/hexo_init.html</id>
     <published>2017-06-15T07:04:32.000Z</published>
-    <updated>2017-06-22T03:16:05.087Z</updated>
+    <updated>2017-06-25T18:23:16.170Z</updated>
     
     <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p>站在巨人的肩膀上，搭建Hexo，事半功倍。但是巨人太多，选择好的巨人很重要，不然就不得其法，回到原点。</p>
 <h2 id="Hexo参考文档"><a href="#Hexo参考文档" class="headerlink" title="Hexo参考文档"></a>Hexo参考文档</h2><ul>
-<li>[NexT]: <a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">http://theme-next.iissnan.com/getting-started.html</a>    “NexT”</li>
-<li><p>[NexT优化]: <a href="http://shenzekun.cn/hexo%E7%9A%84next%E4%B8%BB%E9%A2%98%E4%B8%AA%E6%80%A7%E5%8C%96%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.html" target="_blank" rel="external">http://shenzekun.cn/hexo%E7%9A%84next%E4%B8%BB%E9%A2%98%E4%B8%AA%E6%80%A7%E5%8C%96%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.html</a></p>
+<li>[NexT]:  <a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">http://theme-next.iissnan.com/getting-started.html</a>    “NexT”</li>
+<li><p>[NexT优化]:  <a href="http://shenzekun.cn/hexo%E7%9A%84next%E4%B8%BB%E9%A2%98%E4%B8%AA%E6%80%A7%E5%8C%96%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.html" target="_blank" rel="external">http://shenzekun.cn/hexo%E7%9A%84next%E4%B8%BB%E9%A2%98%E4%B8%AA%E6%80%A7%E5%8C%96%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.html</a></p>
 <h2 id="Hexo搭建问题记录"><a href="#Hexo搭建问题记录" class="headerlink" title="Hexo搭建问题记录"></a>Hexo搭建问题记录</h2></li>
 <li><p>多说评论替换</p>
 </li>
 <li>背景效果</li>
 <li>腾讯云搭建Hexo</li>
+</ul>
+<h2 id="Hexo-性能优化"><a href="#Hexo-性能优化" class="headerlink" title="Hexo 性能优化"></a>Hexo 性能优化</h2><ul>
+<li>[hexo博客进阶－性能优化]:  <a href="https://www.liuxinggang.com/2016-12-06-hexo%E5%8D%9A%E5%AE%A2%E8%BF%9B%E9%98%B6%EF%BC%8D%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" target="_blank" rel="external">https://www.liuxinggang.com/2016-12-06-hexo%E5%8D%9A%E5%AE%A2%E8%BF%9B%E9%98%B6%EF%BC%8D%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</a></li>
 </ul>
 <p>自己更换电脑，没有保存Hexo的源文件，借此机会重新部署学习，完善自己的博客。</p>
 ]]></content>
