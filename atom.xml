@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lincentma.men/"/>
-  <updated>2017-06-27T16:32:43.989Z</updated>
+  <updated>2017-06-27T16:58:24.162Z</updated>
   <id>http://lincentma.men/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://lincentma.men/hexo_https.html"/>
     <id>http://lincentma.men/hexo_https.html</id>
     <published>2017-06-27T16:09:54.000Z</published>
-    <updated>2017-06-27T16:32:43.989Z</updated>
+    <updated>2017-06-27T16:58:24.162Z</updated>
     
     <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="记如何折腾让博客加HTTPS"><a href="#记如何折腾让博客加HTTPS" class="headerlink" title="记如何折腾让博客加HTTPS"></a>记如何折腾让博客加HTTPS</h1><blockquote>
 <p>折腾了一晚上的博客的HTTPS问题，最后才明白一个道理，世上没有免费的午餐，如果有，那么也是你用最宝贵的时间或是其他换来的。</p>
@@ -154,7 +154,7 @@
 </li>
 <li><p>SSL：在客户端与服务器间传输的数据是通过使用对称算法（如 DES 或 RC4）进行加密的。公用密钥算法（通常为 RSA）是用来获得加密密钥交换和数字签名的，此算法使用服务器的SSL数字证书中的公用密钥。有了服务器的SSL数字证书，客户端也可以验证服务器的身份。SSL 协议的版本 1 和 2 只提供服务器认证。版本 3 添加了客户端认证，此认证同时需要客户端和服务器的数字证书。</p>
 </li>
-<li><p>关于Let&#39;s Encrypt：</p>
+<li><p>关于Let&#39;s Encrypt：[给站点添加 https 小绿锁]: <a href="http://www.cnblogs.com/xinpureZhu/articles/lets-encrypt-to-add-https-site-little-green-lock.html" target="_blank" rel="external">http://www.cnblogs.com/xinpureZhu/articles/lets-encrypt-to-add-https-site-little-green-lock.html</a></p>
 </li>
 </ul>
 <p>但是，都设置好了。然后就无法访问网页的了。DNS的锅。</p>
@@ -167,7 +167,7 @@
 <li>Hexo中自己感觉一个很有意思的特点是，在_config.yml以及md文件中，通过对于指定字段的true或者false的设置来实现功能，对于使用者来说是黑盒操作，降低了使用难度，提高了使用的体验。这是一种很好的方式。</li>
 </ul>
 <h3 id="阿里云更改域名配置"><a href="#阿里云更改域名配置" class="headerlink" title="阿里云更改域名配置"></a>阿里云更改域名配置</h3><p>买了一个域名：lincentma.men</p>
-<p>参考文章：</p>
+<p>参考文章：[hexo博客添加域名实现双线部署（github和coding)]: <a href="http://blog.csdn.net/qiuchengjia/article/details/52923156" target="_blank" rel="external">http://blog.csdn.net/qiuchengjia/article/details/52923156</a></p>
 <h4 id="知识点-3"><a href="#知识点-3" class="headerlink" title="知识点"></a>知识点</h4><ul>
 <li>域名解析就是国际域名或者国内域名以及中文域名等域名申请后做的到IP地址的转换过程。IP地址是网路上标识您站点的数字地址，为了简单好记，采用域名来代替ip地址标识站点地址。域名的解析工作由DNS服务器完成。</li>
 <li>域名解析的A：A (Address) 记录是用来指定主机名（或域名）对应的IP地址记录。用户可以将该域名下的网站服务器指向到自己的web server上。同时也可以设置您域名的二级域名。</li>
