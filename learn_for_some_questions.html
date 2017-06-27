@@ -1,4 +1,1472 @@
-<!doctype html><html class="theme-next mist use-motion" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><script src="/lib/pace/pace.min.js?v=1.0.2"></script><link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="google-site-verification" content="pPxmXck9csmpjfOKT55pbx0Xl_ArkohkaYr4fC0fHw4"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css"><meta name="keywords" content="java,"><link rel="alternate" href="/atom.xml" title="LincentMa's Blog" type="application/atom+xml"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1"><meta name="description" content="她给我提了一下几个问题，自己一眼看上去觉得简单，但是说不出来所以然，犯了眼高手低的毛病，记录自省。   [x] 一共10级楼梯，每次可以走一步或两步，求一共多少种走法。 [x] 一个细胞，一个小时分裂一次，生命周期是3小时，求n小时后容器内，有多少细胞。 [x] 斐波那契数列的实现。 [x] 递归算法的核心  Question1—走楼梯思路楼梯问题，一眼看上去，应该是一个递归问题跑不了了。 那"><meta name="keywords" content="java"><meta property="og:type" content="article"><meta property="og:title" content="几个小问题的解答"><meta property="og:url" content="http://lincentma.men/learn_for_some_questions.html"><meta property="og:site_name" content="LincentMa&#39;s Blog"><meta property="og:description" content="她给我提了一下几个问题，自己一眼看上去觉得简单，但是说不出来所以然，犯了眼高手低的毛病，记录自省。   [x] 一共10级楼梯，每次可以走一步或两步，求一共多少种走法。 [x] 一个细胞，一个小时分裂一次，生命周期是3小时，求n小时后容器内，有多少细胞。 [x] 斐波那契数列的实现。 [x] 递归算法的核心  Question1—走楼梯思路楼梯问题，一眼看上去，应该是一个递归问题跑不了了。 那"><meta property="og:updated_time" content="2017-06-22T15:43:43.699Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="几个小问题的解答"><meta name="twitter:description" content="她给我提了一下几个问题，自己一眼看上去觉得简单，但是说不出来所以然，犯了眼高手低的毛病，记录自省。   [x] 一共10级楼梯，每次可以走一步或两步，求一共多少种走法。 [x] 一个细胞，一个小时分裂一次，生命周期是3小时，求n小时后容器内，有多少细胞。 [x] 斐波那契数列的实现。 [x] 递归算法的核心  Question1—走楼梯思路楼梯问题，一眼看上去，应该是一个递归问题跑不了了。 那"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Mist",sidebar:{position:"left",display:"hide",offset:12,offset_float:0,b2t:!1,scrollpercent:!1},fancybox:!0,motion:!0,duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="http://lincentma.men/learn_for_some_questions.html"><title>几个小问题的解答 | LincentMa's Blog</title><script>!function(e,t,a,n,c,o,s){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,o=t.createElement(a),s=t.getElementsByTagName(a)[0],o.async=1,o.src="https://www.google-analytics.com/analytics.js",s.parentNode.insertBefore(o,s)}(window,document,"script",0,"ga"),ga("create","UA-101216364-1","auto"),ga("send","pageview")</script><script type="text/javascript">!function(){var e=document.createElement("script");e.src="//tajs.qq.com/stats?sId=62645334";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div> <a href="https://github.com/lingma1993"><img style="position:absolute;top:0;left:0;border:0" src="https://camo.githubusercontent.com/c6625ac1f3ee0a12250227cf83ce904423abf351/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png"></a><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">LincentMa's Blog</span><span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle"></p></div><div class="site-nav-toggle"> <button><span class="btn-bar"></span><span class="btn-bar"></span><span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br> 首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br> 分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br> 归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br> 标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br> 关于</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br> 搜索</a></li></ul><div class="site-search"><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i></span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"> <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://lincentma.men/learn_for_some_questions.html"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="LicentMa"><meta itemprop="description" content=""><meta itemprop="image" content="http://orj5hqpmw.bkt.clouddn.com/hexo/image/touxiang.jpg"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="LincentMa's Blog"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">几个小问题的解答</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span> <span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-22T23:25:38+08:00">2017-06-22</time></span> <span class="post-category"><span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span> <span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/开发笔记/" itemprop="url" rel="index"><span itemprop="name">开发笔记</span></a></span></span> <span id="/learn_for_some_questions.html" class="leancloud_visitors" data-flag-title="几个小问题的解答"><span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="fa fa-eye"></i></span> <span class="post-meta-item-text">阅读次数</span><span class="leancloud-visitors-count"></span> <span class="post-meta-divider">|</span></span><div class="post-wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span> <span class="post-meta-item-text">字数统计</span> <span title="字数统计">2,755 字</span> <span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="fa fa-clock-o"></i></span> <span class="post-meta-item-text">阅读时长</span> <span title="阅读时长">12 分钟</span></div></div></header><div class="post-body" itemprop="articleBody"><script src="/assets/js/APlayer.min.js"></script><blockquote><p>她给我提了一下几个问题，自己一眼看上去觉得简单，但是说不出来所以然，犯了眼高手低的毛病，记录自省。</p></blockquote><ul><li>[x] 一共10级楼梯，每次可以走一步或两步，求一共多少种走法。</li><li>[x] 一个细胞，一个小时分裂一次，生命周期是3小时，求n小时后容器内，有多少细胞。</li><li>[x] 斐波那契数列的实现。</li><li>[x] 递归算法的核心</li></ul><h1 id="Question1—走楼梯"><a href="#Question1—走楼梯" class="headerlink" title="Question1—走楼梯"></a>Question1—走楼梯</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>楼梯问题，一眼看上去，应该是一个递归问题跑不了了。</p><p>那么该如何递归，找到其中的规律呢？</p><p><strong><em>逆向思考。</em></strong></p><p>要想走到M(M=10)级,可以分为2种情况。</p><ol><li>从m-2级迈两步</li><li>从m-1级迈一步</li></ol><p>那么对于m-2和m-1的情况也是各自分为两种，以此类推。</p><p>那么走法的和就是m-2的走法和m-1的走法之和。</p><p>那么递归到最基本的（当前人在第0阶台阶）</p><p>第0阶台阶：0</p><p>第1阶台阶：1</p><p>第2阶台阶：2（1+1或者2）</p><p>得到公式，也就是斐波那契数列。<br>$$<br>f(n)=f(n-1)+f(n-2)<br>$$</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.Scanner;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by ml on 2017/6/21.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">taijie</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">countNumber</span><span class="params">(<span class="keyword">int</span> stepsNum)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span> (stepsNum == <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (stepsNum == <span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (stepsNum == <span class="number">2</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">2</span>;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (stepsNum &gt; <span class="number">2</span>) &#123;</div><div class="line">            <span class="keyword">return</span>  countNumber(stepsNum - <span class="number">2</span>) + countNumber(stepsNum - <span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> sum;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="keyword">long</span> startMili=System.currentTimeMillis();</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">10</span>; i++) &#123;</div><div class="line">            System.out.println(<span class="string">"楼梯台阶数:"</span> + i + <span class="string">", 走法有:"</span> + countNumber(i));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">long</span> endMili=System.currentTimeMillis();</div><div class="line">        System.out.println(<span class="string">"耗时:"</span> + String.valueOf(endMili - startMili) + <span class="string">"毫秒"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">楼梯台阶数:0, 走法有:0</div><div class="line">楼梯台阶数:1, 走法有:1</div><div class="line">楼梯台阶数:2, 走法有:2</div><div class="line">楼梯台阶数:3, 走法有:3</div><div class="line">楼梯台阶数:4, 走法有:5</div><div class="line">楼梯台阶数:5, 走法有:8</div><div class="line">楼梯台阶数:6, 走法有:13</div><div class="line">楼梯台阶数:7, 走法有:21</div><div class="line">楼梯台阶数:8, 走法有:34</div><div class="line">楼梯台阶数:9, 走法有:55</div><div class="line">楼梯台阶数:10, 走法有:89</div><div class="line">耗时:0毫秒</div><div class="line"></div><div class="line">Process finished with exit code 0</div></pre></td></tr></table></figure><h2 id="其他的方法"><a href="#其他的方法" class="headerlink" title="其他的方法"></a>其他的方法</h2><p>该算法的运算时间是指数级增长的，还有其他方法吗？</p><p>动态规划？</p><p>其实动态规划（dynamicprogramming）是通过组合子问题而解决整个问题的解。乍一看和递归的写法差不多，都是相加。但是递归式是包含了许多重复计算的步骤，对应台阶就是每一个台阶计算前面都是重复的。动态规划<a href="http://lib.csdn.net/base/datastructure" target="_blank" rel="external">算法</a>对每个子问题只求解一次，将其结果保存起来，从而避免每次遇到各个子问题时重新计算答案。</p><p>代码如下：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.Scanner;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by ml on 2017/6/21.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">taijie</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">climbStairs</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (n == <span class="number">0</span> || n == <span class="number">1</span> || n == <span class="number">2</span>) &#123;</div><div class="line">            <span class="keyword">return</span> n;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">//注意坐标起始点的区别</span></div><div class="line">        <span class="keyword">int</span>[] r = <span class="keyword">new</span> <span class="keyword">int</span>[n+<span class="number">1</span>];</div><div class="line">        r[<span class="number">1</span>] = <span class="number">1</span>;</div><div class="line">        r[<span class="number">2</span>] = <span class="number">2</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= n; i++) &#123;</div><div class="line">            r[i] = r[i-<span class="number">1</span>] + r[i-<span class="number">2</span>];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> r[n];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="keyword">long</span> startMili=System.currentTimeMillis();</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">10</span>; i++) &#123;</div><div class="line">            System.out.println(<span class="string">"楼梯台阶数:"</span> + i + <span class="string">", 走法有:"</span> + climbStairs(i));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">long</span> endMili=System.currentTimeMillis();</div><div class="line">        System.out.println(<span class="string">"耗时:"</span> + String.valueOf(endMili - startMili) + <span class="string">"毫秒"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">楼梯台阶数:0, 走法有:0</div><div class="line">楼梯台阶数:1, 走法有:1</div><div class="line">楼梯台阶数:2, 走法有:2</div><div class="line">楼梯台阶数:3, 走法有:3</div><div class="line">楼梯台阶数:4, 走法有:5</div><div class="line">楼梯台阶数:5, 走法有:8</div><div class="line">楼梯台阶数:6, 走法有:13</div><div class="line">楼梯台阶数:7, 走法有:21</div><div class="line">楼梯台阶数:8, 走法有:34</div><div class="line">楼梯台阶数:9, 走法有:55</div><div class="line">楼梯台阶数:10, 走法有:89</div><div class="line">耗时:0毫秒</div><div class="line"></div><div class="line">Process finished with exit code 0</div></pre></td></tr></table></figure><p>之前数学课本上如何思考的？</p><ol><li>先求出走完台阶需要几步？</li><li>再求出总步数中，走一个台阶是几步，走两个台阶式几步，不同种类为排列组合计算</li></ol><h2 id="类似问题"><a href="#类似问题" class="headerlink" title="类似问题"></a>类似问题</h2><p>再看一个硬币的凑法：</p><blockquote><p>用1分、2分和5分的硬币凑成1元，共有多少种不同的凑法？（华为机试题）</p></blockquote><p>它和走楼梯的区别在于，楼梯不同顺序是不同的走法，硬币则与顺序无关，程序可用穷举法。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">coin</span> </span>&#123;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getKinds</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">int</span> num=<span class="number">0</span>;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">21</span>; i++) &#123;</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= <span class="number">100</span>-<span class="number">5</span>*i; j++) &#123;</div><div class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt;= <span class="number">100</span>-<span class="number">5</span>*i-<span class="number">2</span>*j; k++) &#123;</div><div class="line">					<span class="keyword">if</span>(<span class="number">5</span>*i+<span class="number">2</span>*j+k==<span class="number">100</span>)&#123;</div><div class="line">						num++;</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> num;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		System.out.println(getKinds());</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure><p>那么这个问题可以推广为一般性问题吗？M阶，一次走a阶或者b阶或者。。。，求不同走法。</p><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><h1 id="Question2—细胞分裂"><a href="#Question2—细胞分裂" class="headerlink" title="Question2—细胞分裂"></a>Question2—细胞分裂</h1><h2 id="非递归思路"><a href="#非递归思路" class="headerlink" title="非递归思路"></a>非递归思路</h2><p>乍一看，关键是如何处理生命周期是3小时。如何在分裂的同时提出死亡的细胞。</p><h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.HashMap;</div><div class="line"><span class="keyword">import</span> java.util.Iterator;</div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by ml on 2017/6/22.</div><div class="line"> * 思路：每个细胞定义为一维数组的元素，元素的值为细胞的生存时间，每分裂一次，在数组末尾添加新的元素，初始值为0，同时原来的元素值加1</div><div class="line"> * 当元素的值为3时，将该元素剔除</div><div class="line"> * 最后返回该数组的大小</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">xibao</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">cellNum2</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        ArrayList&lt;Integer&gt; cell = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">        <span class="comment">//定义cellnum</span></div><div class="line">        <span class="keyword">int</span> cellnum = <span class="number">0</span>;</div><div class="line">        <span class="comment">//加入初始细胞</span></div><div class="line">        cell.add(<span class="number">0</span>);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</div><div class="line">            <span class="comment">//记录当前数组大小（剔除完成后的数组）</span></div><div class="line">            <span class="keyword">int</span> size = cell.size();</div><div class="line">            <span class="comment">//计算分裂后新的数组的大小</span></div><div class="line">            cellnum = <span class="number">2</span> * cell.size();</div><div class="line">            <span class="comment">//原有生存时间加1</span></div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; cell.size(); j++) &#123;</div><div class="line">                cell.set(j, cell.get(j) + <span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="comment">//遍历剔除元素值为3 PS：ArrayList中遍历可以删除的只有迭代器</span></div><div class="line">            Iterator&lt;Integer&gt; it = cell.iterator();</div><div class="line">            <span class="keyword">while</span> (it.hasNext()) &#123;</div><div class="line">                <span class="keyword">if</span> (it.next().equals(<span class="number">3</span>))</div><div class="line">                    it.remove();</div><div class="line">            &#125;</div><div class="line">            <span class="comment">//在数组末尾添加新的元素</span></div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = size; j &lt; cellnum; j++) &#123;</div><div class="line">                cell.add(<span class="number">0</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> cell.size();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">cellNum</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line"></div><div class="line"></div><div class="line">        HashMap&lt;Integer, Integer&gt; cell = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">        <span class="keyword">int</span> cellnum = <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</div><div class="line">            cellnum *= <span class="number">2</span>;</div><div class="line">            <span class="keyword">int</span> size = cell.size();</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = size; j &lt; cellnum; j++) &#123;</div><div class="line">                cell.put(j, <span class="number">0</span>);</div><div class="line">            &#125;</div><div class="line">            Iterator&lt;HashMap.Entry&lt;Integer, Integer&gt;&gt; iter = cell.entrySet().iterator();</div><div class="line">            <span class="keyword">while</span> (iter.hasNext()) &#123;</div><div class="line">                Map.Entry entry = iter.next();</div><div class="line">                <span class="keyword">int</span> key = (<span class="keyword">int</span>) entry.getKey();</div><div class="line">                <span class="keyword">int</span> val = (<span class="keyword">int</span>) entry.getValue();</div><div class="line">                <span class="keyword">if</span> (key &lt; size) &#123;</div><div class="line">                    cell.put(key, val + <span class="number">1</span>);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> cell.size();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="keyword">long</span> startMili = System.currentTimeMillis();</div><div class="line">        <span class="keyword">int</span> n = <span class="number">6</span>;</div><div class="line">        System.out.println(n + <span class="string">"小时后容器细胞:"</span> + cellNum2(n) + <span class="string">"个"</span>);</div><div class="line">        <span class="keyword">long</span> endMili = System.currentTimeMillis();</div><div class="line">        System.out.println(<span class="string">"耗时:"</span> + String.valueOf(endMili - startMili) + <span class="string">"毫秒"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">3小时后容器细胞:7个</div><div class="line">耗时:0毫秒</div><div class="line"></div><div class="line">Process finished with exit code 0</div></pre></td></tr></table></figure><h3 id="关于ArrayList"><a href="#关于ArrayList" class="headerlink" title="关于ArrayList"></a>关于ArrayList</h3><ol><li>迭代器是作为当前集合的内部类实现的，当迭代器创建的时候保持了当前集合的引用；</li><li>集合内部维护一个字段叫modiCount，用来记录集合被修改的次数，比如add，remove，set等都会使该字段递增；</li><li>迭代器内部也维护着当前集合的修改次数的字段，迭代器创建时该字段初始化为集合的modiCount值</li><li>当每一次迭代时，迭代器会比较迭代器维护的字段和modiCount的值是否相等，如果不相等就抛ConcurrentModifiedException异常；</li><li>当然，如果用迭代器调用remove方法，那么集合和迭代器维护的修改字数都会递增，以保持两个状态的一致。</li></ol><p>这就是为什么你只可以用迭代器来删除，而不能用其他方式来修改集合。</p><h2 id="这类问题如何递归？"><a href="#这类问题如何递归？" class="headerlink" title="这类问题如何递归？"></a>这类问题如何递归？</h2><p>公式法：<br>$$<br>n=t/a<del>~</del><del>~</del>~~y=2^n<br>$$<br>但是这个只适用于最简单的没有任何附加状态条件的情况。</p><p>递归如何来分析？</p><p>细胞的生存周期是3个小时，那我们就可以把细胞在题目中状态分为以下几个状态：</p><ul><li>a：刚分裂态——1</li><li>b：分裂1小时态——a分裂出b和a</li><li>c：分裂2小时态——b分裂出c和a</li><li>d：分裂3小时态——死亡（停止分裂）</li></ul><p>那么，我们就可以根据细胞状态设定函数。分析每一个状态的来源是哪里即可。<br>$$<br>a(t)=a(t-1)+b(t-1)+c(t-1)\\b(t)=a(t-1)\\c(t)=b(t-1)\\d(t)=d(t-1)+c(t-1)<br>$$<br>容器中存活的细胞数目就是a、b、c三种状态数量的总和。</p><h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.HashMap;</div><div class="line"><span class="keyword">import</span> java.util.Iterator;</div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by ml on 2017/6/22.</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">xibao</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">aStatus</span><span class="params">(<span class="keyword">int</span> t)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (t == <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> aStatus(t - <span class="number">1</span>) + bStatus(t - <span class="number">1</span>) + cStatus(t - <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">bStatus</span><span class="params">(<span class="keyword">int</span> t)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (t == <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> aStatus(t-<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">cStatus</span><span class="params">(<span class="keyword">int</span> t)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (t == <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (t == <span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> bStatus(t-<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">dStatus</span><span class="params">(<span class="keyword">int</span> t)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (t == <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (t == <span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (t == <span class="number">2</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> dStatus(t-<span class="number">1</span>) + cStatus(t-<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="keyword">long</span> startMili = System.currentTimeMillis();</div><div class="line">        <span class="keyword">int</span> n = <span class="number">3</span>;</div><div class="line">        <span class="keyword">int</span> res = aStatus(n) + bStatus(n) + cStatus(n);</div><div class="line">        System.out.println(n + <span class="string">"小时后容器细胞:"</span> + res + <span class="string">"个"</span>);</div><div class="line">        <span class="keyword">long</span> endMili = System.currentTimeMillis();</div><div class="line">        System.out.println(<span class="string">"耗时:"</span> + String.valueOf(endMili - startMili) + <span class="string">"毫秒"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">3小时后容器细胞:7个</div><div class="line">耗时:0毫秒</div><div class="line"></div><div class="line">Process finished with exit code 0</div></pre></td></tr></table></figure><h2 id="参考文章-1"><a href="#参考文章-1" class="headerlink" title="参考文章"></a>参考文章</h2><h1 id="Question3—Fibonacci数列"><a href="#Question3—Fibonacci数列" class="headerlink" title="Question3—Fibonacci数列"></a>Question3—Fibonacci数列</h1><p>经典问题：求Fibonacci数列前n项。<br>$$<br>{an}：a1=1，a2=1，a_{n+2}=a_{n+1}+a_n（n≥1）。<br>$$</p><p>PS: Markdown 中公式书写规则</p><ul><li><code>\\</code>符号后接的字符为上标</li><li><code>^</code>符号后接的字符为上标</li><li><code>_</code>符号后接的字符为下标</li><li>如果同时有两个下标，则需要使用<code>{}</code>来将符号括起来</li></ul><h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">fab</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">10</span>; i ++)&#123;</div><div class="line">            System.out.print(recursion(i) + <span class="string">" "</span>);</div><div class="line">        &#125;</div><div class="line">        System.out.println();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">10</span>; i ++)&#123;</div><div class="line">            System.out.print(loop(i) + <span class="string">" "</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 递归</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">recursion</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">2</span>)&#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> recursion(n -<span class="number">1</span>) + recursion(n -<span class="number">2</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 循环</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">loop</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">2</span>)&#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> s1 = <span class="number">1</span>,s2 = <span class="number">1</span>, sum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; n - <span class="number">2</span>; i ++)&#123;</div><div class="line">            sum = s1 + s2;</div><div class="line">            s1 = s2;</div><div class="line">            s2 = sum;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> sum;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1 1 2 3 5 8 13 21 34 </div><div class="line">1 1 2 3 5 8 13 21 34 </div><div class="line">Process finished with exit code 0</div></pre></td></tr></table></figure><p>值得注意的是（递归方法有栈溢出的风险）。</p><h2 id="参考文章-2"><a href="#参考文章-2" class="headerlink" title="参考文章"></a>参考文章</h2><h1 id="Question4—递归核心"><a href="#Question4—递归核心" class="headerlink" title="Question4—递归核心"></a>Question4—递归核心</h1><p>那么总结一下，递归算法的核心是什么呢？</p><p>那就是：</p><ul><li><strong><em><u>在有限次可预见性结果中，找到结果与上一次结果之间的关系。</u></em></strong></li><li>f(n)与f(n-1)的关系有时候很简单，如同走楼梯，状态单一；又有时如同细胞分裂，多种状态组合影响结果。</li><li>关键在于梳理清楚本次结果和上一次结果的关系有哪些方面或是因素，刚开始看的时候可能会很乱。</li><li>在草稿纸上写出前几次的结果，或者画图，这样更容易找到规律，这种规律实际上就是递归方程。</li><li><strong>*在算法的分析中，当一个算法中包含递归调用时，其时间复杂度的分析会转化成为一个递归方程的求解。而对递归方程的求解，方法多种多样，不一而足。</strong></li></ul><p>动态规划就是在递归的基础上，保存每一步的数据，避免重复计算。<br>在递归计算调用次数过多时，可以考虑更换其他方法解答。</p></div><div><div class="my_post_copyright"><script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script><script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script><script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script><link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css"><p><span>本文标题:</span><a href="/learn_for_some_questions.html">几个小问题的解答</a></p><p><span>文章作者:</span><a href="/" title="访问 LicentMa 的个人博客">LicentMa</a></p><p><span>发布时间:</span>2017年06月22日 - 23:06</p><p><span>最后更新:</span>2017年06月22日 - 23:06</p><p><span>原始链接:</span><a href="/learn_for_some_questions.html" title="几个小问题的解答">http://lincentma.men/learn_for_some_questions.html</a><span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://lincentma.men/learn_for_some_questions.html" aria-label="复制成功！"></i></span></p><p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p></div><script>var clipboard=new Clipboard(".fa-clipboard");clipboard.on("success",$(function(){$(".fa-clipboard").click(function(){swal({title:"",text:"复制成功",html:!1,timer:500,showConfirmButton:!1})})}))</script></div><div></div><div></div><div></div><footer class="post-footer"><div class="post-tags"><a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/learn_rank.html" rel="next" title="Rank小记"><i class="fa fa-chevron-left"></i> Rank小记</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"> <a href="/program_language_virtual_machine.html" rel="prev" title="Java、Python与PHP的虚拟机异同">Java、Python与PHP的虚拟机异同<i class="fa fa-chevron-right"></i></a></div></div></footer></article><div class="post-spread"><div class="addthis_inline_share_toolbox"><script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5940fb88d0b69224" async="async"></script></div></div></div></div><div class="comments" id="comments"><div id="lv-container" data-id="city" data-uid="MTAyMC8yOTA4OC81NjU3"></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span><span class="sidebar-toggle-line sidebar-toggle-line-middle"></span><span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap"> 文章目录</li><li class="sidebar-nav-overview" data-target="site-overview"> 站点概览</li></ul><section class="site-overview sidebar-panel"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"> <img class="site-author-image" itemprop="image" src="http://orj5hqpmw.bkt.clouddn.com/hexo/image/touxiang.jpg" alt="LicentMa"><p class="site-author-name" itemprop="name">LicentMa</p><p class="site-description motion-element" itemprop="description"></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"> <a href="/archives/"><span class="site-state-item-count">9</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"> <a href="/categories/index.html"><span class="site-state-item-count">4</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"> <a href="/tags/index.html"><span class="site-state-item-count">12</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="feed-link motion-element"><a href="/atom.xml" rel="alternate"><i class="fa fa-rss"></i> RSS</a></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/lingma1993" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i> GitHub</a></span><span class="links-of-author-item"><a href="http://weibo.com/lincentma" target="_blank" title="Weibo"><i class="fa fa-fw fa-weibo"></i> Weibo</a></span></div><div class="links-of-blogroll motion-element links-of-blogroll-inline"><div class="links-of-blogroll-title"><i class="fa fa-fw fa-globe"></i> 友链</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"> <a href="http://blog.csdn.net/qianqianstd" title="阳光暖心的专栏" target="_blank">阳光暖心的专栏</a></li><li class="links-of-blogroll-item"> <a href="http://blog.csdn.net/u012061239" title="小马过河的专栏" target="_blank">小马过河的专栏</a></li></ul></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Question1—走楼梯"><span class="nav-number">1.</span> <span class="nav-text">Question1—走楼梯</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">1.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">1.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他的方法"><span class="nav-number">1.3.</span> <span class="nav-text">其他的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类似问题"><span class="nav-number">1.4.</span> <span class="nav-text">类似问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章"><span class="nav-number">1.5.</span> <span class="nav-text">参考文章</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Question2—细胞分裂"><span class="nav-number">2.</span> <span class="nav-text">Question2—细胞分裂</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#非递归思路"><span class="nav-number">2.1.</span> <span class="nav-text">非递归思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码："><span class="nav-number">2.1.1.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于ArrayList"><span class="nav-number">2.1.2.</span> <span class="nav-text">关于ArrayList</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#这类问题如何递归？"><span class="nav-number">2.2.</span> <span class="nav-text">这类问题如何递归？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章-1"><span class="nav-number">2.3.</span> <span class="nav-text">参考文章</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Question3—Fibonacci数列"><span class="nav-number">3.</span> <span class="nav-text">Question3—Fibonacci数列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码-2"><span class="nav-number">3.1.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章-2"><span class="nav-number">3.2.</span> <span class="nav-text">参考文章</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Question4—递归核心"><span class="nav-number">4.</span> <span class="nav-text">Question4—递归核心</span></a></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><div class="copyright"> &copy; <span itemprop="copyrightYear">2017</span><span class="with-love"><i class="fa fa-heart"></i></span> <span class="author" itemprop="copyrightHolder">LicentMa</span><p>Hosted by <a href="https://pages.coding.me" style="font-weight:700">Coding Pages</a></p></div><div class="powered-by"> 由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div><div class="theme-info"> 主题 - <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div><script type="text/javascript" color="0,0,255" opacity="0.7" zindex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="true"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script><script type="text/javascript">!function(e,t){var n,c=e.getElementsByTagName(t)[0];"function"!=typeof LivereTower&&((n=e.createElement(t)).src="https://cdn-city.livere.com/js/embed.dist.js",n.async=!0,c.parentNode.insertBefore(n,c))}(document,"script")</script><script type="text/javascript">function proceedsearch(){$("body").append('<div class="search-popup-overlay local-search-pop-overlay"></div>').css("overflow","hidden"),$(".search-popup-overlay").click(onPopupClose),$(".popup").toggle();var t=$("#local-search-input");t.attr("autocapitalize","none"),t.attr("autocorrect","off"),t.focus()}var isfetched=!1,isXml=!0,search_path="search.xml";0===search_path.length?search_path="search.xml":/json$/i.test(search_path)&&(isXml=!1);var path="/"+search_path,onPopupClose=function(t){$(".popup").hide(),$("#local-search-input").val(""),$(".search-result-list").remove(),$("#no-result").remove(),$(".local-search-pop-overlay").remove(),$("body").css("overflow","")},searchFunc=function(t,e,o){"use strict";$("body").append('<div class="search-popup-overlay local-search-pop-overlay"><div id="search-loading-icon"><i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i></div></div>').css("overflow","hidden"),$("#search-loading-icon").css("margin","20% auto 0 auto").css("text-align","center"),$.ajax({url:t,dataType:isXml?"xml":"json",async:!0,success:function(t){isfetched=!0,$(".popup").detach().appendTo(".header-inner");var n=isXml?$("entry",t).map(function(){return{title:$("title",this).text(),content:$("content",this).text(),url:$("url",this).text()}}).get():t,r=document.getElementById(e),s=document.getElementById(o),a=function(){var t=r.value.trim().toLowerCase(),e=t.split(/[\s\-]+/);e.length>1&&e.push(t);var o=[];if(t.length>0&&n.forEach(function(n){var r=!1,s=0,a=0,i=n.title.trim(),c=i.toLowerCase(),l=n.content.trim().replace(/<[^>]+>/g,""),h=l.toLowerCase(),p=decodeURIComponent(n.url),u=[],f=[];if(""!=i&&(e.forEach(function(t){function e(t,e,o){var n=t.length;if(0===n)return[];var r=0,s=[],a=[];for(o||(e=e.toLowerCase(),t=t.toLowerCase());(s=e.indexOf(t,r))>-1;)a.push({position:s,word:t}),r=s+n;return a}u=u.concat(e(t,c,!1)),f=f.concat(e(t,h,!1))}),(u.length>0||f.length>0)&&(r=!0,s=u.length+f.length)),r){[u,f].forEach(function(t){t.sort(function(t,e){return e.position!==t.position?e.position-t.position:t.word.length-e.word.length})});function d(e,o,n,r){for(var s=r[r.length-1],i=s.position,c=s.word,l=[],h=0;i+c.length<=n&&0!=r.length;){c===t&&h++,l.push({position:i,length:c.length});var p=i+c.length;for(r.pop();0!=r.length&&(s=r[r.length-1],i=s.position,c=s.word,p>i);)r.pop()}return a+=h,{hits:l,start:o,end:n,searchTextCount:h}}var g=[];0!=u.length&&g.push(d(0,0,i.length,u));for(var v=[];0!=f.length;){var $=f[f.length-1],C=$.position,m=$.word,x=C-20,w=C+80;x<0&&(x=0),w<C+m.length&&(w=C+m.length),w>l.length&&(w=l.length),v.push(d(0,x,w,f))}v.sort(function(t,e){return t.searchTextCount!==e.searchTextCount?e.searchTextCount-t.searchTextCount:t.hits.length!==e.hits.length?e.hits.length-t.hits.length:t.start-e.start});var y=parseInt("1");y>=0&&(v=v.slice(0,y));function T(t,e){var o="",n=e.start;return e.hits.forEach(function(e){o+=t.substring(n,e.position);var r=e.position+e.length;o+='<b class="search-keyword">'+t.substring(e.position,r)+"</b>",n=r}),o+=t.substring(n,e.end)}var b="";0!=g.length?b+="<li><a href='"+p+"' class='search-result-title'>"+T(i,g[0])+"</a>":b+="<li><a href='"+p+"' class='search-result-title'>"+i+"</a>",v.forEach(function(t){b+="<a href='"+p+'\'><p class="search-result">'+T(l,t)+"...</p></a>"}),b+="</li>",o.push({item:b,searchTextCount:a,hitCount:s,id:o.length})}}),1===e.length&&""===e[0])s.innerHTML='<div id="no-result"><i class="fa fa-search fa-5x" /></div>';else if(0===o.length)s.innerHTML='<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>';else{o.sort(function(t,e){return t.searchTextCount!==e.searchTextCount?e.searchTextCount-t.searchTextCount:t.hitCount!==e.hitCount?e.hitCount-t.hitCount:e.id-t.id});var a='<ul class="search-result-list">';o.forEach(function(t){a+=t.item}),a+="</ul>",s.innerHTML=a}};r.addEventListener("input",a),$(".local-search-pop-overlay").remove(),$("body").css("overflow",""),proceedsearch()}})};$(".popup-trigger").click(function(t){t.stopPropagation(),!1===isfetched?searchFunc(path,"local-search-input","local-search-result"):proceedsearch()}),$(".popup-btn-close").click(onPopupClose),$(".popup").click(function(t){t.stopPropagation()}),$(document).on("keyup",function(t){27===t.which&&$(".search-popup").is(":visible")&&onPopupClose()})</script><script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script><script>AV.initialize("v8Qfzuz0qVjHi4M0HKmmcq8F-gzGzoHsz","rTcK7RKKd6DaBKOUPBKsAMKD")</script><script>function showTime(e){var t=new AV.Query(e),n=[],o=$(".leancloud_visitors");o.each(function(){n.push($(this).attr("id").trim())}),t.containedIn("url",n),t.find().done(function(e){if(0!==e.length){for(c=0;c<e.length;c++){var t=e[c],i=t.get("url"),s=t.get("time"),l=document.getElementById(i);$(l).find(".leancloud-visitors-count").text(s)}for(var c=0;c<n.length;c++){var i=n[c],l=document.getElementById(i),r=$(l).find(".leancloud-visitors-count");""==r.text()&&r.text(0)}}else o.find(".leancloud-visitors-count").text(0)}).fail(function(e,t){console.log("Error: "+t.code+" "+t.message)})}function addCount(e){var t=$(".leancloud_visitors"),n=t.attr("id").trim(),o=t.attr("data-flag-title").trim(),i=new AV.Query(e);i.equalTo("url",n),i.find({success:function(t){if(t.length>0){var i=t[0];i.fetchWhenSave(!0),i.increment("time"),i.save(null,{success:function(e){$(document.getElementById(n)).find(".leancloud-visitors-count").text(e.get("time"))},error:function(e,t){console.log("Failed to save Visitor num, with error message: "+t.message)}})}else{var s=new e,l=new AV.ACL;l.setPublicReadAccess(!0),l.setPublicWriteAccess(!0),s.setACL(l),s.set("title",o),s.set("url",n),s.set("time",1),s.save(null,{success:function(e){$(document.getElementById(n)).find(".leancloud-visitors-count").text(e.get("time"))},error:function(e,t){console.log("Failed to create")}})}},error:function(e){console.log("Error:"+e.code+" "+e.message)}})}$(function(){var e=AV.Object.extend("Counter");1==$(".leancloud_visitors").length?addCount(e):$(".post-title-link").length>1&&showTime(e)})</script><script>!function(){var t=document.createElement("script"),e=window.location.protocol.split(":")[0];t.src="https"===e?"https://zz.bdstatic.com/linksubmit/push.js":"http://push.zhanzhang.baidu.com/push.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}()</script><script type="text/x-mathjax-config">
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="pPxmXck9csmpjfOKT55pbx0Xl_ArkohkaYr4fC0fHw4" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="LincentMa's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="她给我提了一下几个问题，自己一眼看上去觉得简单，但是说不出来所以然，犯了眼高手低的毛病，记录自省。   [x] 一共10级楼梯，每次可以走一步或两步，求一共多少种走法。 [x] 一个细胞，一个小时分裂一次，生命周期是3小时，求n小时后容器内，有多少细胞。 [x] 斐波那契数列的实现。 [x] 递归算法的核心  Question1—走楼梯思路楼梯问题，一眼看上去，应该是一个递归问题跑不了了。 那">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="几个小问题的解答">
+<meta property="og:url" content="http://lincentma.men/learn_for_some_questions.html">
+<meta property="og:site_name" content="LincentMa&#39;s Blog">
+<meta property="og:description" content="她给我提了一下几个问题，自己一眼看上去觉得简单，但是说不出来所以然，犯了眼高手低的毛病，记录自省。   [x] 一共10级楼梯，每次可以走一步或两步，求一共多少种走法。 [x] 一个细胞，一个小时分裂一次，生命周期是3小时，求n小时后容器内，有多少细胞。 [x] 斐波那契数列的实现。 [x] 递归算法的核心  Question1—走楼梯思路楼梯问题，一眼看上去，应该是一个递归问题跑不了了。 那">
+<meta property="og:updated_time" content="2017-06-22T15:43:43.699Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="几个小问题的解答">
+<meta name="twitter:description" content="她给我提了一下几个问题，自己一眼看上去觉得简单，但是说不出来所以然，犯了眼高手低的毛病，记录自省。   [x] 一共10级楼梯，每次可以走一步或两步，求一共多少种走法。 [x] 一个细胞，一个小时分裂一次，生命周期是3小时，求n小时后容器内，有多少细胞。 [x] 斐波那契数列的实现。 [x] 递归算法的核心  Question1—走楼梯思路楼梯问题，一眼看上去，应该是一个递归问题跑不了了。 那">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://lincentma.men/learn_for_some_questions.html"/>
+
+
+
+
+
+  <title>几个小问题的解答 | LincentMa's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-101216364-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=62645334";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+    
+    <a href="https://github.com/lingma1993"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/c6625ac1f3ee0a12250227cf83ce904423abf351/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LincentMa's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://lincentma.men/learn_for_some_questions.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LicentMa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://orj5hqpmw.bkt.clouddn.com/hexo/image/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LincentMa's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">几个小问题的解答</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-22T23:25:38+08:00">
+                2017-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">开发笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/learn_for_some_questions.html" class="leancloud_visitors" data-flag-title="几个小问题的解答">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span class="post-meta-divider">|</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2,755 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  12 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><blockquote>
+<p>她给我提了一下几个问题，自己一眼看上去觉得简单，但是说不出来所以然，犯了眼高手低的毛病，记录自省。</p>
+</blockquote>
+<ul>
+<li>[x] 一共10级楼梯，每次可以走一步或两步，求一共多少种走法。</li>
+<li>[x] 一个细胞，一个小时分裂一次，生命周期是3小时，求n小时后容器内，有多少细胞。</li>
+<li>[x] 斐波那契数列的实现。</li>
+<li>[x] 递归算法的核心</li>
+</ul>
+<h1 id="Question1—走楼梯"><a href="#Question1—走楼梯" class="headerlink" title="Question1—走楼梯"></a>Question1—走楼梯</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>楼梯问题，一眼看上去，应该是一个递归问题跑不了了。</p>
+<p>那么该如何递归，找到其中的规律呢？</p>
+<p><strong><em>逆向思考。</em></strong></p>
+<p>要想走到M(M=10)级,可以分为2种情况。 </p>
+<ol>
+<li>从m-2级迈两步 </li>
+<li>从m-1级迈一步 </li>
+</ol>
+<p>那么对于m-2和m-1的情况也是各自分为两种，以此类推。</p>
+<p>那么走法的和就是m-2的走法和m-1的走法之和。</p>
+<p>那么递归到最基本的（当前人在第0阶台阶）</p>
+<p>第0阶台阶：0</p>
+<p>第1阶台阶：1</p>
+<p>第2阶台阶：2（1+1或者2）</p>
+<p>得到公式，也就是斐波那契数列。<br>$$<br>f(n)=f(n-1)+f(n-2)<br>$$</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.Scanner;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by ml on 2017/6/21.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">taijie</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">countNumber</span><span class="params">(<span class="keyword">int</span> stepsNum)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span> (stepsNum == <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (stepsNum == <span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (stepsNum == <span class="number">2</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">2</span>;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (stepsNum &gt; <span class="number">2</span>) &#123;</div><div class="line">            <span class="keyword">return</span>  countNumber(stepsNum - <span class="number">2</span>) + countNumber(stepsNum - <span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> sum;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="keyword">long</span> startMili=System.currentTimeMillis();</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">10</span>; i++) &#123;</div><div class="line">            System.out.println(<span class="string">"楼梯台阶数:"</span> + i + <span class="string">", 走法有:"</span> + countNumber(i));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">long</span> endMili=System.currentTimeMillis();</div><div class="line">        System.out.println(<span class="string">"耗时:"</span> + String.valueOf(endMili - startMili) + <span class="string">"毫秒"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">楼梯台阶数:0, 走法有:0</div><div class="line">楼梯台阶数:1, 走法有:1</div><div class="line">楼梯台阶数:2, 走法有:2</div><div class="line">楼梯台阶数:3, 走法有:3</div><div class="line">楼梯台阶数:4, 走法有:5</div><div class="line">楼梯台阶数:5, 走法有:8</div><div class="line">楼梯台阶数:6, 走法有:13</div><div class="line">楼梯台阶数:7, 走法有:21</div><div class="line">楼梯台阶数:8, 走法有:34</div><div class="line">楼梯台阶数:9, 走法有:55</div><div class="line">楼梯台阶数:10, 走法有:89</div><div class="line">耗时:0毫秒</div><div class="line"></div><div class="line">Process finished with exit code 0</div></pre></td></tr></table></figure>
+<h2 id="其他的方法"><a href="#其他的方法" class="headerlink" title="其他的方法"></a>其他的方法</h2><p>该算法的运算时间是指数级增长的，还有其他方法吗？</p>
+<p>动态规划？</p>
+<p>其实动态规划（dynamicprogramming）是通过组合子问题而解决整个问题的解。乍一看和递归的写法差不多，都是相加。但是递归式是包含了许多重复计算的步骤，对应台阶就是每一个台阶计算前面都是重复的。动态规划<a href="http://lib.csdn.net/base/datastructure" target="_blank" rel="external">算法</a>对每个子问题只求解一次，将其结果保存起来，从而避免每次遇到各个子问题时重新计算答案。</p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.Scanner;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by ml on 2017/6/21.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">taijie</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">climbStairs</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (n == <span class="number">0</span> || n == <span class="number">1</span> || n == <span class="number">2</span>) &#123;</div><div class="line">            <span class="keyword">return</span> n;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">//注意坐标起始点的区别</span></div><div class="line">        <span class="keyword">int</span>[] r = <span class="keyword">new</span> <span class="keyword">int</span>[n+<span class="number">1</span>];</div><div class="line">        r[<span class="number">1</span>] = <span class="number">1</span>;</div><div class="line">        r[<span class="number">2</span>] = <span class="number">2</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= n; i++) &#123;</div><div class="line">            r[i] = r[i-<span class="number">1</span>] + r[i-<span class="number">2</span>];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> r[n];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="keyword">long</span> startMili=System.currentTimeMillis();</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">10</span>; i++) &#123;</div><div class="line">            System.out.println(<span class="string">"楼梯台阶数:"</span> + i + <span class="string">", 走法有:"</span> + climbStairs(i));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">long</span> endMili=System.currentTimeMillis();</div><div class="line">        System.out.println(<span class="string">"耗时:"</span> + String.valueOf(endMili - startMili) + <span class="string">"毫秒"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">楼梯台阶数:0, 走法有:0</div><div class="line">楼梯台阶数:1, 走法有:1</div><div class="line">楼梯台阶数:2, 走法有:2</div><div class="line">楼梯台阶数:3, 走法有:3</div><div class="line">楼梯台阶数:4, 走法有:5</div><div class="line">楼梯台阶数:5, 走法有:8</div><div class="line">楼梯台阶数:6, 走法有:13</div><div class="line">楼梯台阶数:7, 走法有:21</div><div class="line">楼梯台阶数:8, 走法有:34</div><div class="line">楼梯台阶数:9, 走法有:55</div><div class="line">楼梯台阶数:10, 走法有:89</div><div class="line">耗时:0毫秒</div><div class="line"></div><div class="line">Process finished with exit code 0</div></pre></td></tr></table></figure>
+<p>之前数学课本上如何思考的？</p>
+<ol>
+<li>先求出走完台阶需要几步？</li>
+<li>再求出总步数中，走一个台阶是几步，走两个台阶式几步，不同种类为排列组合计算</li>
+</ol>
+<h2 id="类似问题"><a href="#类似问题" class="headerlink" title="类似问题"></a>类似问题</h2><p>再看一个硬币的凑法：</p>
+<blockquote>
+<p>用1分、2分和5分的硬币凑成1元，共有多少种不同的凑法？（华为机试题）</p>
+</blockquote>
+<p>它和走楼梯的区别在于，楼梯不同顺序是不同的走法，硬币则与顺序无关，程序可用穷举法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">coin</span> </span>&#123;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getKinds</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">int</span> num=<span class="number">0</span>;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">21</span>; i++) &#123;</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= <span class="number">100</span>-<span class="number">5</span>*i; j++) &#123;</div><div class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt;= <span class="number">100</span>-<span class="number">5</span>*i-<span class="number">2</span>*j; k++) &#123;</div><div class="line">					<span class="keyword">if</span>(<span class="number">5</span>*i+<span class="number">2</span>*j+k==<span class="number">100</span>)&#123;</div><div class="line">						num++;</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> num;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		System.out.println(getKinds());</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>那么这个问题可以推广为一般性问题吗？M阶，一次走a阶或者b阶或者。。。，求不同走法。</p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><h1 id="Question2—细胞分裂"><a href="#Question2—细胞分裂" class="headerlink" title="Question2—细胞分裂"></a>Question2—细胞分裂</h1><h2 id="非递归思路"><a href="#非递归思路" class="headerlink" title="非递归思路"></a>非递归思路</h2><p>乍一看，关键是如何处理生命周期是3小时。如何在分裂的同时提出死亡的细胞。</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.HashMap;</div><div class="line"><span class="keyword">import</span> java.util.Iterator;</div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by ml on 2017/6/22.</div><div class="line"> * 思路：每个细胞定义为一维数组的元素，元素的值为细胞的生存时间，每分裂一次，在数组末尾添加新的元素，初始值为0，同时原来的元素值加1</div><div class="line"> * 当元素的值为3时，将该元素剔除</div><div class="line"> * 最后返回该数组的大小</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">xibao</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">cellNum2</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        ArrayList&lt;Integer&gt; cell = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">        <span class="comment">//定义cellnum</span></div><div class="line">        <span class="keyword">int</span> cellnum = <span class="number">0</span>;</div><div class="line">        <span class="comment">//加入初始细胞</span></div><div class="line">        cell.add(<span class="number">0</span>);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</div><div class="line">            <span class="comment">//记录当前数组大小（剔除完成后的数组）</span></div><div class="line">            <span class="keyword">int</span> size = cell.size();</div><div class="line">            <span class="comment">//计算分裂后新的数组的大小</span></div><div class="line">            cellnum = <span class="number">2</span> * cell.size();</div><div class="line">            <span class="comment">//原有生存时间加1</span></div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; cell.size(); j++) &#123;</div><div class="line">                cell.set(j, cell.get(j) + <span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="comment">//遍历剔除元素值为3 PS：ArrayList中遍历可以删除的只有迭代器</span></div><div class="line">            Iterator&lt;Integer&gt; it = cell.iterator();</div><div class="line">            <span class="keyword">while</span> (it.hasNext()) &#123;</div><div class="line">                <span class="keyword">if</span> (it.next().equals(<span class="number">3</span>))</div><div class="line">                    it.remove();</div><div class="line">            &#125;</div><div class="line">            <span class="comment">//在数组末尾添加新的元素</span></div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = size; j &lt; cellnum; j++) &#123;</div><div class="line">                cell.add(<span class="number">0</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> cell.size();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">cellNum</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line"></div><div class="line"></div><div class="line">        HashMap&lt;Integer, Integer&gt; cell = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">        <span class="keyword">int</span> cellnum = <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</div><div class="line">            cellnum *= <span class="number">2</span>;</div><div class="line">            <span class="keyword">int</span> size = cell.size();</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = size; j &lt; cellnum; j++) &#123;</div><div class="line">                cell.put(j, <span class="number">0</span>);</div><div class="line">            &#125;</div><div class="line">            Iterator&lt;HashMap.Entry&lt;Integer, Integer&gt;&gt; iter = cell.entrySet().iterator();</div><div class="line">            <span class="keyword">while</span> (iter.hasNext()) &#123;</div><div class="line">                Map.Entry entry = iter.next();</div><div class="line">                <span class="keyword">int</span> key = (<span class="keyword">int</span>) entry.getKey();</div><div class="line">                <span class="keyword">int</span> val = (<span class="keyword">int</span>) entry.getValue();</div><div class="line">                <span class="keyword">if</span> (key &lt; size) &#123;</div><div class="line">                    cell.put(key, val + <span class="number">1</span>);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> cell.size();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="keyword">long</span> startMili = System.currentTimeMillis();</div><div class="line">        <span class="keyword">int</span> n = <span class="number">6</span>;</div><div class="line">        System.out.println(n + <span class="string">"小时后容器细胞:"</span> + cellNum2(n) + <span class="string">"个"</span>);</div><div class="line">        <span class="keyword">long</span> endMili = System.currentTimeMillis();</div><div class="line">        System.out.println(<span class="string">"耗时:"</span> + String.valueOf(endMili - startMili) + <span class="string">"毫秒"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">3小时后容器细胞:7个</div><div class="line">耗时:0毫秒</div><div class="line"></div><div class="line">Process finished with exit code 0</div></pre></td></tr></table></figure>
+<h3 id="关于ArrayList"><a href="#关于ArrayList" class="headerlink" title="关于ArrayList"></a>关于ArrayList</h3><ol>
+<li>迭代器是作为当前集合的内部类实现的，当迭代器创建的时候保持了当前集合的引用；</li>
+<li>集合内部维护一个字段叫modiCount，用来记录集合被修改的次数，比如add，remove，set等都会使该字段递增；</li>
+<li>迭代器内部也维护着当前集合的修改次数的字段，迭代器创建时该字段初始化为集合的modiCount值</li>
+<li>当每一次迭代时，迭代器会比较迭代器维护的字段和modiCount的值是否相等，如果不相等就抛ConcurrentModifiedException异常；</li>
+<li>当然，如果用迭代器调用remove方法，那么集合和迭代器维护的修改字数都会递增，以保持两个状态的一致。</li>
+</ol>
+<p>这就是为什么你只可以用迭代器来删除，而不能用其他方式来修改集合。</p>
+<h2 id="这类问题如何递归？"><a href="#这类问题如何递归？" class="headerlink" title="这类问题如何递归？"></a>这类问题如何递归？</h2><p>公式法：<br>$$<br>n=t/a<del>~</del><del>~</del>~~y=2^n<br>$$<br>但是这个只适用于最简单的没有任何附加状态条件的情况。</p>
+<p>递归如何来分析？</p>
+<p>细胞的生存周期是3个小时，那我们就可以把细胞在题目中状态分为以下几个状态：</p>
+<ul>
+<li>a：刚分裂态——1</li>
+<li>b：分裂1小时态——a分裂出b和a</li>
+<li>c：分裂2小时态——b分裂出c和a</li>
+<li>d：分裂3小时态——死亡（停止分裂）</li>
+</ul>
+<p>那么，我们就可以根据细胞状态设定函数。分析每一个状态的来源是哪里即可。<br>$$<br>a(t)=a(t-1)+b(t-1)+c(t-1)\\b(t)=a(t-1)\\c(t)=b(t-1)\\d(t)=d(t-1)+c(t-1)<br>$$<br>容器中存活的细胞数目就是a、b、c三种状态数量的总和。</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.HashMap;</div><div class="line"><span class="keyword">import</span> java.util.Iterator;</div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by ml on 2017/6/22.</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">xibao</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">aStatus</span><span class="params">(<span class="keyword">int</span> t)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (t == <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> aStatus(t - <span class="number">1</span>) + bStatus(t - <span class="number">1</span>) + cStatus(t - <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">bStatus</span><span class="params">(<span class="keyword">int</span> t)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (t == <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> aStatus(t-<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">cStatus</span><span class="params">(<span class="keyword">int</span> t)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (t == <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (t == <span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> bStatus(t-<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">dStatus</span><span class="params">(<span class="keyword">int</span> t)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (t == <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (t == <span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (t == <span class="number">2</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> dStatus(t-<span class="number">1</span>) + cStatus(t-<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="keyword">long</span> startMili = System.currentTimeMillis();</div><div class="line">        <span class="keyword">int</span> n = <span class="number">3</span>;</div><div class="line">        <span class="keyword">int</span> res = aStatus(n) + bStatus(n) + cStatus(n);</div><div class="line">        System.out.println(n + <span class="string">"小时后容器细胞:"</span> + res + <span class="string">"个"</span>);</div><div class="line">        <span class="keyword">long</span> endMili = System.currentTimeMillis();</div><div class="line">        System.out.println(<span class="string">"耗时:"</span> + String.valueOf(endMili - startMili) + <span class="string">"毫秒"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">3小时后容器细胞:7个</div><div class="line">耗时:0毫秒</div><div class="line"></div><div class="line">Process finished with exit code 0</div></pre></td></tr></table></figure>
+<h2 id="参考文章-1"><a href="#参考文章-1" class="headerlink" title="参考文章"></a>参考文章</h2><h1 id="Question3—Fibonacci数列"><a href="#Question3—Fibonacci数列" class="headerlink" title="Question3—Fibonacci数列"></a>Question3—Fibonacci数列</h1><p>经典问题：求Fibonacci数列前n项。<br>$$<br>{an}：a1=1，a2=1，a_{n+2}=a_{n+1}+a_n（n≥1）。<br>$$</p>
+<p>PS: Markdown 中公式书写规则</p>
+<ul>
+<li><code>\\</code>符号后接的字符为上标</li>
+<li><code>^</code>符号后接的字符为上标 </li>
+<li><code>_</code>符号后接的字符为下标 </li>
+<li>如果同时有两个下标，则需要使用<code>{}</code>来将符号括起来</li>
+</ul>
+<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">fab</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">10</span>; i ++)&#123;</div><div class="line">            System.out.print(recursion(i) + <span class="string">" "</span>);</div><div class="line">        &#125;</div><div class="line">        System.out.println();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">10</span>; i ++)&#123;</div><div class="line">            System.out.print(loop(i) + <span class="string">" "</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 递归</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">recursion</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">2</span>)&#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> recursion(n -<span class="number">1</span>) + recursion(n -<span class="number">2</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 循环</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">loop</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">2</span>)&#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> s1 = <span class="number">1</span>,s2 = <span class="number">1</span>, sum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; n - <span class="number">2</span>; i ++)&#123;</div><div class="line">            sum = s1 + s2;</div><div class="line">            s1 = s2;</div><div class="line">            s2 = sum;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> sum;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1 1 2 3 5 8 13 21 34 </div><div class="line">1 1 2 3 5 8 13 21 34 </div><div class="line">Process finished with exit code 0</div></pre></td></tr></table></figure>
+<p>值得注意的是（递归方法有栈溢出的风险）。</p>
+<h2 id="参考文章-2"><a href="#参考文章-2" class="headerlink" title="参考文章"></a>参考文章</h2><h1 id="Question4—递归核心"><a href="#Question4—递归核心" class="headerlink" title="Question4—递归核心"></a>Question4—递归核心</h1><p>那么总结一下，递归算法的核心是什么呢？</p>
+<p>那就是：</p>
+<ul>
+<li><strong><em><u>在有限次可预见性结果中，找到结果与上一次结果之间的关系。</u></em></strong></li>
+<li>f(n)与f(n-1)的关系有时候很简单，如同走楼梯，状态单一；又有时如同细胞分裂，多种状态组合影响结果。</li>
+<li>关键在于梳理清楚本次结果和上一次结果的关系有哪些方面或是因素，刚开始看的时候可能会很乱。</li>
+<li>在草稿纸上写出前几次的结果，或者画图，这样更容易找到规律，这种规律实际上就是递归方程。</li>
+<li><strong>*在算法的分析中，当一个算法中包含递归调用时，其时间复杂度的分析会转化成为一个递归方程的求解。而对递归方程的求解，方法多种多样，不一而足。</strong></li>
+</ul>
+<p>动态规划就是在递归的基础上，保存每一步的数据，避免重复计算。<br>在递归计算调用次数过多时，可以考虑更换其他方法解答。</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/learn_for_some_questions.html">几个小问题的解答</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 LicentMa 的个人博客">LicentMa</a></p>
+  <p><span>发布时间:</span>2017年06月22日 - 23:06</p>
+  <p><span>最后更新:</span>2017年06月22日 - 23:06</p>
+  <p><span>原始链接:</span><a href="/learn_for_some_questions.html" title="几个小问题的解答">http://lincentma.men/learn_for_some_questions.html</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://lincentma.men/learn_for_some_questions.html"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
+
+
+
+      
+    </div>    
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/learn_rank.html" rel="next" title="Rank小记">
+                <i class="fa fa-chevron-left"></i> Rank小记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/program_language_virtual_machine.html" rel="prev" title="Java、Python与PHP的虚拟机异同">
+                Java、Python与PHP的虚拟机异同 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5940fb88d0b69224" async = "async" ></script>
+</div>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTA4OC81NjU3"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://orj5hqpmw.bkt.clouddn.com/hexo/image/touxiang.jpg"
+               alt="LicentMa" />
+          <p class="site-author-name" itemprop="name">LicentMa</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lingma1993" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/lincentma" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友链
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/qianqianstd" title="阳光暖心的专栏" target="_blank">阳光暖心的专栏</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/u012061239" title="小马过河的专栏" target="_blank">小马过河的专栏</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Question1—走楼梯"><span class="nav-number">1.</span> <span class="nav-text">Question1—走楼梯</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">1.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">1.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他的方法"><span class="nav-number">1.3.</span> <span class="nav-text">其他的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类似问题"><span class="nav-number">1.4.</span> <span class="nav-text">类似问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章"><span class="nav-number">1.5.</span> <span class="nav-text">参考文章</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Question2—细胞分裂"><span class="nav-number">2.</span> <span class="nav-text">Question2—细胞分裂</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#非递归思路"><span class="nav-number">2.1.</span> <span class="nav-text">非递归思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码："><span class="nav-number">2.1.1.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于ArrayList"><span class="nav-number">2.1.2.</span> <span class="nav-text">关于ArrayList</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#这类问题如何递归？"><span class="nav-number">2.2.</span> <span class="nav-text">这类问题如何递归？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章-1"><span class="nav-number">2.3.</span> <span class="nav-text">参考文章</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Question3—Fibonacci数列"><span class="nav-number">3.</span> <span class="nav-text">Question3—Fibonacci数列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码-2"><span class="nav-number">3.1.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章-2"><span class="nav-number">3.2.</span> <span class="nav-text">参考文章</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Question4—递归核心"><span class="nav-number">4.</span> <span class="nav-text">Question4—递归核心</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LicentMa</span>
+  <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+</div><div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+    
+      <script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="true"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("v8Qfzuz0qVjHi4M0HKmmcq8F-gzGzoHsz", "rTcK7RKKd6DaBKOUPBKsAMKD");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
         tex2jax: {
           inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
@@ -6,11 +1474,23 @@
           skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
         }
       });
-    </script><script type="text/x-mathjax-config">
+    </script>
+
+    <script type="text/x-mathjax-config">
       MathJax.Hub.Queue(function() {
         var all = MathJax.Hub.getAllJax(), i;
         for (i=0; i < all.length; i += 1) {
           all[i].SourceElement().parentNode.className += ' has-jax';
         }
       });
-    </script><script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
