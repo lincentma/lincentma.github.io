@@ -1,5 +1,5 @@
+http://lincentma.men/find_train_check_in.html
 http://lincentma.men/hexo_https.html
 http://lincentma.men/java_skills_for_interview.html
 http://lincentma.men/binary_tree_traversal.html
 http://lincentma.men/program_language_virtual_machine.html
-http://lincentma.men/learn_for_some_questions.html

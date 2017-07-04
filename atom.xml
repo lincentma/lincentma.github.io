@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lincentma.men/"/>
-  <updated>2017-06-27T16:58:24.162Z</updated>
+  <updated>2017-07-04T13:25:54.679Z</updated>
   <id>http://lincentma.men/</id>
   
   <author>
@@ -14,6 +14,172 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python命令行查询成都铁路局12306检票口信息</title>
+    <link href="http://lincentma.men/find_train_check_in.html"/>
+    <id>http://lincentma.men/find_train_check_in.html</id>
+    <published>2017-07-04T13:16:33.000Z</published>
+    <updated>2017-07-04T13:25:54.679Z</updated>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><blockquote>
+<p>Github地址：</p>
+<p>[Find-Train-Ticket-Check-in]: <a href="https://github.com/lingma1993/Find-Train-Ticket-Check-in" target="_blank" rel="external">https://github.com/lingma1993/Find-Train-Ticket-Check-in</a></p>
+</blockquote>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>近日多地大雨导致铁路多趟列车停运，自己关注成都铁路12306微信公众号，发现一个新的侯乘信息查询功能。</p>
+<p>该功能提供了动车和高铁的列车检票口的信息，正好圆了自己的之前挖的坑。</p>
+<h2 id="如何获取接口"><a href="#如何获取接口" class="headerlink" title="如何获取接口"></a>如何获取接口</h2><p>链接地址：</p>
+<p>chrome F12 点击查询在Network中找到相关接口的信息</p>
+<p><a href="http://www.cd-rail.com:9090/CTKF/GeneralProServlet?code=C50101&amp;login=[&quot;10.192.111.79&quot;,&quot;hhs&quot;,&quot;hhs&quot;]&amp;sql=[&quot;20170703&quot;,&quot;ICW&quot;]&amp;where=[]&amp;order=[" target="_blank" rel="external">http://www.cd-rail.com:9090/CTKF/GeneralProServlet?code=C50101&amp;login=[&quot;10.192.111.79&quot;,&quot;hhs&quot;,&quot;hhs&quot;]&amp;sql=[&quot;20170703&quot;,&quot;ICW&quot;]&amp;where=[]&amp;order=[</a>]</p>
+<p>通过<em><a href="">Postman</a></em>模拟数据请求获取数据获取信息请求的格式</p>
+<h2 id="接口参数"><a href="#接口参数" class="headerlink" title="接口参数"></a>接口参数</h2><ol>
+<li>车站查询</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数名称</th>
+<th style="text-align:left">参数含义</th>
+<th style="text-align:left">参数示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">code</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">C50101</td>
+</tr>
+<tr>
+<td style="text-align:left">login</td>
+<td style="text-align:left">登陆信息</td>
+<td style="text-align:left">[“10.192.111.79”,”hhs”,”hhs”]</td>
+</tr>
+<tr>
+<td style="text-align:left">sql</td>
+<td style="text-align:left">查询语句</td>
+<td style="text-align:left">[“20170703”,”ICW”]</td>
+</tr>
+<tr>
+<td style="text-align:left">where</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">[]</td>
+</tr>
+<tr>
+<td style="text-align:left">order</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">[]</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>车次查询</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数名称</th>
+<th style="text-align:left">参数含义</th>
+<th style="text-align:left">参数示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">code</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">C5010</td>
+</tr>
+<tr>
+<td style="text-align:left">login</td>
+<td style="text-align:left">登陆信息</td>
+<td style="text-align:left">[“10.192.111.79”,”hhs”,”hhs”]</td>
+</tr>
+<tr>
+<td style="text-align:left">sql</td>
+<td style="text-align:left">查询语句</td>
+<td style="text-align:left">[“20170703”,”8503”,”ICW”]</td>
+</tr>
+<tr>
+<td style="text-align:left">where</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">[]</td>
+</tr>
+<tr>
+<td style="text-align:left">order</td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>车站名称查询</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数名称</th>
+<th style="text-align:left">参数含义</th>
+<th style="text-align:left">参数示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">code</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">C50102</td>
+</tr>
+<tr>
+<td style="text-align:left">login</td>
+<td style="text-align:left">登陆信息</td>
+<td style="text-align:left">[“10.192.111.79”,”hhs”,”hhs”]</td>
+</tr>
+<tr>
+<td style="text-align:left">sql</td>
+<td style="text-align:left">查询语句</td>
+<td style="text-align:left">[]</td>
+</tr>
+<tr>
+<td style="text-align:left">where</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">[]</td>
+</tr>
+<tr>
+<td style="text-align:left">order</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">[]</td>
+</tr>
+</tbody>
+</table>
+<h2 id="解析接口返回结果"><a href="#解析接口返回结果" class="headerlink" title="解析接口返回结果"></a>解析接口返回结果</h2><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&#123;<span class="attr">"CHECK_STATUS"</span>:<span class="string">"停止检票"</span>,<span class="attr">"CHECK_TICKET"</span>:<span class="string">"A10、A11"</span>,<span class="attr">"END_CHECK_TIME"</span>:<span class="string">"2017/07/04 09:30:00"</span>,<span class="attr">"END_STN"</span>:<span class="string">"重庆北"</span>,<span class="attr">"END_STN_CODE"</span>:<span class="string">"CUW"</span>,<span class="attr">"IN_DATE"</span>:<span class="string">"2017/07/04 18:59:52"</span>,<span class="attr">"START_CHECK_TIME"</span>:<span class="string">"2017/07/04 09:14:00"</span>,<span class="attr">"START_STN"</span>:<span class="string">"成都东"</span>,<span class="attr">"START_STN_CODE"</span>:<span class="string">"ICW"</span>,<span class="attr">"STATUS_TRAIN"</span>:<span class="string">"正点"</span>,<span class="attr">"STN_CODE"</span>:<span class="string">"ICW"</span>,<span class="attr">"TD_DATE_ARR"</span>:<span class="string">"00:00:00"</span>,<span class="attr">"TD_DATE_DEP11"</span>:<span class="string">"09:33"</span>,<span class="attr">"TRAIN_DEP"</span>:<span class="string">"G8503"</span>,<span class="attr">"WAIT_ROOM"</span>:<span class="string">"2层候车区"</span>,<span class="attr">"WGQBZ"</span>:<span class="string">"0"</span>&#125;]</div></pre></td></tr></table></figure>
+<h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><ol>
+<li>urlib、urlib2<ul>
+<li>构建Header，模拟Post请求</li>
+</ul>
+</li>
+<li>prettytable<ul>
+<li>处理返回数据格式化为表格</li>
+</ul>
+</li>
+<li>re<ul>
+<li>匹配站点名称以及检索结果</li>
+</ul>
+</li>
+</ol>
+<h2 id="展示"><a href="#展示" class="headerlink" title="展示"></a>展示</h2><p><img src="http://orj5hqpmw.bkt.clouddn.com/4ce9918d7f5a082177a8a2741d0ab3ce.pdf" alt="TIM截图20170704212154"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;blockquote&gt;
+&lt;p&gt;Github地址：&lt;/p&gt;
+&lt;p&gt;[Find-Train-Ticket-Check-in]: &lt;a href=&quot;https://github.com
+    
+    </summary>
+    
+      <category term="开发笔记" scheme="http://lincentma.men/categories/%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="python" scheme="http://lincentma.men/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>记如何折腾让博客加HTTPS</title>
@@ -421,11 +587,11 @@
       <category term="开发笔记" scheme="http://lincentma.men/categories/%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
     
     
+      <category term="python" scheme="http://lincentma.men/tags/python/"/>
+    
       <category term="java" scheme="http://lincentma.men/tags/java/"/>
     
       <category term="virtual machine" scheme="http://lincentma.men/tags/virtual-machine/"/>
-    
-      <category term="python" scheme="http://lincentma.men/tags/python/"/>
     
       <category term="php" scheme="http://lincentma.men/tags/php/"/>
     
