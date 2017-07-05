@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lincentma.men/"/>
-  <updated>2017-07-05T16:01:43.025Z</updated>
+  <updated>2017-07-05T16:48:31.318Z</updated>
   <id>http://lincentma.men/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://lincentma.men/merge_file_by_multi_threads.html"/>
     <id>http://lincentma.men/merge_file_by_multi_threads.html</id>
     <published>2017-07-05T15:57:49.000Z</published>
-    <updated>2017-07-05T16:01:43.025Z</updated>
+    <updated>2017-07-05T16:48:31.318Z</updated>
     
     <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="尘封已久的新浪微博实习面试问题"><a href="#尘封已久的新浪微博实习面试问题" class="headerlink" title="尘封已久的新浪微博实习面试问题"></a>尘封已久的新浪微博实习面试问题</h1><blockquote>
 <p>假设本地磁盘目录中有若干文本文件（每行存储一个字符串），要求实现一个多线程的应用程序，将这些文本文件合并为一个文件文件。</p>
