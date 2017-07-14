@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lincentma.men/"/>
-  <updated>2017-07-14T15:48:14.875Z</updated>
+  <updated>2017-07-14T16:12:30.847Z</updated>
   <id>http://lincentma.men/</id>
   
   <author>
@@ -14,6 +14,45 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【面试持续更新】2018校招记录</title>
+    <link href="http://lincentma.men/interview_record.html"/>
+    <id>http://lincentma.men/interview_record.html</id>
+    <published>2017-07-14T16:10:57.000Z</published>
+    <updated>2017-07-14T16:12:30.847Z</updated>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="【面试持续更新】2018校招记录"><a href="#【面试持续更新】2018校招记录" class="headerlink" title="【面试持续更新】2018校招记录"></a>【面试持续更新】2018校招记录</h1><h1 id="工商银行"><a href="#工商银行" class="headerlink" title="工商银行"></a>工商银行</h1><p>一句话，谈人生谈理想，不谈技术</p>
+<h1 id="中兴提前批"><a href="#中兴提前批" class="headerlink" title="中兴提前批"></a>中兴提前批</h1><h2 id="一面"><a href="#一面" class="headerlink" title="一面"></a>一面</h2><ol>
+<li>简单自我介绍</li>
+<li>实习经历详细介绍</li>
+<li>前端请求与后端处理的异常情况如何处理</li>
+<li>SQL模糊查询语句，如何提高查询效率</li>
+<li>实习所用PHP框架是如何与数据库相连接的</li>
+<li>常用Shell命令</li>
+<li>Git开发流程</li>
+</ol>
+<h2 id="二面"><a href="#二面" class="headerlink" title="二面"></a>二面</h2><ol>
+<li>再次自我介绍</li>
+<li>工作地点意向询问</li>
+<li>网络请求如何加速（不理解是询问那一方面的加速，自己回答分机房说不对）</li>
+<li>实习相关问题</li>
+<li>然后就陷入了尴尬的安静</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;【面试持续更新】2018校招记录&quot;&gt;&lt;a href=&quot;#【面试持续更新】2018校招记录&quot; class=&quot;headerlink&quot; title=&quot;【面试持续更新】20
+    
+    </summary>
+    
+      <category term="面试" scheme="http://lincentma.men/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+      <category term="interview" scheme="http://lincentma.men/tags/interview/"/>
+    
+  </entry>
   
   <entry>
     <title>自己用过的框架</title>
