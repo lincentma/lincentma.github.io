@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lincentma.men/"/>
-  <updated>2017-07-05T16:48:31.318Z</updated>
+  <updated>2017-07-14T15:48:14.875Z</updated>
   <id>http://lincentma.men/</id>
   
   <author>
@@ -14,6 +14,155 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>自己用过的框架</title>
+    <link href="http://lincentma.men/used_frames.html"/>
+    <id>http://lincentma.men/used_frames.html</id>
+    <published>2017-07-14T15:46:16.000Z</published>
+    <updated>2017-07-14T15:48:14.875Z</updated>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="自己用过的框架"><a href="#自己用过的框架" class="headerlink" title="自己用过的框架"></a>自己用过的框架</h1><h2 id="Java之SSH"><a href="#Java之SSH" class="headerlink" title="Java之SSH"></a>Java之SSH</h2><blockquote>
+<p>SSH不是一个框架，而是多个框架的集成，是目前较流行的一种Web应用程序开源集成框架，用于构建灵活、易于扩展的多层Web应用程序。</p>
+<p>系统从职责上分为四层：表示层、业务逻辑层、数据持久层和域模块层。</p>
+</blockquote>
+<h3 id="Spring-Struts-Hibernate（SSH）"><a href="#Spring-Struts-Hibernate（SSH）" class="headerlink" title="Spring+Struts+Hibernate（SSH）"></a>Spring+Struts+Hibernate（SSH）</h3><blockquote>
+<p>其中使用Struts作为系统的整体基础架构，负责MVC的分离，在Struts框架的模型部分，利用hibernate框架对持久层提供支持，业务层用spring支持。</p>
+<p>系统的基本业务流程是：</p>
+<p>在表示层中，首先通过JSP页面实现交互界面，负责传送请求(Request)和接收响应(Response)，然后Struts根据配置文件(struts-config.xml)将ActionServlet接收到的Request委派给相应的Action处理。</p>
+<p>在业务层中，管理服务组件的 Spring IoC容器负责向Action提供业务模型(Model)组件和该组件的协作对象数据处理(DAO)组件完成业务逻辑，并提供事务处理、缓冲池等容器组件以提升系统性能和保证数据的完整性。</p>
+<p>在持久层中，则依赖于Hibernate的对象化映射和数据库交互，处理DAO组件请求的数据，并返回处理结果。</p>
+</blockquote>
+<p>SSH配置流程：</p>
+<ol>
+<li>创建web项目</li>
+<li>配置struts：<ul>
+<li>添加Struts2所需要的基本jar包到 lib目录</li>
+<li>在web.xml 文件里添加struts的过滤器配置</li>
+<li>在src目录下创建struts配置文件struts.xml</li>
+</ul>
+</li>
+<li>配置spring：<ul>
+<li>在lib目录下导入spring相关的jar包（2个spring跟struts结合的jar包）</li>
+<li>在web.xml文件下配置监听器</li>
+</ul>
+</li>
+<li>配置hibernate:<ul>
+<li>在lib目录里导入hibernate相关的jar包</li>
+<li>创建实体类</li>
+<li>创建实体类对应的xxx..hbm.xml映射文件</li>
+<li><strong>应用IOC实现DAO接口</strong></li>
+</ul>
+</li>
+<li><strong>编写Action类</strong></li>
+<li><strong>编写Service(接口类)和ServiceImpl(实现类)</strong></li>
+</ol>
+<p>Spring是一个轻量级的控制反转（IoC）和面向切面（AOP）的容器框架。</p>
+<p>Struts它通过采用 Java Servlet/JSP 技术，实现了基于JavaEE Web应用的MVC设计模式的应用框架，是MVC经典设计模式中的一个经典产品。</p>
+<p>Struts 2以WebWork为核心，采用拦截器的机制来处理用户的请求，这样的设计也使得业务逻辑控制器能够与ServletAPI完全脱离开，所以Struts 2可以理解为WebWork的更新产品。</p>
+<p>Hibernate是一个开放源代码的对象关系映射框架，它对JDBC进行了非常轻量级的对象封装，使得Java程序员可以随心所欲的使用对象编程思维来操纵数据库。 </p>
+<h3 id="Spring-SpringMVC-Mybatis（SSM）"><a href="#Spring-SpringMVC-Mybatis（SSM）" class="headerlink" title="Spring+SpringMVC+Mybatis（SSM）"></a>Spring+SpringMVC+Mybatis（SSM）</h3><blockquote>
+<p> SpringMVC 做控制器(controller)，Spring 管理各层的组件，MyBatis 负责持久化层。</p>
+</blockquote>
+<p>Struts2与SpringMVC</p>
+<p><img src="http://p3.pstatp.com/large/f740001068a5c16f544" alt="avatar"></p>
+<p><img src="http://p1.pstatp.com/large/f7500089dc67ac93a17" alt="avatar"></p>
+<p>MyBatis与Hibernate</p>
+<ul>
+<li>MyBatis可以进行更为细致的SQL优化，可以减少查询字段。</li>
+<li>MyBatis容易掌握，而Hibernate门槛较高。</li>
+<li>Hibernate的DAO层开发比MyBatis简单，Mybatis需要维护SQL和结果映射。</li>
+<li>Hibernate对对象的维护和缓存要比MyBatis好，对增删改查的对象的维护要方便。</li>
+<li>Hibernate<a href="http://lib.csdn.net/base/mysql" target="_blank" rel="external">数据库</a>移植性很好，MyBatis的数据库移植性不好，不同的数据库需要写不同SQL。</li>
+<li>Hibernate有更好的二级缓存机制，可以使用第三方缓存。MyBatis本身提供的缓存机制不佳，更新操作不能指定刷新指定记录，会清空整个表，但是也可以使用第三方缓存。</li>
+<li>Hibernate 封装性好，屏蔽了数据库差异，自动生成SQL语句，应对数据库变化能力较弱，SQL语句优化困难。</li>
+<li>MyBatis仅实现了SQL语句和对象的映射，需要针对具体的数据库写SQL语句，应对数据库变化能力较强，SQL语句优化较为方便。</li>
+</ul>
+<p>SSM配置流程：</p>
+<ol>
+<li>创建web项目</li>
+<li>在WEB-INF/lib导入jar包（亦可以根目录下用maven配置文件poom.xml进行配置管理jar包）</li>
+<li>配置MyBatis:dao层编写dao类以及对应的mapper和xml（为dao接口方法提供sql语句配置）</li>
+<li>配置spring：在applicationContext.xml.xml文件下配置</li>
+<li>配置springmvc：配置springMVC.xml</li>
+<li>编写Service以及ServiceImpl</li>
+<li>编写Controller（相当于struts中的action）</li>
+</ol>
+<blockquote>
+<p>SSM和SSH不同主要在MVC实现方式，以及ORM持久化方面不同（Hiibernate与Mybatis）。SSM越来越轻量级配置，将注解开发发挥到极致，且ORM实现更加灵活，SQL优化更简便；而SSH较注重配置开发，其中的Hiibernate对JDBC的完整封装更面向对象，对增删改查的数据维护更自动化，但SQL优化方面较弱，且入门门槛稍高。</p>
+</blockquote>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ol>
+<li><a href="http://blog.csdn.net/zyb507/article/details/8122649" target="_blank" rel="external">SSH框架的底层机制及原理</a></li>
+<li><a href="http://www.cnblogs.com/zhaowancheng/p/5841591.html" target="_blank" rel="external">SSH的框架整合</a></li>
+<li><a href="http://blog.csdn.net/shan9liang/article/details/8803989" target="_blank" rel="external">SSH框架总结（框架分析+环境搭建+实例源码下载）</a></li>
+<li><a href="http://blog.csdn.net/peak_and_valley/article/details/52925032" target="_blank" rel="external">SSH和SSM对比总结</a></li>
+<li><a href="http://www.2cto.com/kf/201606/518341.html" target="_blank" rel="external">手把手教你整合最优雅SSM框架：SpringMVC + Spring + MyBatis</a></li>
+<li><a href="http://how2j.cn/k/ssm/ssm-tutorial/1137.html?tid=77#nowhere" target="_blank" rel="external">SSM SPRING+SPING MVC + MYBATIS 三大框架整合详细步骤</a></li>
+</ol>
+<h2 id="PHP之ODP"><a href="#PHP之ODP" class="headerlink" title="PHP之ODP"></a>PHP之ODP</h2><blockquote>
+<p><strong>ODP</strong>是公司发布的在线业务开发平台，面向全百度的在线业务支撑平台，专注于总结大社区类业务模式，其提供了标准的webserver环境、标准php环境、AP框架、SAF社区业务框架、基础库、RAL资源访问层、KSARCH通用服务等组件，统一业务的逻辑和部署结构，为测试、运维等提供一致的视图。</p>
+<p>这也是自己实习时候一直在用的框架。</p>
+</blockquote>
+<p><strong><em>Online Develop Platform = Linux+Lightted/nginx+mysql+PHP</em></strong></p>
+<p>ODP核心包含了ODP的核心功能组件，包括运行环境、核心基础库、数据交互层、框架等。</p>
+<p>横向看，ODP核心通过库、框架、工具等集成支持了各类规范和模式，也为全流程支持提供接口。</p>
+<p>向上看，ODP核心直接为产品线业务提供运行环境和研发支持。</p>
+<p>向下看，ODP核心通过数据交互层将底层的通用服务提供给业务。</p>
+<p>AP框架目录：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">模板层： odp/template/appname/</div><div class="line"></div><div class="line">Actiono: odp/app/appname/actions/</div><div class="line"></div><div class="line">PageService: odp/app/appname/models/service/page/</div><div class="line"></div><div class="line">DataService: odp/app/appname/models/service/data/</div><div class="line"></div><div class="line">Dao: odp/app/appname/models/dao/</div><div class="line"></div><div class="line">Controller:  odp/app/appname/controller/</div></pre></td></tr></table></figure>
+<p>ODP应用程序结构：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">newapp          // 应用名称</div><div class="line">+--action       // 动作类目录</div><div class="line">|  +--api       // 子系统交互api目录</div><div class="line">|  |  --Sample.php  // 示例api服务端action</div><div class="line">|  --Sample.php // 示例普通action</div><div class="line">+--api          // saf api接口和服务类</div><div class="line">|  --Interface.php  // 接口类</div><div class="line">|  --Service.php    // 实现类</div><div class="line">+--conf         // 配置目录</div><div class="line">|  +--newapp        // 配置目录，配置文件可以拆分</div><div class="line">|     --global.conf // app全局配置文件</div><div class="line">|     --log.conf    // log示例配置文件</div><div class="line">+--controllers      // 控制类目录</div><div class="line">|  --Main.php       // 主控制类</div><div class="line">|  --Api.php        // api控制类</div><div class="line">+--doc          // 文档目录</div><div class="line">+--library      // 本地类根目录</div><div class="line">|  +--newapp        // app本地类目录</div><div class="line">|     --Util.php    // 示例本地类</div><div class="line">+--models       // 数据目录</div><div class="line">|  +--dao       // 数据获取目录</div><div class="line">|  |  --Sample.php  // 示例</div><div class="line">|  +--service       // 页面数据服务目录</div><div class="line">|     +--data       // 主题数据服务目录</div><div class="line">|     |  --Sample.php   // 示例</div><div class="line">|     +--page       // 页面数据服务目录</div><div class="line">|        --Sample.php   // 示例</div><div class="line">|        --SampleApi.php // api示例</div><div class="line">+--script       // 脚本目录</div><div class="line">|  --sampleScript.php   // 示例脚本</div><div class="line">+--test         // 测试目录</div><div class="line">+--Bootstrap.php    // ap框架的引导文件</div><div class="line">+--build.sh     // 打包脚本</div><div class="line">+--index.php        // 入口文件</div><div class="line">+--Makefile     // 自动部署脚本</div><div class="line">--readme.txt        // readme文件，告诉你如何部署和运行</div></pre></td></tr></table></figure>
+<p>DB，通过对应参数的不同，实现自动拼接不同的SQL语句。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$tables 数据表列表，可以是数组或者字符串</div><div class="line">$fields 字段列表，可以是数组或者字符串</div><div class="line">$conds 条件列表，可以是数组或者字符串</div><div class="line">$options 选项列表，可以是数组或者字符串</div><div class="line">$appends 结尾操作列表，可以是数组或者字符串</div><div class="line"></div><div class="line">例如：</div><div class="line">$table = ‘student’;</div><div class="line">$fields = array(‘number’, ‘class’);</div><div class="line">$conds = array(‘grade =‘ =&gt;‘three’, ‘school =‘ =&gt; ‘希望小学’);</div><div class="line">调用select($table, $fields, $conds); </div><div class="line">就会生成 </div><div class="line">select number, class from student where grade = ‘three’ and school = ‘希望小学’   </div><div class="line">的sql语句并执行之。</div></pre></td></tr></table></figure>
+<p>逻辑分层之间的调用关系，只能向后依赖，不能向前依赖或者跨层之间依赖。此次逻辑分层从前到后，依次为：Action、PageService、DataService、Dao。具体来说便是指，Dao不能依赖于DataService,PageService,Action；DataService不能依赖于PageService和Action；PageService不能依赖于Action。Action不能直接调用DataService，也不能直接调用Dao；PageService不能直接调用Dao。</p>
+<p>SAF是<strong>ODP</strong>环境提供的业务层框架，SAF框架建立的目的是为了把业务逻辑开发过程中一些共性的问题抽取出来，并提供统一的解决方案。SAF框架包含控制器组件，通用业务组件（参数处理，session处理，日志打印等）以及通用配置组件。可以将SAF框架理解为一个工具库，SAF为我们提供了很多的通用功能例如验证用户的登录信息，接收用户提交的数据，更改用户的信息，记录用户的操作行为等。</p>
+<p>SAF框架提供了一个很重要的功能就是钩子（Hook）机制，通过在钩子函数中覆写对应的钩子函数,可以实现对cgi(GET POST等)数据的特殊处理，对登陆信息的校验/修改以及对输出到log日志文件的内容的修改等功能。</p>
+<p>RAL是一个支持多种交互协议和打包格式的php扩展。RAL规定了一套高度抽象的交互过程规范，将整个后端交互过程分成了交互协议和数据打包/解包两大块，可以支持一些常用的后端交互协议，标准化协议扩充的开发过程，促进代码复用。RAL集成了负载均衡、健康检查等功能，让上游端不需要再关注这些繁琐的通用逻辑，同时实现版本可以在性能方面有更优的表现。</p>
+<h3 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h3><ol>
+<li><a href="https://www.baidu.com/link?url=Ji5p7uSBrfaDJmm7pyKUWuagxe46iOW-3L7yJqIJIEgxG2PIbYtP8UcmVkjkAeNUqiGw473M1C2O56GpY6ifba&amp;wd=&amp;eqid=c406ef2100009259000000035968caf8" target="_blank" rel="external">ODP教程 | 百度外卖手册</a></li>
+</ol>
+<h2 id="Python之Tornado"><a href="#Python之Tornado" class="headerlink" title="Python之Tornado"></a>Python之Tornado</h2><blockquote>
+<p>自己做Sug平台展示时候选择的Python Web框架</p>
+</blockquote>
+<p>Tornado 和现在的主流 Web 服务器框架（包括大多数 Python 的框架）有着明显的区别：它是非阻塞式服务器，而且速度相当快。得利于其 非阻塞的方式和对 <a href="http://www.kernel.org/doc/man-pages/online/pages/man4/epoll.4.html" target="_blank" rel="external">epoll</a> 的运用，Tornado 每秒可以处理数以千计的连接，这意味着对于实时 Web 服务来说，Tornado 是一个理想的 Web 框架。我们开发这个 Web 服务器的主要目的就是为了处理 FriendFeed 的实时功能 ——在 FriendFeed 的应用里每一个活动用户都会保持着一个服务器连接。</p>
+<h3 id="参考文章：-1"><a href="#参考文章：-1" class="headerlink" title="参考文章："></a>参考文章：</h3><ol>
+<li><a href="http://www.tornadoweb.cn/documentation" target="_blank" rel="external">Tornado</a></li>
+</ol>
+<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><blockquote>
+<p>无论做什么框架，很多时候都离不开nginx</p>
+</blockquote>
+<p>NGINX 有一个主进程（它执行特权操作，如读取配置和绑定端口）和一些工作进程与辅助进程。</p>
+<h3 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h3><p>反向代理应该是Nginx做的最多的一件事了。反向代理（Reverse Proxy）方式是指以代理服务器来接受internet上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">server &#123;  </div><div class="line">        listen       80;                                                         </div><div class="line">        server_name  localhost;                                               </div><div class="line">        client_max_body_size 1024M;</div><div class="line"></div><div class="line">        location / &#123;</div><div class="line">            proxy_pass http://localhost:8080;</div><div class="line">            proxy_set_header Host $host:$server_port;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><p>负载均衡也是Nginx常用的一个功能，负载均衡其意思就是分摊到多个操作单元上进行执行从而共同完成工作任务。简单而言就是当有2台或以上服务器时，根据规则随机的将请求分发到指定的服务器上处理，负载均衡配置一般都需要同时配置反向代理，通过反向代理跳转到负载均衡。而Nginx目前支持自带3种负载均衡策略，还有2种常用的第三方策略。</p>
+<h4 id="RR"><a href="#RR" class="headerlink" title="RR"></a>RR</h4><p>每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">upstream test &#123;</div><div class="line">    server localhost:8080;</div><div class="line">    server localhost:8081;</div><div class="line">&#125;</div><div class="line">server &#123;</div><div class="line">    listen       81;                                                         </div><div class="line">    server_name  localhost;                                               </div><div class="line">    client_max_body_size 1024M;</div><div class="line"></div><div class="line">    location / &#123;</div><div class="line">        proxy_pass http://test;</div><div class="line">        proxy_set_header Host $host:$server_port;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="权重"><a href="#权重" class="headerlink" title="权重"></a>权重</h4><p>指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">upstream test &#123;</div><div class="line">    server localhost:8080 weight=9;</div><div class="line">    server localhost:8081 weight=1;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="ip-hash"><a href="#ip-hash" class="headerlink" title="ip_hash"></a>ip_hash</h4><p><em>ip</em>hash的每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session的问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">upstream test &#123;</div><div class="line">    ip_hash;</div><div class="line">    server localhost:8080;</div><div class="line">    server localhost:8081;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="fair"><a href="#fair" class="headerlink" title="fair"></a>fair</h4><p>按后端服务器的响应时间来分配请求，响应时间短的优先分配。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">upstream backend &#123; </div><div class="line">    fair; </div><div class="line">    server localhost:8080;</div><div class="line">    server localhost:8081;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="url-hash"><a href="#url-hash" class="headerlink" title="url_hash"></a>url_hash</h4><p>按访问url的hash结果来分配请求，使每个url定向到同一个后端服务器，后端服务器为缓存时比较有效。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">upstream backend &#123; </div><div class="line">    hash $request_uri; </div><div class="line">    hash_method crc32; </div><div class="line">    server localhost:8080;</div><div class="line">    server localhost:8081;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="动静分离"><a href="#动静分离" class="headerlink" title="动静分离"></a>动静分离</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">upstream test&#123;  </div><div class="line">       server localhost:8080;  </div><div class="line">       server localhost:8081;  </div><div class="line">    &#125;   </div><div class="line"></div><div class="line">    server &#123;  </div><div class="line">        listen       80;  </div><div class="line">        server_name  localhost;  </div><div class="line"></div><div class="line">        location / &#123;  </div><div class="line">            root   e:wwwroot;  </div><div class="line">            index  index.html;  </div><div class="line">        &#125;  </div><div class="line"></div><div class="line">        # 所有静态请求都由nginx处理，存放目录为html  </div><div class="line">        location ~ .(gif|jpg|jpeg|png|bmp|swf|css|js)$ &#123;  </div><div class="line">            root    e:wwwroot;  </div><div class="line">        &#125;  </div><div class="line"></div><div class="line">        # 所有动态请求都转发给tomcat处理  </div><div class="line">        location ~ .(jsp|do)$ &#123;  </div><div class="line">            proxy_pass  http://test;  </div><div class="line">        &#125;  </div><div class="line"></div><div class="line">        error_page   500 502 503 504  /50x.html;  </div><div class="line">        location = /50x.html &#123;  </div><div class="line">            root   e:wwwroot;  </div><div class="line">        &#125;  </div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="参考文章：-2"><a href="#参考文章：-2" class="headerlink" title="参考文章："></a>参考文章：</h3><ol>
+<li><a href="http://blog.jobbole.com/110400/?utm_source=blog.jobbole.com&amp;utm_medium=relatedPosts" target="_blank" rel="external">全面了解 Nginx 主要应用场景</a></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;自己用过的框架&quot;&gt;&lt;a href=&quot;#自己用过的框架&quot; class=&quot;headerlink&quot; title=&quot;自己用过的框架&quot;&gt;&lt;/a&gt;自己用过的框架&lt;/h1&gt;&lt;h2
+    
+    </summary>
+    
+      <category term="开发笔记" scheme="http://lincentma.men/categories/%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="frame" scheme="http://lincentma.men/tags/frame/"/>
+    
+  </entry>
   
   <entry>
     <title>尘封已久的新浪微博实习面试问题</title>
