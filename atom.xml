@@ -582,7 +582,7 @@
     <link href="http://lincentma.men/interview_record.html"/>
     <id>http://lincentma.men/interview_record.html</id>
     <published>2017-07-14T16:10:57.000Z</published>
-    <updated>2017-07-14T16:12:30.847Z</updated>
+    <updated>2017-07-27T13:02:26.374Z</updated>
     
     <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="【面试持续更新】2018校招记录"><a href="#【面试持续更新】2018校招记录" class="headerlink" title="【面试持续更新】2018校招记录"></a>【面试持续更新】2018校招记录</h1><h1 id="工商银行"><a href="#工商银行" class="headerlink" title="工商银行"></a>工商银行</h1><p>一句话，谈人生谈理想，不谈技术</p>
 <h1 id="中兴提前批"><a href="#中兴提前批" class="headerlink" title="中兴提前批"></a>中兴提前批</h1><h2 id="一面"><a href="#一面" class="headerlink" title="一面"></a>一面</h2><ol>
@@ -600,6 +600,24 @@
 <li>网络请求如何加速（不理解是询问那一方面的加速，自己回答分机房说不对）</li>
 <li>实习相关问题</li>
 <li>然后就陷入了尴尬的安静</li>
+</ol>
+<h1 id="海康威视提前批"><a href="#海康威视提前批" class="headerlink" title="海康威视提前批"></a>海康威视提前批</h1><h2 id="一面-1"><a href="#一面-1" class="headerlink" title="一面"></a>一面</h2><ol>
+<li>简单自我介绍</li>
+<li>Spark特性有哪些？</li>
+<li>除了Hadoop之外有哪些其他的大数据处理框架？</li>
+<li>MapReduce处理过程</li>
+<li>Hadoop部署节点？如何部署？</li>
+<li>Java与python的交互了解多少？如何进行交互？</li>
+<li>Java内存模型介绍？</li>
+<li>Java多线程介绍？ </li>
+<li>JVM调优经验</li>
+<li>使用过Redis等NoSQL数据库吗，Redis如何部署？Redis中的数据最终存储在哪里？ </li>
+</ol>
+<p>自己询问的问题：</p>
+<ol>
+<li>部门业务应用场景：大数据构建多特征模型进行行为安全预测判断</li>
+<li>技术能力要求：部门有不同方向，不必太在意招聘中的所有要求都需要符合</li>
+<li>什么时候有下一步的结果：他也不知道。。。。</li>
 </ol>
 ]]></content>
     
