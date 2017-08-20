@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lincentma.men/"/>
-  <updated>2017-08-20T12:52:30.308Z</updated>
+  <updated>2017-08-20T14:17:07.727Z</updated>
   <id>http://lincentma.men/</id>
   
   <author>
@@ -14,6 +14,68 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>百度运维部交流会学习笔记</title>
+    <link href="http://lincentma.men/baiduOPCoumminate.html"/>
+    <id>http://lincentma.men/baiduOPCoumminate.html</id>
+    <published>2017-08-20T14:15:47.000Z</published>
+    <updated>2017-08-20T14:17:07.727Z</updated>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="百度运维部交流会学习笔记"><a href="#百度运维部交流会学习笔记" class="headerlink" title="百度运维部交流会学习笔记"></a>百度运维部交流会学习笔记</h1><h2 id="地点：电子科技大学"><a href="#地点：电子科技大学" class="headerlink" title="地点：电子科技大学"></a>地点：电子科技大学</h2><h2 id="时间：2017-08-20"><a href="#时间：2017-08-20" class="headerlink" title="时间：2017.08.20"></a>时间：2017.08.20</h2><blockquote>
+<p>最大的感受：随着AI的不断发展，自己未来工作中会遇到越来越多AI场景，要去拥抱这样的变化。<br>自己希望工作之后也可以回到母校为学弟学妹们带来这样一场业界前沿、职场相关的交流会。</p>
+</blockquote>
+<h3 id="1-AIOps"><a href="#1-AIOps" class="headerlink" title="1. AIOps"></a>1. AIOps</h3><ul>
+<li>AIOps 定义：按照 Gartner 的定义，AIOps 是 Algorithmic IT Operations，但是在人工智能时代，可能很多的人会把 AI 理解成 Artificial Intelligence，不去纠结定义，我觉得本质上，想要表达的意思是一样的，就是让运维具备机器学习和算法的能力。</li>
+<li>特征：<ul>
+<li>高质量</li>
+<li>可靠用户访问体验</li>
+<li>低成本</li>
+<li>高效率</li>
+</ul>
+</li>
+<li>发展过程：最开始的人工填单、到Web自动化。由于计算成本的下降，导致机器的数量快速增长，这就加剧了运维成本上升，智能运维代替人工，降低成本就应运而生。</li>
+<li>讲解单机房故障的止损以及排查方案<ul>
+<li>BGW与BFE之间的故障</li>
+<li>后端服务故障</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://img.mp.itc.cn/upload/20170730/d648c25952fe417fbd1678e206ed4dcf_th.jpg" alt=""></p>
+<blockquote>
+<p>自己的感受：运维中的海量日志信息蕴含的故障问题原因以及其他相关信息都是可以数据挖掘机器学习去实现。所有的大数据行业都存在这样的过程。<br>关键在与运维知识库：将传统运维基于人的经验，操作行为、规则固化至知识库中。<br>如何将问题的特征提取出来，标签尽可能细化，比如地点标签精确到大学，那么检测到该地点流量下降就可以推测该地点存在故障，此外还有日期特征，等等，如何将尽可能多地相关特征提取出来，匹配最佳的知识库中的运维方案，这也是机器学习的重点吧，自己在这方面的技术知识太少，需要制定学习计划完善自己。</p>
+</blockquote>
+<h3 id="2-BFE"><a href="#2-BFE" class="headerlink" title="2. BFE"></a>2. BFE</h3><ul>
+<li>BFE: 百度统一前端，Baidu Front End</li>
+<li>对标Google的GFE</li>
+<li>它相对于整个应用是处于最前面直接处理用户的http请求。</li>
+<li>采用Go语言编写</li>
+<li>基于机器学习的动态优化，识别机器访问与真实访问</li>
+<li>全站HTTPS，有效避免网络信息劫持</li>
+</ul>
+<h3 id="3-职场建议"><a href="#3-职场建议" class="headerlink" title="3. 职场建议"></a>3. 职场建议</h3><ul>
+<li>小事做好，自然轮到做大事</li>
+<li>自我驱动去完成项目比分配任务去完成更加提升自己</li>
+<li>运维是架构的学堂。听完了分享，我是认可这句话。单纯的从业务方面是专注于业务一点，运维是需要掌握上下游所有的流程，从这点来看，运维入门难，最后深度与广度是更优的。</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;百度运维部交流会学习笔记&quot;&gt;&lt;a href=&quot;#百度运维部交流会学习笔记&quot; class=&quot;headerlink&quot; title=&quot;百度运维部交流会学习笔记&quot;&gt;&lt;/a&gt;
+    
+    </summary>
+    
+      <category term="学习笔记" scheme="http://lincentma.men/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="AIOps" scheme="http://lincentma.men/tags/AIOps/"/>
+    
+      <category term="BFE" scheme="http://lincentma.men/tags/BFE/"/>
+    
+      <category term="Baidu" scheme="http://lincentma.men/tags/Baidu/"/>
+    
+  </entry>
   
   <entry>
     <title>菜鸟物流简历评估面试</title>
