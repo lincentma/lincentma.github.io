@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lincentma.men/"/>
-  <updated>2017-08-20T14:17:07.727Z</updated>
+  <updated>2017-08-23T08:53:25.876Z</updated>
   <id>http://lincentma.men/</id>
   
   <author>
@@ -14,6 +14,92 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>好未来面试记录</title>
+    <link href="http://lincentma.men/haoweilai_interview.html"/>
+    <id>http://lincentma.men/haoweilai_interview.html</id>
+    <published>2017-08-23T08:52:01.000Z</published>
+    <updated>2017-08-23T08:53:25.876Z</updated>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="好未来面试记录"><a href="#好未来面试记录" class="headerlink" title="好未来面试记录"></a>好未来面试记录</h1><blockquote>
+<p>通过提前批筛选之后就是二次现场面试。</p>
+<p>相对于机器学习的面试来说，自己的难度确实简单，需要查漏补缺的地方还是很多。</p>
+</blockquote>
+<h2 id="一面"><a href="#一面" class="headerlink" title="一面"></a>一面</h2><h3 id="1-如何处理hadoop的数据倾斜问题"><a href="#1-如何处理hadoop的数据倾斜问题" class="headerlink" title="1.如何处理hadoop的数据倾斜问题"></a>1.如何处理hadoop的数据倾斜问题</h3><p>针对问题是，请描述一个自己印象最深刻的项目</p>
+<ul>
+<li>数据倾斜表现：ruduce阶段卡在99.99%，一直99.99%不能结束。</li>
+<li><p>数据分布不均匀，导致大量的数据分配到了一个节点。</p>
+</li>
+<li><p>解决思路：</p>
+<ul>
+<li>业务逻辑：我们从业务逻辑的层面上来优化数据倾斜。对于数据同一类型数量巨大，单独来做count，最后和其他数据做整合。这也是面试官想要引导我说出的方案</li>
+<li>调参方面，Hadoop和Spark都自带了很多的参数和机制来调节数据倾斜，合理利用它们就能解决大部分问题。<ul>
+<li>mapjoin方式</li>
+<li>count distinct的操作，先转成group，再count</li>
+<li>万能膏药：hive.groupby.skewindata=true</li>
+<li>left semi jioin的使用</li>
+<li>设置map端输出、中间结果压缩。（不完全是解决数据倾斜的问题，但是减少了IO读写和网络传输，能提高很多效率）</li>
+</ul>
+</li>
+<li>通过randint等函数把倾斜的数据分到不同的reduce上 ,解决数据倾斜问题。这是自己的回答。</li>
+</ul>
+</li>
+<li>参考文章：<ul>
+<li><a href="https://segmentfault.com/a/1190000009166436" target="_blank" rel="external">漫谈千亿级数据优化实践：数据倾斜（纯干货）</a></li>
+<li>[Hive数据倾斜]<a href="http://www.cnblogs.com/skyl/p/4855099.html(" target="_blank" rel="external">http://www.cnblogs.com/skyl/p/4855099.html(</a>)</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-Java多线程线程池的参数意义"><a href="#2-Java多线程线程池的参数意义" class="headerlink" title="2.Java多线程线程池的参数意义"></a>2.Java多线程线程池的参数意义</h3><pre><code>- 线程池解决的两个问题：
+- 1）线程池通过减少每次做任务的时候产生的性能消耗来优化执行大量的异步任务的时候的系统性能。
+- 2）线程池还提供了限制和管理批量任务被执行的时候消耗的资源、线程的方法。
+Executors提供的一些工厂方法来快速创建ThreadPoolExecutor实例:
+    1.newCachedThreadPool创建一个可缓存线程池，如果线程池长度超处理需要，可灵活回收空闲线程，若无可回收，则新建线程。
+    2.newFixedThreadPool 创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。
+    3.newScheduledThreadPool 创建一个定长线程池，支持定时及周期性任务执行。
+    4.newSingleThreadExecutor 创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。
+    5.newWorkStealingPool JDK8引入。返回一个ForkJoinPool类型的 executor，它的工作方法与其他常见的execuotr稍有不同。与使用一个固定大小的线程池不同，ForkJoinPools使用一个并行因子数来创建，默认值为主机CPU的可用核心数。
+- 线程池构造器参数：
+    - corePoolSize：核心池的大小，这个参数与后面讲述的线程池的实现原理有非常大的关系。在创建了线程池后，默认情况下，线程池中并没有任何线程，而是等待有任务到来才创建线程去执行任务，除非调用了prestartAllCoreThreads()或者prestartCoreThread()方法，从这2个方法的名字就可以看出，是预创建线程的意思，即在没有任务到来之前就创建corePoolSize个线程或者一个线程。默认情况下，在创建了线程池后，线程池中的线程数为0，当有任务来之后，就会创建一个线程去执行任务，当线程池中的线程数目达到corePoolSize后，就会把到达的任务放到缓存队列当中；
+    - maximumPoolSize：线程池最大线程数，它表示在线程池中最多能创建多少个线程；
+    - keepAliveTime：表示线程没有任务执行时最多保持多久时间会终止。默认情况下，只有当线程池中的线程数大于corePoolSize时，keepAliveTime才会起作用，直到线程池中的线程数不大于corePoolSize：即当线程池中的线程数大于corePoolSize时，如果一个线程空闲的时间达到keepAliveTime，则会终止，直到线程池中的线程数不超过corePoolSize；但是如果调用了allowCoreThreadTimeOut(boolean)方法，在线程池中的线程数不大于corePoolSize时，keepAliveTime参数也会起作用，直到线程池中的线程数为0；
+    - unit：参数keepAliveTime的时间单位，有7种取值，在TimeUnit类中有7种静态属性
+- 参考文章：
+    - [Java线程池（ThreadPool）详解](http://www.cnblogs.com/kuoAT/p/6714762.html)
+</code></pre><h3 id="3-如何设置Java多线程个数最合理"><a href="#3-如何设置Java多线程个数最合理" class="headerlink" title="3.如何设置Java多线程个数最合理"></a>3.如何设置Java多线程个数最合理</h3><pre><code>- 对于计算密集型的任务，在拥有N个处理器的系统上，当线程池的大小为N+1时，通常能实现最优的效率。(即使当计算密集型的线程偶尔由于缺失故障或者其他原因而暂停时，这个额外的线程也能确保CPU的时钟周期不会被浪费。)
+- 如果是IO密集型应用，则线程池大小设置为2N+1
+- 参考文章：
+    - [java线程池大小为何会大多被设置成CPU核心数+1？](https://www.zhihu.com/question/38128980)
+</code></pre><h3 id="4-用尽可能多的方法去实现判断数组回文"><a href="#4-用尽可能多的方法去实现判断数组回文" class="headerlink" title="4.用尽可能多的方法去实现判断数组回文"></a>4.用尽可能多的方法去实现判断数组回文</h3><pre><code>1. 处理小数字。使用数学方法。取每一位数字然后从后往前计算值，与原来数进行比较是否相等。
+2. 处理大数字。使用字符串处理方式。因为回文数关于中心对称，只要比较对称的数即可。
+3. 使用栈的思想。入栈一半元素，比较出栈元素与串中字符。
+
+4. 回文判断不能使用正则表达式。正则表达式对应的是有限状态自动机，要达到你所说的需求，至少要图灵机。[正则表达式能否解决所有的字符串的模式匹配问题?](https://www.zhihu.com/question/32327623)
+
+
+- 参考文章：
+    - [回文数的判断(三种方法)](http://blog.csdn.net/deaidai/article/details/71820164)
+</code></pre><h3 id="5-reverse函数源码实现"><a href="#5-reverse函数源码实现" class="headerlink" title="5.reverse函数源码实现"></a>5.reverse函数源码实现</h3><pre><code>- StringBuffer和StringBuilder常用到的方法，而String并没有这个牛逼的功能~~
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">    public AbstractStringBuilder reverse() &#123;</div><div class="line">    boolean hasSurrogates = false;</div><div class="line">    int n = count - 1;</div><div class="line">    //j初始化，长度-2再算术右移一位 j = (count-2)/2</div><div class="line">    //偶数长度，遍历一半次数，对调替换</div><div class="line">    //奇数长度，遍历一半-1次数，对调替换，中间值不用替换</div><div class="line">    for (int j = (n-1) &gt;&gt; 1; j &gt;= 0; j--) &#123;</div><div class="line">        int k = n - j;</div><div class="line">        char cj = value[j];</div><div class="line">        char ck = value[k];</div><div class="line">        value[j] = ck;</div><div class="line">        value[k] = cj;</div><div class="line">        if (Character.isSurrogate(cj) ||</div><div class="line">            Character.isSurrogate(ck)) &#123;</div><div class="line">            hasSurrogates = true;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    if (hasSurrogates) &#123;</div><div class="line">        reverseAllValidSurrogatePairs();</div><div class="line">    &#125;</div><div class="line">    return this;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre><h2 id="二面"><a href="#二面" class="headerlink" title="二面"></a>二面</h2><h3 id="1-如何让接口发生改变时，使得调用方调用无感变化情况"><a href="#1-如何让接口发生改变时，使得调用方调用无感变化情况" class="headerlink" title="1.如何让接口发生改变时，使得调用方调用无感变化情况"></a>1.如何让接口发生改变时，使得调用方调用无感变化情况</h3><pre><code>- 百度了下：采用调用中间代理方法
+- 设计模式：Adpater。接口调用者不变。协议改变时由Adapter做转换。
+</code></pre><h3 id="1-session和cookie"><a href="#1-session和cookie" class="headerlink" title="1.session和cookie"></a>1.session和cookie</h3><pre><code>- Session是在服务端保存的一个数据结构，用来跟踪用户的状态，这个数据可以保存在集群、数据库、文件中；
+- Cookie是客户端保存用户信息的一种机制，用来记录用户的一些信息，也是实现Session的一种方式。
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;好未来面试记录&quot;&gt;&lt;a href=&quot;#好未来面试记录&quot; class=&quot;headerlink&quot; title=&quot;好未来面试记录&quot;&gt;&lt;/a&gt;好未来面试记录&lt;/h1&gt;&lt;bl
+    
+    </summary>
+    
+      <category term="面试记录" scheme="http://lincentma.men/categories/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95/"/>
+    
+    
+      <category term="interview" scheme="http://lincentma.men/tags/interview/"/>
+    
+  </entry>
   
   <entry>
     <title>百度运维部交流会学习笔记</title>
