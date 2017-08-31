@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lincentma.men/"/>
-  <updated>2017-08-28T14:13:31.385Z</updated>
+  <updated>2017-08-31T04:05:36.334Z</updated>
   <id>http://lincentma.men/</id>
   
   <author>
@@ -14,6 +14,67 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>蘑菇街二面记录</title>
+    <link href="http://lincentma.men/mogujie_interview_2.html"/>
+    <id>http://lincentma.men/mogujie_interview_2.html</id>
+    <published>2017-08-31T04:04:03.000Z</published>
+    <updated>2017-08-31T04:05:36.334Z</updated>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="蘑菇街二面"><a href="#蘑菇街二面" class="headerlink" title="蘑菇街二面"></a>蘑菇街二面</h1><blockquote>
+<p>全是项目<br>对于活动类问题问的非常详细</p>
+</blockquote>
+<h2 id="项目中面试询问计数点"><a href="#项目中面试询问计数点" class="headerlink" title="项目中面试询问计数点"></a>项目中面试询问计数点</h2><h3 id="1-项目流程图"><a href="#1-项目流程图" class="headerlink" title="1. 项目流程图"></a>1. 项目流程图</h3><pre><code>- 略。
+</code></pre><h3 id="2-订单中心接口的时延是多少？"><a href="#2-订单中心接口的时延是多少？" class="headerlink" title="2. 订单中心接口的时延是多少？"></a>2. 订单中心接口的时延是多少？</h3><pre><code>- 接口文档说明。
+- 自己的理解应该是如何降低接口的响应时间？
+    - 从接口垂直与水平拆分（MapReduce）：项目没用到。。。
+    - 接口缓存与本地缓存 ：对于订单的实时获取，将用户的最新订单缓存到本地，然后计算结果放入缓存？随之带来存储问题？感觉可以把用户信息缓存，省去一部分查询用户的时间比较实际？
+    - 非核心流程异步化：类似于发消息，写日志，更新缓存等不会影响接口准确性的非核心流程，可以采用异步方式进行处理，不阻塞主计算逻辑处理。
+    - 内部并发：项目没有考虑。
+    - 参考文章：[如何减少接口响应时间](http://blog.csdn.net/xiaoxuan2015/article/details/51240872)
+</code></pre><h3 id="3-高QPS下如何保证接口访问的稳定性？除了加服务器之外？"><a href="#3-高QPS下如何保证接口访问的稳定性？除了加服务器之外？" class="headerlink" title="3. 高QPS下如何保证接口访问的稳定性？除了加服务器之外？"></a>3. 高QPS下如何保证接口访问的稳定性？除了加服务器之外？</h3><pre><code>- QPS（TPS）：每秒钟request/事务 数量
+- 并发数： 系统同时处理的request/事务数
+- 响应时间：  一般取平均响应时间
+
+- 自己的理解应该是业务的解耦分拆，提高并发量。具体没有实践所以需要好好学习。
+- 服务做到多少QPS，多长的耗时，应结合手头有限的资源、业务需求来制定。
+
+- 参考文章：[美团团购订单系统优化记](https://tech.meituan.com/meituan_tuangou_order.html)
+- 非常有价值的文章。
+</code></pre><h3 id="4-高QPS下哪一个模块的压力最大？如何解决？"><a href="#4-高QPS下哪一个模块的压力最大？如何解决？" class="headerlink" title="4. 高QPS下哪一个模块的压力最大？如何解决？"></a>4. 高QPS下哪一个模块的压力最大？如何解决？</h3><pre><code>- 数据库访问。引入连接池。
+- 如果在代码中显式为每次操作分别建立并释放资源，无疑增大了业务代码的复杂度，并且建立和释放连接的开销变得不可忽略。
+</code></pre><h3 id="5-对于超时如何处理？"><a href="#5-对于超时如何处理？" class="headerlink" title="5. 对于超时如何处理？"></a>5. 对于超时如何处理？</h3><pre><code>- 尝试多调用一次
+- 使用待处理队列
+- 回滚数据
+- 使用异步机制
+- 参考文章：[【干货篇】调用其他系统http接口超时了，如何处理，方案汇总](http://blog.csdn.net/linsongbin1/article/details/50393383)
+
+- 自己的理解：对于活动类需要实时返回查询结果的，增加尝试调用次数是最合适的选择，要有错误策略来包容所有的错误类别。
+- 实际项目中对于API接口调用是通过RAL调用，通过配置RAL的相关超时信息设置。具体设置搞忘了。
+</code></pre><h3 id="6-如何确定每一次接口数据查询范围？极端数据情况占比多少？如何考虑这部分的数据的处理？"><a href="#6-如何确定每一次接口数据查询范围？极端数据情况占比多少？如何考虑这部分的数据的处理？" class="headerlink" title="6. 如何确定每一次接口数据查询范围？极端数据情况占比多少？如何考虑这部分的数据的处理？"></a>6. 如何确定每一次接口数据查询范围？极端数据情况占比多少？如何考虑这部分的数据的处理？</h3><pre><code>- 针对于活动类接口，数据查询范围是根据活动规则制定，那么如何制定活动规则保证尽可能所有多的用户满足活动？
+- 另一方面，调用其他接口获取数据量也需要根据实际需求去保证接口响应时间的可控性。
+- API接口设计的考虑因素：是否需要为一小部分数据的需求去增加所有的适配工作？还是为了保证大部分的使用体验，对于小部分进行抛出错误的设计？
+- 如何根据现有资源和条件进行权衡?
+</code></pre><h3 id="7-活动中有用到消息队列吗？"><a href="#7-活动中有用到消息队列吗？" class="headerlink" title="7. 活动中有用到消息队列吗？"></a>7. 活动中有用到消息队列吗？</h3><pre><code>- 消息队列解决的是将突发大量请求转换为后端能承受的队列请求。
+- NMQ。
+- 参考文章：[nmq消息队列解析](http://www.cnblogs.com/lushilin/p/6209976.html)
+</code></pre><h3 id="8-自己的学习目标和计划？"><a href="#8-自己的学习目标和计划？" class="headerlink" title="8. 自己的学习目标和计划？"></a>8. 自己的学习目标和计划？</h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;蘑菇街二面&quot;&gt;&lt;a href=&quot;#蘑菇街二面&quot; class=&quot;headerlink&quot; title=&quot;蘑菇街二面&quot;&gt;&lt;/a&gt;蘑菇街二面&lt;/h1&gt;&lt;blockquote
+    
+    </summary>
+    
+      <category term="面试记录" scheme="http://lincentma.men/categories/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95/"/>
+    
+    
+      <category term="interview" scheme="http://lincentma.men/tags/interview/"/>
+    
+      <category term="mogujie" scheme="http://lincentma.men/tags/mogujie/"/>
+    
+  </entry>
   
   <entry>
     <title>蘑菇街一面记录</title>
