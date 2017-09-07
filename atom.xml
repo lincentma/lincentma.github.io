@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lincentma.men/"/>
-  <updated>2017-09-01T14:21:31.584Z</updated>
+  <updated>2017-09-07T09:15:37.195Z</updated>
   <id>http://lincentma.men/</id>
   
   <author>
@@ -14,6 +14,181 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>美团二面记录</title>
+    <link href="http://lincentma.men/meituan_interview_2.html"/>
+    <id>http://lincentma.men/meituan_interview_2.html</id>
+    <published>2017-09-07T09:13:37.000Z</published>
+    <updated>2017-09-07T09:15:37.195Z</updated>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="美团二面记录"><a href="#美团二面记录" class="headerlink" title="美团二面记录"></a>美团二面记录</h1><blockquote>
+<p>第一次遇见女面试官进行面试。自己学到更多的东西。</p>
+</blockquote>
+<h2 id="项目相关"><a href="#项目相关" class="headerlink" title="项目相关"></a>项目相关</h2><blockquote>
+<p>面试官听了我的项目，差异公司没有这样的解决方案，需要自己再去造轮子吗？这也是自己的当时最晚的感受，也就是自己理解的常说的CRUD接口操作，但是这个项目给自己最大的感受是在于自己熟悉了整套开发上线流程，明白各个部门之间的分工协作过程。</p>
+<p>自己的目标就是希望可以自己在后端写出属于自己的通用轮子。</p>
+<p>如何考虑故障？单台提供数据查询有没有更好的方案？</p>
+</blockquote>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><ol>
+<li>Redis的基本数据结构</li>
+</ol>
+<blockquote>
+<ol>
+<li>String类型：将String类型作为元素值；</li>
+<li>Lists类型：根据插入顺序的String类型为元素的集合，基于LinkedList实现，非Array型；</li>
+<li>Sets类型：无重复且无序的String类型为元素的集合；</li>
+<li>Sorted Set类型：无重复且有序的String类型为元素的集合；</li>
+<li>Hashes类型：映射域到值类型的数据结构，其中域和值都是String类型；</li>
+</ol>
+</blockquote>
+<ol>
+<li>Redis使用场景？</li>
+</ol>
+<blockquote>
+<ol>
+<li>会话缓存（Session Cache）:用Redis缓存会话比其他存储（如Memcached）的优势在于：Redis提供持久化。用户的购物车信息。</li>
+<li>全页缓存（FPC）:Redis有磁盘的持久化，用户也不会看到页面加载速度的下降。</li>
+<li>队列：Reids在内存存储引擎领域的一大优点是提供 list 和 set 操作，这使得Redis能作为一个很好的消息队列平台来使用。Redis作为队列使用的操作，就类似于本地程序语言（如Python）对 list 的 push/pop 操作。</li>
+<li>排行榜/计数器。Redis在内存中对数字进行递增或递减的操作实现的非常好。“ZRANGE user_scores 0 10 WITHSCORES”</li>
+<li>发布/订阅。发布/订阅的使用场景确实非常多。我已看见人们在社交网络连接中使用，还可作为基于发布/订阅的脚本触发器，甚至用Redis的发布/订阅功能来建立聊天系统。</li>
+</ol>
+<p>参考文章：<a href="http://blog.jobbole.com/88383/" target="_blank" rel="external">Redis 的 5 个常见使用场景</a></p>
+</blockquote>
+<ol>
+<li>如何设计多级缓存结构？考虑哪些方面？</li>
+</ol>
+<blockquote>
+<p>多级缓存，即在整个系统架构的不同系统层级进行数据缓存，以提升访问效率，这也是应用最广的方案之一。</p>
+<p><img src="http://dl2.iteye.com/upload/attachment/0115/8558/b09fd58d-5d45-3742-8548-5726b0b79076.png" alt=""></p>
+<p>整体流程如上图所示：</p>
+<ol>
+<li><p>首先接入Nginx将请求负载均衡到应用Nginx，此处常用的负载均衡算法是轮询或者一致性哈希，轮询可以使服务器的请求更加均衡，而一致性哈希可以提升应用Nginx的缓存命中率；后续负载均衡和缓存算法部分我们再细聊；</p>
+</li>
+<li><p>接着应用Nginx读取本地缓存（本地缓存可以使用Lua Shared Dict、Nginx Proxy Cache（磁盘/内存）、Local Redis实现），如果本地缓存命中则直接返回，使用应用Nginx本地缓存可以提升整体的吞吐量，降低后端的压力，尤其应对热点问题非常有效；为什么要使用应用Nginx本地缓存我们将在热点数据与缓存失效部分细聊；</p>
+</li>
+<li><p>如果Nginx本地缓存没命中，则会读取相应的分布式缓存（如Redis缓存，另外可以考虑使用主从架构来提升性能和吞吐量），如果分布式缓存命中则直接返回相应数据（并回写到Nginx本地缓存）；</p>
+</li>
+<li><p>如果分布式缓存也没有命中，则会回源到Tomcat集群，在回源到Tomcat集群时也可以使用轮询和一致性哈希作为负载均衡算法；</p>
+</li>
+<li><p>在Tomcat应用中，首先读取本地堆缓存，如果有则直接返回（并会写到主Redis集群），为什么要加一层本地堆缓存将在缓存崩溃与快速修复部分细聊；</p>
+</li>
+<li><p>作为可选部分，如果步骤4没有命中可以再尝试一次读主Redis集群操作，目的是防止当从有问题时的流量冲击；</p>
+</li>
+<li><p>如果所有缓存都没有命中只能查询DB或相关服务获取相关数据并返回；</p>
+</li>
+<li><p>步骤7返回的数据异步写到主Redis集群，此处可能多个Tomcat实例同时写主Redis集群，可能造成数据错乱，如何解决该问题将在更新缓存与原子性部分细聊。</p>
+</li>
+</ol>
+<p>整体分了三部分缓存：应用Nginx本地缓存、分布式缓存、Tomcat堆缓存，每一层缓存都用来解决相关的问题，如应用Nginx本地缓存用来解决热点缓存问题，分布式缓存用来减少访问回源率、Tomcat堆缓存用于防止相关缓存失效/崩溃之后的冲击。</p>
+<p>使用消息机制同步缓存</p>
+<ol>
+<li>把写缓存改成写消息，通过消息通知数据变更；</li>
+<li>同步缓存系统会订阅消息，并根据消息进行更新缓存；</li>
+<li>数据一致性可以采用：消息体只包括ID、然后查库获取最新版本数据；通过时间戳和内容摘要机制(MD5)进行缓存更新；</li>
+<li>如上方法也不能保证消息不丢失，可以采用：应用在本地记录更新日志，当消息丢失了回放更新日志；或者采用数据库binlog，采用如canal订阅binlog进行缓存更新。</li>
+</ol>
+<p>对于长尾访问的数据、大多数数据访问频率都很高的场景、缓存空间足够都可以考虑不过期缓存，比如用户、分类、商品、价格、订单等，当缓存满了可以考虑LRU机制驱逐老的缓存数据。</p>
+<p>维度化缓存与增量缓存</p>
+<p>将数据进行维度化并增量更新（只更新变的部分）。尤其如上下架这种只是一个状态变更，但是每天频繁调用的，维度化后能减少服务很大的压力。</p>
+<p>轮询的优点：到应用Nginx的请求更加均匀，使得每个服务器的负载基本均衡；轮询的缺点：随着应用Nginx服务器的增加，缓存的命中率会下降，比如原来10台服务器命中率为90%，再加10台服务器将可能降低到45%；而这种方式不会因为热点问题导致其中某一台服务器负载过重。</p>
+<p>一致性哈希的优点：相同请求都会转发到同一台服务器，命中率不会因为增加服务器而降低；一致性哈希的缺点：因为相同的请求会转发到同一台服务器，因此可能造成某台服务器负载过重，甚至因为请求太多导致服务出现问题。</p>
+<p>正常情况采用一致性哈希，如果某个请求类型访问量突破了一定的阀值，则自动降级为轮询机制。另外对于一些秒杀活动之类的热点我们是可以提前知道的，可以把相关数据预先推送到应用Nginx并将负载均衡机制降级为轮询。</p>
+<p>参考文章：<a href="http://www.importnew.com/18983.html" target="_blank" rel="external">应用多级缓存模式支撑海量读服务</a></p>
+<p>这是一篇非常好的文章！</p>
+</blockquote>
+<ol>
+<li>主键和唯一键的区别？</li>
+</ol>
+<blockquote>
+<p>索引是存储在数据库中的一个物理结构，键纯粹是一个逻辑概念。键代表创建来实施业务规则的完整性约束。索引和键的混淆通常是由于数据库使用索引来实施完整性约束。</p>
+<p>（1）主键约束和唯一键约束均会隐式创建同名的唯一索引，当主键约束或者唯一键约束失效时，隐式创建的唯一索引会被删除；</p>
+<p>（2）主键约束要求列值非空，而唯一键约束和唯一索引不要求列值非空；</p>
+<p>（3）相同字段序列不允许重复创建索引。</p>
+</blockquote>
+<ol>
+<li>生产者消费者实现需要考虑哪几方面？如何考虑存储？</li>
+</ol>
+<blockquote>
+<p>生产者仅仅在仓储未满时候生产，仓满则停止生产。</p>
+<p>消费者仅仅在仓储有产品时候才能消费，仓空则等待。</p>
+<p>当消费者发现仓库没产品可消费时候会通知生产者生产。</p>
+<p>生产者在生产出可消费产品时候，应该通知等待的消费者去消费。</p>
+<p>对于存储中介，它肯定是一块具有额定大小的存储空间，而这个存储空间一般来说具有FIFO的数据结构，比如JDK内置了具有阻塞作用的有界队列：ArrayBlockingQueue、LinkedBlockingQueue。</p>
+</blockquote>
+<p><img src="http://7xswxf.com2.z0.glb.qiniucdn.com/blog/consumer1.jpg" alt=""></p>
+<p><img src="http://7xswxf.com2.z0.glb.qiniucdn.com/blog/consumer3.jpg" alt=""></p>
+<blockquote>
+<p>参考文章：<a href="http://blog.csdn.net/gsg8709/article/details/77868039" target="_blank" rel="external">生产者/消费者模式</a></p>
+</blockquote>
+<ol>
+<li>如何实现O(1)时间复杂度求栈的最小值？</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line">package com;</div><div class="line"></div><div class="line">import java.util.Stack;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Created by ml on 2017/9/7.</div><div class="line"> * 原栈中，每次添加一个新元素时，就和辅助栈的栈顶元素相比较，如果新元素小，就把新元素的值放到辅助栈和原栈中，如果新元素大，就把元素放到原栈中；出栈时，如果原栈跟辅助栈元素相同，都弹出，否则只弹出原栈栈顶元素.</div><div class="line"> */</div><div class="line">public class Stackmin &#123;</div><div class="line">    public static void main(String[] args) &#123;</div><div class="line"></div><div class="line">        AdvancedStack&lt;Integer&gt; stack = new AdvancedStack&lt;Integer&gt;();</div><div class="line">        stack.push(5);</div><div class="line">        System.out.println(stack.getMin());</div><div class="line">        stack.push(7);</div><div class="line">        System.out.println(stack.getMin());</div><div class="line">        stack.push(3);</div><div class="line">        System.out.println(stack.getMin());</div><div class="line">        stack.push(9);</div><div class="line">        System.out.println(stack.getMin());</div><div class="line">        stack.push(3);</div><div class="line">        System.out.println(stack.getMin());</div><div class="line">        stack.pop();</div><div class="line">        System.out.println(stack.getMin());</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    static class AdvancedStack&lt;T extends Comparable&gt; &#123;</div><div class="line">        Stack&lt;T&gt; stackNormal = new Stack&lt;T&gt;();</div><div class="line">        Stack&lt;T&gt; stackMin = new Stack&lt;T&gt;();</div><div class="line">        Stack&lt;T&gt; stackMax = new Stack&lt;T&gt;();</div><div class="line"></div><div class="line">        public void push(T e) &#123;</div><div class="line">            stackNormal.push(e);</div><div class="line"></div><div class="line">            //最小栈为空或者push的值小于最小栈的栈顶元素</div><div class="line">            if (stackMin.isEmpty() || e.compareTo(stackMin.peek()) &lt; 0) &#123;</div><div class="line">                stackMin.push(e);</div><div class="line">            &#125; else if (e.compareTo(stackMin.peek()) &gt; 0) &#123;</div><div class="line">                stackMin.push(stackMin.peek());</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            if (stackMax.isEmpty() || e.compareTo(stackMin.peek()) &gt; 0) &#123;</div><div class="line">                stackMax.push(e);</div><div class="line">            &#125; else if (e.compareTo(stackMax.peek()) &lt; 0) &#123;</div><div class="line">                stackMax.push(stackMax.peek());</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">        public T pop() &#123;</div><div class="line">            if (!stackNormal.isEmpty() &amp;&amp; !stackMin.isEmpty() &amp;&amp; !stackMax.isEmpty()) &#123;</div><div class="line">                T e = stackNormal.pop();</div><div class="line">                stackMin.pop();</div><div class="line">                stackMax.pop();</div><div class="line">                return e;</div><div class="line">            &#125; else &#123;</div><div class="line">                return null;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        public T getMin() &#123;</div><div class="line">            return stackMin.peek();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        public T getMax() &#123;</div><div class="line">            return stackMax.peek();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>如何设计即时通信系统，采用TCP还是UDP？</li>
+</ol>
+<p><img src="https://pic1.zhimg.com/v2-983c2fd4784a5f7d1a7504fd6435871c_b.png" alt=""></p>
+<blockquote>
+<p>现在的移动端IM、推送系统，既面对移动互联网的不确定性，又面对智能终端频繁的系统休眠、网络切换，还要考虑服务端的承载成本，对于在线服务而言UDP是比TCP更适合的方式。但是由于数据完整性、安全性的需要，又不应完全放弃TCP的可靠与安全。</p>
+<p>两种通信协议同时使用，各有侧重。UDP用于保持大量终端的在线与控制，应用与业务则通过TCP去实现。这个和FTP服务控制与数据分离，采取不同的连接，有异曲同工之处。</p>
+<p>参考文章:<a href="http://www.52im.net/thread-33-1-1.html" target="_blank" rel="external">移动端IM/推送系统的协议选型：UDP还是TCP？</a></p>
+</blockquote>
+<ol>
+<li>抽象类的作用？</li>
+</ol>
+<blockquote>
+<ol>
+<li>通过继承它实现多态。设计抽象类是为了继承它，实现代码的重用性，可以使得由它所派生的所有类具有相同的接口，使用更加灵活抽象，可以使多态的作用发挥的更好，还有一点就是程序的结构更易于更改和扩充。</li>
+<li>接口就是更纯粹的抽象类。</li>
+</ol>
+</blockquote>
+<ol>
+<li>kafka有了解过吗？</li>
+</ol>
+<blockquote>
+<p><a href="http://www.cnblogs.com/cyfonly/p/5954614.html" target="_blank" rel="external">kafka学习笔记：知识点整理</a></p>
+</blockquote>
+<h2 id="开放问题"><a href="#开放问题" class="headerlink" title="开放问题"></a>开放问题</h2><ol>
+<li>对你最大作用的项目？</li>
+</ol>
+<blockquote>
+<p>OK</p>
+</blockquote>
+<ol>
+<li>学校期间最有挑战性的项目？</li>
+</ol>
+<blockquote>
+<p>应该侧重于技术方面的挑战</p>
+</blockquote>
+<ol>
+<li>除了项目和实习，你是如何学习新的技术？</li>
+</ol>
+<blockquote>
+<p>OK</p>
+</blockquote>
+<ol>
+<li>除了以上技术，你最喜欢的技术是什么？</li>
+</ol>
+<blockquote>
+<p>前沿技术？？</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;美团二面记录&quot;&gt;&lt;a href=&quot;#美团二面记录&quot; class=&quot;headerlink&quot; title=&quot;美团二面记录&quot;&gt;&lt;/a&gt;美团二面记录&lt;/h1&gt;&lt;blockq
+    
+    </summary>
+    
+      <category term="面试记录" scheme="http://lincentma.men/categories/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95/"/>
+    
+    
+      <category term="interview" scheme="http://lincentma.men/tags/interview/"/>
+    
+      <category term="meituan" scheme="http://lincentma.men/tags/meituan/"/>
+    
+  </entry>
   
   <entry>
     <title>美团点评一面</title>
