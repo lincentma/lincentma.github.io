@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lincentma.men/"/>
-  <updated>2017-09-07T09:15:37.195Z</updated>
+  <updated>2017-09-12T08:00:19.958Z</updated>
   <id>http://lincentma.men/</id>
   
   <author>
@@ -14,6 +14,191 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>OJ基本技巧记录</title>
+    <link href="http://lincentma.men/OJ_skill.html"/>
+    <id>http://lincentma.men/OJ_skill.html</id>
+    <published>2017-09-12T07:58:15.000Z</published>
+    <updated>2017-09-12T08:00:19.958Z</updated>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="OJ基本技巧记录"><a href="#OJ基本技巧记录" class="headerlink" title="OJ基本技巧记录"></a>OJ基本技巧记录</h1><h1 id="OJ平台代码基本格式"><a href="#OJ平台代码基本格式" class="headerlink" title="OJ平台代码基本格式"></a>OJ平台代码基本格式</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">import java.util.Scanner;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Created by ml on 2017/9/11.</div><div class="line"> */</div><div class="line">public class Main &#123;</div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        Scanner in = new Scanner(System.in);</div><div class="line">        while (in.hasNext()) &#123;</div><div class="line">            String n = in.nextLine();//读一个字符串</div><div class="line">            int m = in.nextInt();//读一个整数</div><div class="line">            long l = in.nextLong();//读一个长整数</div><div class="line">            double t = in.nextDouble();//读一个浮点数</div><div class="line">            System.out.println(cal(n));//具体处理逻辑</div><div class="line">        &#125;</div><div class="line">        in.close();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="OJ输入输出技巧"><a href="#OJ输入输出技巧" class="headerlink" title="OJ输入输出技巧"></a>OJ输入输出技巧</h1><ol>
+<li><p>输入数据有多行，第一行是一个整数n，表示测试实例的个数，后面跟着n行，每行包括一个由字母和数字组成的字符串。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Scanner in = new Scanner(System.in);</div><div class="line">int n = in.nextInt();</div><div class="line">//可以创建数组</div><div class="line">int[] n = new int[n];</div><div class="line">String[] str = new String[n];</div><div class="line">for(int i=0;i&lt;n;i++) &#123;</div><div class="line">    n[i] = in.nextInt();</div><div class="line">    String str = in.nextLine();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>读入字符串的分割</p>
+</li>
+</ol>
+<p>例如：Input输入数据有多组，每组占一行，数据格式为YYYY/MM/DD组成 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Scanner in = new Scanner(System.in);</div><div class="line">while (in.hasNext()) &#123;</div><div class="line">    String str =in.nextLine();</div><div class="line">    String[] date = str.split(&quot;/&quot;);</div><div class="line">    int y = Integer.parseInt(date[0]);</div><div class="line">    int m = Integer.parseInt(date[1]);</div><div class="line">    int d = Integer.parseInt(date[2]);</div><div class="line">&#125;</div><div class="line">in.close();</div></pre></td></tr></table></figure>
+<ol>
+<li>不同类型相互转换</li>
+</ol>
+<ul>
+<li><p>int转为String：</p>
+<ul>
+<li>String s = Integer.toString(i);</li>
+<li>String s = String.valueOf(i);</li>
+<li>String s = “” + i;</li>
+<li>三种效率排序：Integer.toString(int i)   &gt;   String.valueOf(int i)   &gt;  i+””;    </li>
+</ul>
+</li>
+<li><p>String转为int</p>
+<ul>
+<li>int i = Integer.parseInt(s);</li>
+<li>int i = Integer.valueOf(s).intValue()</li>
+<li>这两种都会抛出异常（NumberFormatException）</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>Java输出</li>
+</ol>
+<ul>
+<li><p>System.out.print(); //输出不换行</p>
+</li>
+<li><p>System.out.println(); //输出换行 </p>
+</li>
+<li><p>System.out.format(); </p>
+<ul>
+<li>double d = 345.678;</li>
+<li>System.out.printf(“%9.2f”, d);// “9.2”中的9表示输出的长度，2表示小数点后的位数。</li>
+<li>System.out.printf(“%+-9.3f”, d);// “+-“表示输出的数带正负号且左对齐。</li>
+</ul>
+</li>
+<li><p>System.out.printf(); //与上相同</p>
+</li>
+<li><p>DecimalFormat。DecimalFormat 类主要靠 # 和 0 两种占位符号来指定数字长度。0 表示如果位数不足则以 0 填充，# 表示只要有可能就把数字拉上这个位置。</p>
+<ul>
+<li>NumberFormat formatter = new DecimalFormat( “0.00”);   </li>
+<li>String s = formatter.format(-.567);              //   -0.57   </li>
+<li>System.out.println(s);  </li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>矩阵如何按行输出</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//输出int[n][m]，判断是否是每一行的最后一个，输出换行。</div><div class="line">for(int i = 0; i &lt; n ; i++) &#123;</div><div class="line">    for(int j = 0; j &lt; m; j++&gt;) &#123;</div><div class="line">        if(j == m - 1)&#123;</div><div class="line">            system.out.println(i);</div><div class="line">        &#125; else &#123;</div><div class="line">            system.out.print(i + &quot; &quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>不定长度类型</li>
+</ol>
+<ul>
+<li>对于整形等数据在处理中不能确定长度的情况，使用ArrayList<integer>等形式来存储数据。</integer></li>
+<li>对于char或者String类型可以使用StingBuffer等形式来存储。</li>
+</ul>
+<ol>
+<li>集合遍历</li>
+</ol>
+<ul>
+<li><p>数组以及List：遍历</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">List&lt;String&gt; list = new ArrayList&lt;String&gt;();</div><div class="line">for (int i = 0; i &lt; list.size(); i++) &#123;</div><div class="line">    System.out.println(list.get(i));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Map类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">Map&lt;String, String&gt; map = new HashMap&lt;String, String&gt;();</div><div class="line"></div><div class="line">//1</div><div class="line">Iterator&lt;Map.Entry&lt;String, String&gt;&gt; it = map.entrySet().iterator();</div><div class="line">while (it.hasNext()) &#123;</div><div class="line">    Map.Entry&lt;String, String&gt; entry = it.next();</div><div class="line">    System.out.println(&quot;key= &quot; + entry.getKey() + &quot; and value= &quot; + entry.getValue());</div><div class="line">&#125;</div><div class="line">//2</div><div class="line">for (Map.Entry&lt;String, String&gt; entry : map.entrySet()) &#123;</div><div class="line">    entry.getKey();</div><div class="line">&#125;</div><div class="line">//3</div><div class="line">for (String key : map.keySet()) &#123;</div><div class="line">    String value = (String) map.get(key);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>传统的for循环遍历，基于计数器。遍历整个集合的平均时间复杂度为O(n^2)。</p>
+</li>
+<li>迭代器遍历，Iterator。</li>
+<li>foreach循环遍历。实现原理同Iterator。</li>
+</ul>
+<ol>
+<li>排序</li>
+</ol>
+<ul>
+<li><p>如果要对数组排序，请使用java.util.Arrays.sort()方法。</p>
+</li>
+<li><p>如果对list排序，请使用java.util.Collections.sort()方法。</p>
+</li>
+<li><p>自定义排序：对于要排序的类实现Comparable接口。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">class S1 implements Comparable&#123;  </div><div class="line">    int x;  </div><div class="line">    int y;  </div><div class="line">    S1(int x, int y)&#123;  </div><div class="line">        this.x = x;  </div><div class="line">        this.y = y;  </div><div class="line">    &#125;  </div><div class="line">    //实现排序方法。先比较x，如果相同比较y  </div><div class="line">    @Override  </div><div class="line">    public int compareTo(Object o) &#123;  </div><div class="line">        S1 obj = (S1) o;  </div><div class="line">        if(x != obj.x)  </div><div class="line">        &#123;  </div><div class="line">            return x - obj.x;  </div><div class="line">        &#125;  </div><div class="line">        return y - obj.y;  </div><div class="line">    &#125;  </div><div class="line">    //重写toStirng方法，改变println时的显示效果  </div><div class="line">    public String toString()&#123;  </div><div class="line">        return &quot;(&quot;+x+&quot;, &quot;+y+&quot;)&quot;;  </div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="OJ常用函数"><a href="#OJ常用函数" class="headerlink" title="OJ常用函数"></a>OJ常用函数</h1><ol>
+<li><p>不同类型长度：</p>
+<ul>
+<li><p>数组：int len = n.length;//int[] n = new int[10];</p>
+</li>
+<li><p>字符串：int len = s.length();//String s = “hello”;</p>
+</li>
+<li><p>List：int len = list.size();//List<string> list = new ArrayList<string>();</string></string></p>
+</li>
+</ul>
+</li>
+<li><p>String类：</p>
+<ul>
+<li><p>字符串某一位置字符,charAt。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">String str = new String(&quot;asdfzxc&quot;);</div><div class="line">char ch = str.charAt(4);//ch = z</div></pre></td></tr></table></figure>
+</li>
+<li><p>转化为char数组。toCharArray方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">String str1 = new String(&quot;abc&quot;);</div><div class="line">char[] c = str1.toCharArray();</div></pre></td></tr></table></figure>
+</li>
+<li><p>判断相等。equals方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">String str1 = new String(&quot;abc&quot;);</div><div class="line">String str2 = new String(&quot;ABC&quot;);</div><div class="line">boolean c = str1.equals(str2);//c=false</div></pre></td></tr></table></figure>
+</li>
+<li><p>提取子串。substring方法：一个参数：该方法从beginIndex位置起，出剩余的字符作为一个新的字符串返回。两个参数：左闭右开原则[beginIndex,endIndex)，即[beginIndex,endIndex - 1]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">String str1 = new String(&quot;asdfzxc&quot;);</div><div class="line">String str2 = str1.substring(2);//str2 = &quot;dfzxc&quot;</div><div class="line">String str3 = str1.substring(2,5);//str3 = &quot;dfz&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>字符串比较。compareTo方法是对字符串内容按字典顺序进行大小比较，通过返回的整数值指明当前字符串与参数字符串的大小关系。若当前对象比参数大则返回正整数，反之返回负整数，相等返回0。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">String str1 = new String(&quot;abc&quot;);</div><div class="line">String str2 = new String(&quot;ABC&quot;);</div><div class="line">int a = str1.compareTo(str2);//a&gt;0</div><div class="line">int b = str1.compareTo(str2);//b=0</div></pre></td></tr></table></figure>
+</li>
+<li><p>是否包含字符。contains方法判断参数s是否被包含在字符串中，并返回一个布尔类型的值.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">String str = &quot;student&quot;;</div><div class="line">str.contains(&quot;stu&quot;);//true</div><div class="line">str.contains(&quot;ok&quot;);//false</div></pre></td></tr></table></figure>
+</li>
+<li><p>字符串字符替换。replace、replaceFirst、replaceAll方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">String str = &quot;asdzxcasd&quot;;</div><div class="line">String str1 = str.replace(&apos;a&apos;,&apos;g&apos;);//str1 = &quot;gsdzxcgsd&quot;</div><div class="line">String str2 = str.replace(&quot;asd&quot;,&quot;fgh&quot;);//str2 = &quot;fghzxcfgh&quot;</div><div class="line">String str3 = str.replaceFirst(&quot;asd&quot;,&quot;fgh&quot;);//str3 = &quot;fghzxcasd&quot;</div><div class="line">String str4 = str.replaceAll(&quot;asd&quot;,&quot;fgh&quot;);//str4 = &quot;fghzxcfgh&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>字符查找。indexOf、lastIndexOf方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">String str = &quot;I am a good student&quot;;</div><div class="line">int a = str.indexOf(&apos;a&apos;);//a = 2</div><div class="line">int b = str.indexOf(&quot;good&quot;);//b = 7</div><div class="line">int c = str.indexOf(&quot;w&quot;,2);//c = -1</div><div class="line">int d = str.lastIndexOf(&quot;a&quot;);//d = 5</div><div class="line">int e = str.lastIndexOf(&quot;a&quot;,3);//e = 2</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>StringBuffer类</p>
+<ul>
+<li><p>添加。append方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">StringBuffer sb = new StringBuffer(“abc”);</div><div class="line">sb.append(true);//&quot;abctrue&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>插入。insert方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">StringBuffer sb = new StringBuffer(“TestString”);</div><div class="line">sb.insert(4,false);//&quot;TestfalseString&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>删除。deleteCharAt方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">StringBuffer sb = new StringBuffer(“Test”);</div><div class="line">sb. deleteCharAt(1);//&quot;Tst&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>转换为字符串</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">StringBuffer sb = new StringBuffer(“Test”);</div><div class="line">String s1 = sb.toString(); //StringBuffer转换为String</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>ArrayList类</p>
+<ul>
+<li>添加：add方法</li>
+<li>插入：insert方法</li>
+<li>删除：remove方法</li>
+<li>清空：clear方法</li>
+<li>包含：contains方法</li>
+</ul>
+</li>
+</ol>
+<h1 id="OJ常用算法"><a href="#OJ常用算法" class="headerlink" title="OJ常用算法"></a>OJ常用算法</h1><ul>
+<li>自己的初步阶段：理清思路，暴力求解，再逐步改进！</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;OJ基本技巧记录&quot;&gt;&lt;a href=&quot;#OJ基本技巧记录&quot; class=&quot;headerlink&quot; title=&quot;OJ基本技巧记录&quot;&gt;&lt;/a&gt;OJ基本技巧记录&lt;/h1
+    
+    </summary>
+    
+      <category term="面试" scheme="http://lincentma.men/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+      <category term="OJ" scheme="http://lincentma.men/tags/OJ/"/>
+    
+      <category term="skill" scheme="http://lincentma.men/tags/skill/"/>
+    
+  </entry>
   
   <entry>
     <title>美团二面记录</title>
