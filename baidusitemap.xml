@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://lincentma.men/cheetah_mobile_interview_2.html</loc>
+    <lastmod>2017-09-16T16:34:41.283Z</lastmod>
+    <data>
+        <display>
+        <title>猎豹移动二面</title>
+        <pubTime>2017-09-16T16:32:10.000Z</pubTime>
+        
+        <tag>interview</tag>
+         
+        <tag>Cheetah-Mobile</tag>
+         
+         
+           
+             
+              <breadCrumb title="面试记录" url="http://lincentma.men/categories/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://lincentma.men/%E2%80%9Czhaoyinkeji_interview%E2%80%9D.html</loc>
     <lastmod>2017-09-14T16:00:06.411Z</lastmod>
     <data>
@@ -121,9 +143,9 @@
         <title>百度运维一面</title>
         <pubTime>2017-09-01T14:16:55.000Z</pubTime>
         
-        <tag>interview</tag>
-         
         <tag>baidu</tag>
+         
+        <tag>interview</tag>
          
          
            

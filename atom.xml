@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lincentma.men/"/>
-  <updated>2017-09-14T16:00:06.411Z</updated>
+  <updated>2017-09-16T16:34:41.283Z</updated>
   <id>http://lincentma.men/</id>
   
   <author>
@@ -14,6 +14,223 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>猎豹移动二面</title>
+    <link href="http://lincentma.men/cheetah_mobile_interview_2.html"/>
+    <id>http://lincentma.men/cheetah_mobile_interview_2.html</id>
+    <published>2017-09-16T16:32:10.000Z</published>
+    <updated>2017-09-16T16:34:41.283Z</updated>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="猎豹移动二面"><a href="#猎豹移动二面" class="headerlink" title="猎豹移动二面"></a>猎豹移动二面</h1><blockquote>
+<p>问题回答只会回答基本面，细节不充分是自己的弱项</p>
+</blockquote>
+<h2 id="前面的有些忘记了，，，-zzz"><a href="#前面的有些忘记了，，，-zzz" class="headerlink" title="前面的有些忘记了，，，{[(-_-)(-_-)]}zzz"></a>前面的有些忘记了，，，{[(-_-)(-_-)]}zzz</h2><h3 id="1-Tornado框架介绍"><a href="#1-Tornado框架介绍" class="headerlink" title="1. Tornado框架介绍"></a>1. Tornado框架介绍</h3><blockquote>
+<p>Tornado是使用Python编写的一个强大的、可扩展的Web服务器。它在处理严峻的网络流量时表现得足够强健，但却在创建和编写时有着足够的轻量级，并能够被用在大量的应用和工具中。</p>
+<p>基本流程：</p>
+<ol>
+<li>执行脚本，监听 8888 端口</li>
+<li>浏览器客户端访问 /index  –&gt;  <a href="http://127.0.0.1:8888/index" target="_blank" rel="external">http://127.0.0.1:8888/index</a></li>
+<li>服务器接受请求，并交由对应的类处理该请求</li>
+<li>类接受到请求之后，根据请求方式（post(请求) / get（获取） / delete（删除） / pot（设置））的不同调用并执行相应的方法</li>
+<li>方法返回值的字符串内容发送浏览器</li>
+</ol>
+<p>example<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line"># -*- coding:utf-8 -*-</div><div class="line">   </div><div class="line">import tornado.ioloop</div><div class="line">import tornado.web</div><div class="line">   </div><div class="line">   </div><div class="line">class MainHandler(tornado.web.RequestHandler):</div><div class="line">    def get(self):</div><div class="line">        self.write(&quot;Hello, world&quot;)</div><div class="line">   </div><div class="line">application = tornado.web.Application([</div><div class="line">    (r&quot;/index&quot;, MainHandler),</div><div class="line">])</div><div class="line">   </div><div class="line">   </div><div class="line">if __name__ == &quot;__main__&quot;:</div><div class="line">    application.listen(8888)</div><div class="line">    tornado.ioloop.IOLoop.instance().start()</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="2-Supervisor功能作用"><a href="#2-Supervisor功能作用" class="headerlink" title="2. Supervisor功能作用"></a>2. Supervisor功能作用</h3><blockquote>
+<p>supervisor是用python开发的进程管理程序，可以将普通的命令变成后台的守护进程，并监控进程状态。</p>
+<p>使用流程：</p>
+<ol>
+<li>安装supervisor</li>
+<li><p>编写应用程序配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[program:app]</div><div class="line">command=/usr/bin/gunicorn -w 1 wsgiapp:application</div><div class="line">directory=/srv/www</div><div class="line">user=www-data</div></pre></td></tr></table></figure>
+</li>
+<li><p>重启supervisor，让配置文件生效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># supervisorctl start app</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h3 id="3-nginx如何实现请求转发"><a href="#3-nginx如何实现请求转发" class="headerlink" title="3. nginx如何实现请求转发"></a>3. nginx如何实现请求转发</h3><blockquote>
+<p>反向代理（Reverse Proxy）方式是指以代理服务器来接受internet上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端，此时代理服务器对外就表现为一个服务器。  </p>
+<p>nginx 配置文件：vim /etc/nginx/nginx.conf</p>
+<p>例如tornado会启动三个进程，分别侦听8001, 8002, 8003三个端口。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">upstream tornado.server &#123;</div><div class="line">   server 127.0.0.1:8001;</div><div class="line">   server 127.0.0.1:8002;</div><div class="line">   server 127.0.0.1:8003;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 反向代理配置</div><div class="line">    location / &#123;</div><div class="line">    proxy_pass_header Server;</div><div class="line">    proxy_set_header Host $http_host;</div><div class="line">    proxy_set_header X-Real-IP $remote_addr;</div><div class="line">    proxy_set_header X-Scheme $scheme;</div><div class="line">    proxy_pass http://tornado.server;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>upstream指令主要用于负载均衡，设置一系列的后端服务器。nginx 的 upstream默认是以轮询的方式实现负载均衡，这种方式中，每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。此外还有ip_hash、weight、url_hash、fair等负载均衡策略。</p>
+</blockquote>
+<h3 id="4-Hadoop的MapReduce运行过程中，如果存在某些key过于集中，是否会使得MapReduce任务执行失败？为什么？"><a href="#4-Hadoop的MapReduce运行过程中，如果存在某些key过于集中，是否会使得MapReduce任务执行失败？为什么？" class="headerlink" title="4. Hadoop的MapReduce运行过程中，如果存在某些key过于集中，是否会使得MapReduce任务执行失败？为什么？"></a>4. Hadoop的MapReduce运行过程中，如果存在某些key过于集中，是否会使得MapReduce任务执行失败？为什么？</h3><blockquote>
+<p>mapreduce处理过程有一个特点，相同的key，只能是发给同一个reduce进行处理。</p>
+<p>原因：hadoop源码中有一行代码，(key.hashcode())%numReduce，先把key进行hash然后除以reduce的个数取余，相同的key的hashcode肯定一样，而且reduce数也确认，那肯定是相同的key都发给了同一个reduce了。</p>
+<p>而对于提交的作业(job)什么时候才算运行结束呢?是要等到最后一个reduce执行完，才算结束。所以执行量小的reduce先执行完了，也得等着，等着量最大的、最慢的执行完，才能够算结束。</p>
+</blockquote>
+<h3 id="5-你对于NoSQL的了解？"><a href="#5-你对于NoSQL的了解？" class="headerlink" title="5. 你对于NoSQL的了解？"></a>5. 你对于NoSQL的了解？</h3><blockquote>
+<p>NoSQL(NoSQL = Not Only SQL )，意即”不仅仅是SQL”。</p>
+<p>CAP理论。</p>
+</blockquote>
+<p><img src="http://www.runoob.com/wp-content/uploads/2013/10/cap-theoram-image.png" alt=""></p>
+<blockquote>
+<p>NoSQL数据库分类</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>部分代表</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>列存储</td>
+<td>Hbase</td>
+<td>顾名思义，是按列存储数据的。最大的特点是方便存储结构化和半结构化数据，方便做数据压缩，对针对某一列或者某几列的查询有非常大的IO优势。</td>
+</tr>
+<tr>
+<td></td>
+<td>Cassandra</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Hypertable</td>
+<td></td>
+</tr>
+<tr>
+<td>文档存储</td>
+<td>MongoDB</td>
+<td>文档存储一般用类似json的格式存储，存储的内容是文档型的。这样也就有有机会对某些字段建立索引，实现关系数据库的某些功能。</td>
+</tr>
+<tr>
+<td></td>
+<td>CouchDB</td>
+<td></td>
+</tr>
+<tr>
+<td>key-value存储</td>
+<td>Tokyo Cabinet / Tyrant</td>
+<td>可以通过key快速查询到其value。一般来说，存储不管value的格式，照单全收。（Redis包含了其他功能）</td>
+</tr>
+<tr>
+<td></td>
+<td>Berkeley DB</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>MemcacheDB</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Redis</td>
+<td></td>
+</tr>
+<tr>
+<td>图存储</td>
+<td>Neo4J</td>
+<td>图形关系的最佳存储。使用传统关系数据库来解决的话性能低下，而且设计使用不方便。</td>
+</tr>
+<tr>
+<td></td>
+<td>FlockDB</td>
+<td></td>
+</tr>
+<tr>
+<td>对象存储</td>
+<td>db4o</td>
+<td>通过类似面向对象语言的语法操作数据库，通过对象的方式存取数据。</td>
+</tr>
+<tr>
+<td></td>
+<td>Versant</td>
+<td></td>
+</tr>
+<tr>
+<td>xml数据库</td>
+<td>Berkeley DB XML</td>
+<td>高效的存储XML数据，并支持XML的内部查询语法，比如XQuery,Xpath。</td>
+</tr>
+<tr>
+<td></td>
+<td>BaseX</td>
+</tr>
+</tbody>
+</table>
+<h3 id="6-Redis-key过期如何设置？"><a href="#6-Redis-key过期如何设置？" class="headerlink" title="6. Redis key过期如何设置？"></a>6. Redis key过期如何设置？</h3><blockquote>
+<p>EXPIRE key seconds</p>
+<p>为给定 key 设置生存时间，当 key 过期时(生存时间为 0 )，它会被自动删除。 </p>
+<p>可以对一个已经带有生存时间的  key  执行 EXPIRE 命令，新指定的生存时间会取代旧的生存时间。</p>
+<p>TTL key    # 查看剩余生存时间</p>
+<p>如果没有设置时间，那缓存就是永不过期。</p>
+<p>PERSIST key</p>
+<p>移除给定 key 的生存时间，将这个 key 从『易失的』(带生存时间 key )转换成『持久的』(一个不带生存时间、永不过期的 key )。</p>
+</blockquote>
+<h3 id="7-Redis-key过期有哪几种？"><a href="#7-Redis-key过期有哪几种？" class="headerlink" title="7. Redis key过期有哪几种？"></a>7. Redis key过期有哪几种？</h3><blockquote>
+<ol>
+<li>被动删除：当读/写一个已经过期的key时，会触发惰性删除策略，直接删除掉这个过期key</li>
+<li>主动删除：由于惰性删除策略无法保证冷数据被及时删掉，所以Redis会定期主动淘汰一批已过期的key</li>
+<li><p>当前已用内存超过maxmemory限定时，触发主动清理策略</p>
+</li>
+<li><p>定时删除</p>
+</li>
+</ol>
+<p>含义：在设置key的过期时间的同时，为该key创建一个定时器，让定时器在key的过期时间来临时，对key进行删除</p>
+<p>优点：保证内存被尽快释放</p>
+<p>缺点：若过期key很多，删除这些key会占用很多的CPU时间，在CPU时间紧张的情况下，CPU不能把所有的时间用来做要紧的事儿，还需要去花时间删除这些key<br>定时器的创建耗时，若为每一个设置过期时间的key创建一个定时器（将会有大量的定时器产生），性能影响严重</p>
+<ol>
+<li>惰性删除</li>
+</ol>
+<p>含义：key过期的时候不删除，每次从数据库获取key的时候去检查是否过期，若过期，则删除，返回null。</p>
+<p>优点：删除操作只发生在从数据库取出key的时候发生，而且只删除当前key，所以对CPU时间的占用是比较少的，而且此时的删除是已经到了非做不可的地步（如果此时还不删除的话，我们就会获取到了已经过期的key了）</p>
+<p>缺点：若大量的key在超出超时时间后，很久一段时间内，都没有被获取过，那么可能发生内存泄露（无用的垃圾占用了大量的内存）</p>
+<ol>
+<li>定期删除</li>
+</ol>
+<p>含义：每隔一段时间执行一次删除过期key操作</p>
+<p>优点：通过限制删除操作的时长和频率，来减少删除操作对CPU时间的占用–处理”定时删除”的缺点。定期删除过期key–处理”惰性删除”的缺点</p>
+<p>缺点:在内存友好方面，不如”定时删除”;在CPU时间友好方面，不如”惰性删除”</p>
+</blockquote>
+<h3 id="8-Shell常用命令你用过哪些？"><a href="#8-Shell常用命令你用过哪些？" class="headerlink" title="8. Shell常用命令你用过哪些？"></a>8. Shell常用命令你用过哪些？</h3><blockquote>
+<p>ls: 类似于dos下的dir命令;</p>
+<p>cd: 用于切换用户当前工作目录;</p>
+<p>pwd：用于显示用户当前工作目录;</p>
+<p>midir：创建目录;rmdir：删除目录;</p>
+<p>cp：复制命令;</p>
+<p>mv：移动命令;</p>
+<p>rm：用于删除文件;</p>
+<p>du：显示目前的目录所占用的磁盘空间;df：显示目前磁盘剩余空间;</p>
+<p>cat：显示或连接一般的ascii文本文件;</p>
+<p>head：显示文件的头n行;tail：显示文件的尾n行，缺省情况n都为10行;</p>
+<p>wc：统计指定文件中的字节数(-c)、字数(-w)、行数(-l);</p>
+<p>grep：用于从文件面搜索包含指定模式的行并打印出来，它是一种强大的文本搜索工具，支持使用正则表达式搜索文本;</p>
+<p>管道：利用Linux所提供的管道符“|”将两个命令隔开，管道符左边命令的输出就会作为管道符右边命令的输入;</p>
+<p>awk：awk比sed强的地方在于不仅能以行为单位还能以列为单位处理文件。awk ‘{pattern + action}’ {filenames}</p>
+<p>sed：(关键字: 编辑) 以行为单位的文本编辑工具。基本工作方式: sed [-nef] ‘[动作]’ [输入文本]</p>
+<p>ln -sf  a  b：b链向a;</p>
+</blockquote>
+<h3 id="1-文本，每一行五个列，根据第二列排重，统计之后，倒序输出，取前100个。"><a href="#1-文本，每一行五个列，根据第二列排重，统计之后，倒序输出，取前100个。" class="headerlink" title="1. 文本，每一行五个列，根据第二列排重，统计之后，倒序输出，取前100个。"></a>1. 文本，每一行五个列，根据第二列排重，统计之后，倒序输出，取前100个。</h3><blockquote>
+<p>命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat 0916.txt | awk &apos;&#123;print $2&#125;&apos;| uniq -c | sort -r | awk &apos;&#123;print $2,$1&#125;&apos;</div></pre></td></tr></table></figure></p>
+<p>输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">1       1       1       1       1</div><div class="line">2       2       2       2       2</div><div class="line">3       3       3       3       3</div><div class="line">4       4       4       4       4</div><div class="line">4       4       4       4       4</div><div class="line">4       4       4       4       4</div><div class="line">4       4       4       4       4</div><div class="line">5       5       5       5       5</div><div class="line">5       5       5       5       5</div><div class="line">5       5       5       5       5</div><div class="line">5       5       5       5       5</div><div class="line">5       5       5       5       5</div><div class="line">5       5       5       5       5</div><div class="line">5       5       5       5       5</div><div class="line">5       5       5       5       5</div><div class="line">5       5       5       5       5</div><div class="line">5       5       5       5       5</div><div class="line">6       6       6       6       6</div><div class="line">6       6       6       6       6</div><div class="line">6       6       6       6       6</div><div class="line">6       6       6       6       6</div><div class="line">6       6       6       6       6</div></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ cat 0916.txt | awk &apos;&#123;print $2&#125;&apos;| uniq -c | sort -r | awk &apos;&#123;print $2,$1&#125;&apos;</div><div class="line">6 5</div><div class="line">4 4</div><div class="line">3 1</div><div class="line">2 1</div><div class="line">1 1</div><div class="line">5 10</div></pre></td></tr></table></figure></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;猎豹移动二面&quot;&gt;&lt;a href=&quot;#猎豹移动二面&quot; class=&quot;headerlink&quot; title=&quot;猎豹移动二面&quot;&gt;&lt;/a&gt;猎豹移动二面&lt;/h1&gt;&lt;blockq
+    
+    </summary>
+    
+      <category term="面试记录" scheme="http://lincentma.men/categories/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95/"/>
+    
+    
+      <category term="interview" scheme="http://lincentma.men/tags/interview/"/>
+    
+      <category term="Cheetah-Mobile" scheme="http://lincentma.men/tags/Cheetah-Mobile/"/>
+    
+  </entry>
   
   <entry>
     <title>招银科技一面</title>
@@ -1092,9 +1309,9 @@
       <category term="面试记录" scheme="http://lincentma.men/categories/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95/"/>
     
     
-      <category term="interview" scheme="http://lincentma.men/tags/interview/"/>
-    
       <category term="baidu" scheme="http://lincentma.men/tags/baidu/"/>
+    
+      <category term="interview" scheme="http://lincentma.men/tags/interview/"/>
     
   </entry>
   
