@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lincentma.men/"/>
-  <updated>2017-09-16T16:34:41.283Z</updated>
+  <updated>2017-09-18T18:26:53.465Z</updated>
   <id>http://lincentma.men/</id>
   
   <author>
@@ -14,6 +14,155 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>网易游戏笔试记录</title>
+    <link href="http://lincentma.men/neteasegame_writeexam.html"/>
+    <id>http://lincentma.men/neteasegame_writeexam.html</id>
+    <published>2017-09-18T18:25:45.000Z</published>
+    <updated>2017-09-18T18:26:53.465Z</updated>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="网易游戏笔试记录"><a href="#网易游戏笔试记录" class="headerlink" title="网易游戏笔试记录"></a>网易游戏笔试记录</h1><blockquote>
+<p>看到试卷要求，有句话，基础部分达不到及格线直接淘汰，基础细节最重要，太多细节没有掌握。</p>
+</blockquote>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><h3 id="1-线程1执行n-n-线程2执行n-2-在没有锁的保证下，最后n的结果可能是几？"><a href="#1-线程1执行n-n-线程2执行n-2-在没有锁的保证下，最后n的结果可能是几？" class="headerlink" title="1. 线程1执行n++;n++; 线程2执行n+=2; 在没有锁的保证下，最后n的结果可能是几？"></a>1. 线程1执行n++;n++; 线程2执行n+=2; 在没有锁的保证下，最后n的结果可能是几？</h3><blockquote>
+<p>i++的线程安全性可以总结如下：<br>1) 如果i是局部变量，那么是可重入的，也就是线程安全的。<br>2) 如果i是全局变量，则同一进程的不同线程都可能访问到该变量，因而是线程不安全的。 </p>
+<p>i++不是原子操作，原因是：</p>
+<p>i++操作分为三个阶段(读、改、写)：</p>
+<p>1) 内存到寄存器<br>2) 寄存器自增<br>3) 写回内存</p>
+<p>这三个阶段可以被中断分离。</p>
+<ol>
+<li>情况1：两个线程串行执行，无交叉，结果为4。</li>
+<li>情况2：线程1执行n++后被打断，线程2开始执行，于是线程开始执行n+2，再将结果3写回内存前被打断，执行线程1的第二个n++，这个时候内存中的n为2，然后线程2开始执行写回3，结果是3。</li>
+<li>情况3：线程2先执行取得n为0后开始运算加2操作，之后在将结果写回内存前被打断，执行线程1，线程1执行结束n的内存为2，这个时候线程2被恢复，将运算结果2再次写回内存，最后结果是2。</li>
+</ol>
+</blockquote>
+<ul>
+<li>参考文章：<a href="http://blog.csdn.net/myblog_dwh/article/details/12837089" target="_blank" rel="external"></a></li>
+</ul>
+<h3 id="2-数据库ACID"><a href="#2-数据库ACID" class="headerlink" title="2. 数据库ACID"></a>2. 数据库ACID</h3><blockquote>
+<p>事务(transaction)所应该具有的四个特性：原子性（Atomicity）、一致性（Consistency）、隔离性（Isolation）、持久性（Durability）。</p>
+<ol>
+<li>原子性是指事务是一个不可再分割的工作单位，事务中的操作要么都发生，要么都不发生。</li>
+<li>一致性是指在事务开始之前和事务结束以后，数据库的完整性约束没有被破坏。这是说数据库事务不能破坏关系数据的完整性以及业务逻辑上的一致性。</li>
+<li>多个事务并发访问时，事务之间是隔离的，一个事务不应该影响其它事务运行效果。</li>
+<li>持久性，意味着在事务完成以后，该事务所对数据库所作的更改便持久的保存在数据库之中，并不会被回滚。</li>
+</ol>
+</blockquote>
+<h3 id="3-哪一种数据结构是删除最小元素和添加新元素的时间复杂度是O-logn-？"><a href="#3-哪一种数据结构是删除最小元素和添加新元素的时间复杂度是O-logn-？" class="headerlink" title="3. 哪一种数据结构是删除最小元素和添加新元素的时间复杂度是O(logn)？"></a>3. 哪一种数据结构是删除最小元素和添加新元素的时间复杂度是O(logn)？</h3><blockquote>
+<p>小根堆数据结构。删除和添加本身是O（1），调整是整个树的深度，为O（logN） </p>
+</blockquote>
+<h3 id="4-关于分页和分段？"><a href="#4-关于分页和分段？" class="headerlink" title="4. 关于分页和分段？"></a>4. 关于分页和分段？</h3><blockquote>
+<p>分页就是将进程的逻辑地址空间分成若干大小相等的片（即页），然后装入内存。</p>
+<p>分段就是用户可以把自己的作业按逻辑关系划分为若干个段,每个段都是从0开始编址,并有自己的名字和长度。这就相当于程序里边的主函数段、各个子函数段、数据段、栈段等等。</p>
+<p>页是信息的物理单位，段是信息的逻辑单位。</p>
+<p>分页的作业地址空间是一维的,线性的,程序员只需利用一个记忆符表示一个地址；而分段的作业地址空间是二维的,程序员在表示一个地址的时候既要给出段名,又需要给出段内地址.其中,段名可以理解为函数名等，段内地址可以理解程变量等的地址。</p>
+</blockquote>
+<h3 id="5-采取LRU策略，缺页次数？"><a href="#5-采取LRU策略，缺页次数？" class="headerlink" title="5. 采取LRU策略，缺页次数？"></a>5. 采取LRU策略，缺页次数？</h3><blockquote>
+<p>在请求分页系统中，可以通过查询页表中的状态位来确定所要访问的页面是否存在于内存中。每当所要访问的页面不在内存时，会产生一次缺页中断，此时操作系统会根据页表中的外存地址在外存中找到所缺的一页，将其调入内存。 </p>
+<p>LRU置换算法是选择最近最久未使用的页面予以淘汰。该算法赋予每个页面一个访问字段，用来记录一个页面上次被访问以来所经历的时间t，当需要淘汰一个页面时，选择现有页面中其t值最大的。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">以下用x表示缺页的情况</div><div class="line">1.S=3</div><div class="line">3,4,2,1,4,5,3,4,5,1,2</div><div class="line">---------------------</div><div class="line">3 4 2 1 4 5 3 4 5 1 2</div><div class="line">  3 4 2 1 4 5 3 3 5 1</div><div class="line">    3 4 2 1 4 5 4 3 5</div><div class="line">x x x x   x x     x x</div><div class="line">所以F=8</div><div class="line">2.S=4</div><div class="line">3,4,2,1,4,5,3,4,5,1,2</div><div class="line">---------------------</div><div class="line">3 4 2 1 4 5 3 4 5 1 2</div><div class="line">  3 4 2 1 4 5 3 3 3 1</div><div class="line">    3 4 2 1 4 5 4 5 3</div><div class="line">      3 3 2 1 1 1 4 5</div><div class="line">x x x x   x x       x</div><div class="line">所以F=7</div></pre></td></tr></table></figure>
+<h3 id="6-如何统计指定目录下只包含小写字母的后缀为c的文件的个数？"><a href="#6-如何统计指定目录下只包含小写字母的后缀为c的文件的个数？" class="headerlink" title="6. 如何统计指定目录下只包含小写字母的后缀为c的文件的个数？"></a>6. 如何统计指定目录下只包含小写字母的后缀为c的文件的个数？</h3><blockquote>
+<p>没有子目录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ls *.txt | wc -l</div><div class="line"></div><div class="line">find . -name &quot;*.txt&quot; | wc -l</div></pre></td></tr></table></figure></p>
+<p>子目录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -type f -name &quot;*.txt&quot; | wc -l</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="7-如何更改指定目录以及其子文件的拥有者名字？"><a href="#7-如何更改指定目录以及其子文件的拥有者名字？" class="headerlink" title="7. 如何更改指定目录以及其子文件的拥有者名字？"></a>7. 如何更改指定目录以及其子文件的拥有者名字？</h3><blockquote>
+<p>对Document/ 目录下的所有文件与子目录执行相同的所有者变更，修改所有者为users用户组的username用户<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chown -R users Document/</div><div class="line">PS: 必须是R不是r</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="8-echo-‘2’-print-2-3-的输出结果是什么？"><a href="#8-echo-‘2’-print-2-3-的输出结果是什么？" class="headerlink" title="8. echo ‘2’.print(2)+3; 的输出结果是什么？"></a>8. echo ‘2’.print(2)+3; 的输出结果是什么？</h3><blockquote>
+<ol>
+<li>首先计算的是 右边print(2)+3，这个你可以直接理解成print(2+3),得到的结果是5。而print是一个函数，它的返回值总是1。</li>
+<li>第二步就是echo ‘2’.print(‘结果’)(返回值是1)，因此会得到21的结果。</li>
+<li>第三步就是将之前计算的结果进行连接，并最终进行输出，得到的结果就是521了。</li>
+</ol>
+</blockquote>
+<ul>
+<li>参考文章：<a href="http://blog.csdn.net/whq19890827/article/details/52791799" target="_blank" rel="external">echo ‘1’.print(2)+3; 的输出结果为什么是511</a></li>
+</ul>
+<h3 id="9-Dajano查询优化函数？"><a href="#9-Dajano查询优化函数？" class="headerlink" title="9. Dajano查询优化函数？"></a>9. Dajano查询优化函数？</h3><blockquote>
+<p>在数据库有外键的时候，使用 select_related() 和 prefetch_related() 可以很好的减少数据库请求的次数，从而提高性能。</p>
+<p>对于一对一字段（OneToOneField）和外键字段（ForeignKey），可以使用select_related 来对QuerySet进行优化。</p>
+<p>select_related使用SQL的JOIN语句进行优化，通过减少SQL查询的次数来进行优化、提高性能。</p>
+<p>prefetch_related()的解决方法是，分别查询每个表，然后用Python处理他们之间的关系。</p>
+</blockquote>
+<h3 id="10-nginx查询日志每秒IP访问次数"><a href="#10-nginx查询日志每秒IP访问次数" class="headerlink" title="10. nginx查询日志每秒IP访问次数"></a>10. nginx查询日志每秒IP访问次数</h3><blockquote>
+<p>nginx access.log 日志格式：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">100.109.195.91 - - [17/Feb/2017:00:08:11 +0800] &quot;GET /data/upload/shop/common/loading.gif HTTP/1.0&quot; 200 134 &quot;http://www.mall121.com/&quot; &quot;Mozilla/4.0 (compatible; MSIE 8.0; Trident/4.0; Windows NT 6.1; SLCC2 2.5.5231; .NET CLR 2.0.50727; .NET CLR 4.1.23457; .NET CLR 4.0.23457; Media Center PC 6.0; MS-WK 8)&quot; &quot;140.205.201.12&quot; </div><div class="line"></div><div class="line">1.客户端（用户）IP地址。</div><div class="line">2.访问时间。</div><div class="line">3.访问端口。</div><div class="line">4.响应时间。</div><div class="line">5.请求时间。</div><div class="line">6.用户地理位置代码（国家代码）。</div><div class="line">7.请求的url地址（目标url地址）的host。</div><div class="line">8.请求方式（GET或者POST等）。</div><div class="line">9.请求url地址（去除host部分）。</div><div class="line">10.请求状态（状态码，200表示成功)。</div><div class="line">11.请求页面大小，默认为B（byte）。</div><div class="line">12.来源页面，即从哪个页面转到本页，专业名称叫做“referer”。</div><div class="line">13.用户浏览器语言。如：上例中的 &quot;es-ES,es;q=0.8&quot;</div><div class="line">14.用户浏览器其他信息，浏览器版本、浏览器类型等。</div></pre></td></tr></table></figure>
+<blockquote>
+<p>根据访问IP统计UV<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">awk &apos;&#123;print $1&#125;&apos;  access.log|sort | uniq -c |wc -l</div></pre></td></tr></table></figure></p>
+<p>统计访问URL统计PV<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">awk &apos;&#123;print $7&#125;&apos; access.log|wc -l</div></pre></td></tr></table></figure></p>
+<p>查询访问最频繁的URL<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">awk &apos;&#123;print $7&#125;&apos; access.log|sort | uniq -c |sort -n -k 1 -r|more</div></pre></td></tr></table></figure></p>
+<p>查询访问最频繁的IP<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">awk &apos;&#123;print $1&#125;&apos; access.log|sort | uniq -c |sort -n -k 1 -r|more</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="11-POST对于Get的5个优点？"><a href="#11-POST对于Get的5个优点？" class="headerlink" title="11. POST对于Get的5个优点？"></a>11. POST对于Get的5个优点？</h3><blockquote>
+<ol>
+<li>Post编码类型：application/x-www-form-urlencoded 或 multipart/form-data。为二进制数据使用多重编码。</li>
+<li>Post对数据长度无限制。</li>
+<li>Post对对数据类型无限制，也允许二进制数据。</li>
+<li>POST 比 GET 更安全，因为参数不会被保存在浏览器历史或 web 服务器日志中。</li>
+<li>Post数据不会显示在 URL 中。</li>
+</ol>
+</blockquote>
+<h3 id="12-Java实现tail-f？"><a href="#12-Java实现tail-f？" class="headerlink" title="12. Java实现tail -f？"></a>12. Java实现tail -f？</h3><blockquote>
+<p>设计思路：</p>
+<ol>
+<li>利用FileInputStream的skip方法，可以跳过文件的部分内容，实现tail命令的读取最后几行的功能。利用while(true)循环，实现tail命令的-f功能，读取后续写入的内容。</li>
+<li>利用RandomAccessFile，在代码中记录文件先前的大小，定时查看文件大小是否发生变化，如果是，则读取新的内容部分（利用RandomAccessFile的seek方法跳过之前已经读取的内容）。</li>
+</ol>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">String srcFilename = &quot;E:\\tmp2\\1.txt&quot;;  </div><div class="line">String charset = &quot;GBK&quot;;  </div><div class="line">File file = new File(srcFilename);  </div><div class="line">InputStream fileInputStream = new FileInputStream(srcFilename);  </div><div class="line">fileInputStream.skip(1); // skip n bytes if needed, filesystem may position to the offset directly but not read really.  </div><div class="line">BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream, charset));  </div><div class="line">String singleLine;  </div><div class="line">long fileSize = file.length();  </div><div class="line">while (true) &#123;  </div><div class="line">    try &#123;  </div><div class="line">        if ((singleLine = bufferedReader.readLine()) != null) &#123;  </div><div class="line">            System.out.println(singleLine);  </div><div class="line">            fileSize = Math.max(file.length(), fileSize);  </div><div class="line">            continue;  </div><div class="line">        &#125;  </div><div class="line">    &#125; catch (IOException e) &#123; // 文件被清空的时候FileInputStream会被close  </div><div class="line">        bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(srcFilename), charset));  </div><div class="line">        fileSize = file.length();  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">  </div><div class="line">    try &#123;  </div><div class="line">        if (file.length() &lt; fileSize) &#123; // 文件被清空了  </div><div class="line">            bufferedReader.close();  </div><div class="line">            bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(srcFilename), charset));  </div><div class="line">            fileSize = file.length();  </div><div class="line">        &#125;  </div><div class="line">        Thread.sleep(1000L);  </div><div class="line">    &#125; catch (InterruptedException e) &#123;  </div><div class="line">        Thread.currentThread().interrupt();  </div><div class="line">        bufferedReader.close();  </div><div class="line">        break;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>参考文章：</li>
+</ul>
+<ol>
+<li><a href="http://blog.csdn.net/xxgwo/article/details/51198113" target="_blank" rel="external">Java实现linux的“tail -f”命令</a></li>
+<li><a href="http://blog.csdn.net/youling_lh/article/details/9414117" target="_blank" rel="external">用RandomAccessFile实现linux tail命令效果</a></li>
+</ol>
+<h3 id="13-数据库索引查询速度快的原因？"><a href="#13-数据库索引查询速度快的原因？" class="headerlink" title="13. 数据库索引查询速度快的原因？"></a>13. 数据库索引查询速度快的原因？</h3><blockquote>
+<p>索引就是通过事先排好序，从而在查找时可以应用二分查找等高效率的算法。</p>
+<p>索引B+树，顺序存储，查询时间复杂度O(logn)</p>
+<p>等于查一个比较小的表。</p>
+</blockquote>
+<h3 id="14-Java中浮点数0-1-0-2-！-0-3。如何比较浮点数大小"><a href="#14-Java中浮点数0-1-0-2-！-0-3。如何比较浮点数大小" class="headerlink" title="14. Java中浮点数0.1 + 0.2 ！= 0.3。如何比较浮点数大小"></a>14. Java中浮点数0.1 + 0.2 ！= 0.3。如何比较浮点数大小</h3><blockquote>
+<p>根据IEEE 754，单精度的float是32位，双精度的double为64位。</p>
+<p>1) 第一部分(s)为符号位，第二部分(exponent)为指数位，第三部分(mantissa)为基数部分。 这是科学计数法的二进制表示。<br>那么，既然位数是固定的，要表示像 1/3=0.3333333333333…或者pi=3.1415926….. 这样的无限循环小数，就变得不可能了。<br>根据规范，则需要将不能标识的部分舍掉。</p>
+<p>2) 还与10进制不同的是，二进制对于一些有限的小数，也不能精确的标示。比如像0.1这样的小数，用二进制也无法精确表示。所以，也需要舍掉。<br>关于0.1无法用二进制精确表示</p>
+<p>在进行浮点数比较的时候，主要需要考虑3个因素</p>
+<ol>
+<li>NaN</li>
+<li>无穷大/无穷小</li>
+<li>舍入误差</li>
+</ol>
+<p>排除NaN和无穷、在精度范围内进行比较</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public boolean isEqual(double a, double b) &#123;  </div><div class="line">    if (Double.isNaN(a) || Double.isNaN(b) || Double.isInfinite(a) || Double.isInfinite(b)) &#123;  </div><div class="line">        return false;  </div><div class="line">    &#125;  </div><div class="line">    return (a - b) &lt; 0.001d;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>BigDecimal的解决方案就是，不使用二进制，而是使用十进制（BigInteger）+小数点位置(scale)来表示小数。<br>BigDecimal这个类。它什么都好，就是效率略低。<br>使用BigDecimal的时候，要么使用newBigDecimal(String value)，要么使用BigDecimal.valueof(doublevalue)。</p>
+</blockquote>
+<ul>
+<li>参考文章：<a href="http://blog.csdn.net/dodott/article/details/53410756" target="_blank" rel="external">Java中的浮点数比较</a></li>
+</ul>
+<h3 id="15-如何设计一个抢红包系统，高可用，高并发，容灾机制"><a href="#15-如何设计一个抢红包系统，高可用，高并发，容灾机制" class="headerlink" title="15. 如何设计一个抢红包系统，高可用，高并发，容灾机制"></a>15. 如何设计一个抢红包系统，高可用，高并发，容灾机制</h3><ul>
+<li>参考文章：<a href="http://blog.csdn.net/neo_liu0000/article/details/55653424" target="_blank" rel="external">百亿级微信红包的高并发资金交易系统设计方案</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;网易游戏笔试记录&quot;&gt;&lt;a href=&quot;#网易游戏笔试记录&quot; class=&quot;headerlink&quot; title=&quot;网易游戏笔试记录&quot;&gt;&lt;/a&gt;网易游戏笔试记录&lt;/h1
+    
+    </summary>
+    
+      <category term="笔试记录" scheme="http://lincentma.men/categories/%E7%AC%94%E8%AF%95%E8%AE%B0%E5%BD%95/"/>
+    
+    
+      <category term="netease" scheme="http://lincentma.men/tags/netease/"/>
+    
+      <category term="exam" scheme="http://lincentma.men/tags/exam/"/>
+    
+  </entry>
   
   <entry>
     <title>猎豹移动二面</title>
