@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://lincentma.men/zhaoyinkeji_interview.html</loc>
+    <lastmod>2017-09-21T08:32:02.230Z</lastmod>
+    <data>
+        <display>
+        <title>招银科技面试记录</title>
+        <pubTime>2017-09-21T08:29:34.000Z</pubTime>
+        
+        <tag>interview</tag>
+         
+        <tag>zhaoyinkeji</tag>
+         
+         
+           
+             
+              <breadCrumb title="面试记录" url="http://lincentma.men/categories/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://lincentma.men/didi_interview.html</loc>
     <lastmod>2017-09-19T18:25:14.136Z</lastmod>
     <data>
@@ -187,9 +209,9 @@
         <title>百度运维一面</title>
         <pubTime>2017-09-01T14:16:55.000Z</pubTime>
         
-        <tag>interview</tag>
-         
         <tag>baidu</tag>
+         
+        <tag>interview</tag>
          
          
            

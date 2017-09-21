@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lincentma.men/"/>
-  <updated>2017-09-19T18:25:14.136Z</updated>
+  <updated>2017-09-21T08:32:02.230Z</updated>
   <id>http://lincentma.men/</id>
   
   <author>
@@ -14,6 +14,192 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>招银科技面试记录</title>
+    <link href="http://lincentma.men/zhaoyinkeji_interview.html"/>
+    <id>http://lincentma.men/zhaoyinkeji_interview.html</id>
+    <published>2017-09-21T08:29:34.000Z</published>
+    <updated>2017-09-21T08:32:02.230Z</updated>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="招银科技面试"><a href="#招银科技面试" class="headerlink" title="招银科技面试"></a>招银科技面试</h1><blockquote>
+<p>面试的过程是一个总能发现自己不足的机会，但是平时的不断积累才是避免面试发现不足的更重要的原因。</p>
+</blockquote>
+<h2 id="一面"><a href="#一面" class="headerlink" title="一面"></a>一面</h2><ol>
+<li>如何自定义一个异常？</li>
+</ol>
+<blockquote>
+<ol>
+<li>非运行时异常(Checked Exception) </li>
+</ol>
+<p>Java中凡是继承自Exception但不是继承自RuntimeException的类都是非运行时异常。</p>
+<ol>
+<li>运行时异常（Runtime Exception/Unchecked Exception） </li>
+</ol>
+<p>RuntimeException类直接继承自Exception类，称为运行时异常。Java中所有的运行时异常都直接或间接的继承自RuntimeException。</p>
+<ol>
+<li><p>Java中所有的异常类都直接或间接的继承自Exception。</p>
+</li>
+<li><p>Spring事务回滚机制只处理运行时异常，发生非运行时异常则不会回滚操作。</p>
+</li>
+</ol>
+<p>使用自定义异常继承相关的异常来抛出处理后的异常信息可以隐藏底层的异常，这样更安全，异常信息也更加的直观。自定义异常可以抛出我们自己想要抛出的信息，可以通过抛出的信息区分异常发生的位置，根据异常名我们就可以知道哪里有异常，根据异常提示信息进行程序修改。比如空指针异常NullPointException，我们可以抛出信息为“xxx为空”定位异常位置，而不用输出堆栈信息。</p>
+<p>在 Java 中你可以自定义异常。编写自己的异常类时需要记住下面的几点。</p>
+<ul>
+<li>所有异常都必须是 Throwable 的子类。</li>
+<li>如果希望写一个检查性异常类，则需要继承 Exception 类。</li>
+<li>如果你想写一个运行时异常类，那么需要继承 RuntimeException 类。</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 所有秒杀相关异常(运行期异常)</div><div class="line"> * spring事务，只接收运行期异常，执行回滚操作</div><div class="line"> */</div><div class="line">public class SeckillException extends RuntimeException&#123;</div><div class="line"></div><div class="line">    private static final long serialVersionUID = 1L;</div><div class="line"></div><div class="line">    //重载构造函数</div><div class="line">    public SeckillException(String message, Throwable cause) &#123;</div><div class="line">        super(message, cause);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //重载构造函数</div><div class="line">    public SeckillException(String message) &#123;</div><div class="line">        super(message);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>通用方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * @Description:通用的UncheckedException异常，继承RuntimeException，为运行期异常</div><div class="line"> */</div><div class="line">public class UncheckedException extends RuntimeException &#123;</div><div class="line">    private static final long serialVersionUID = 1L;</div><div class="line">    /** 错误Key，用于唯一标识错误类型 */</div><div class="line">    private String errorCode = null;</div><div class="line">    /** 错误信息 */</div><div class="line">    private String errorMessage;</div><div class="line">    /** 传递给变量的错误值 */</div><div class="line">    private Object[] errorParam = null;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 构造函数</div><div class="line">     * @param errorCode 异常编码</div><div class="line">     */</div><div class="line">    public UncheckedException(String errorCode) &#123;</div><div class="line">        this.errorCode = errorCode;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 构造函数</div><div class="line">     * @param errorCode 异常编码</div><div class="line">     * @param errorParam Object[] 异常信息用到的参数</div><div class="line">     */</div><div class="line">    public UncheckedException(String errorCode, Object[] errorParam) &#123;</div><div class="line">        this.errorCode = errorCode;</div><div class="line">        this.errorParam = errorParam;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 重载构造函数</div><div class="line">     * @param errorCode 异常编码</div><div class="line">     * @param errorParam 异常信息用到的参数</div><div class="line">     * @param t 异常实例</div><div class="line">     */</div><div class="line">    public UncheckedException(String errorCode, Object[] errorParam, Throwable t) &#123;</div><div class="line">        super(t);</div><div class="line">        this.errorCode = errorCode;</div><div class="line">        this.errorParam = errorParam;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 重载构造函数</div><div class="line">     * @param message 异常信息</div><div class="line">     * @param t 异常实例</div><div class="line">     */</div><div class="line">    public UncheckedException(String message, Throwable t) &#123;</div><div class="line">        super(message, t);</div><div class="line">        setErrorMessage(message);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 异常编码</div><div class="line">     * @return String</div><div class="line">     */</div><div class="line">    public String getErrorCode() &#123;</div><div class="line">        return this.errorCode;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 异常信息用到的参数</div><div class="line">     * @return Object[]</div><div class="line">     */</div><div class="line">    public Object[] getErrorParam() &#123;</div><div class="line">        return this.errorParam;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 错误信息</div><div class="line">     * </div><div class="line">     * @return</div><div class="line">     */</div><div class="line">    public String getErrorMessage() &#123;</div><div class="line">        return errorMessage;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 错误信息</div><div class="line">     * </div><div class="line">     * @param errorMessage</div><div class="line">     */</div><div class="line">    public void setErrorMessage(String errorMessage) &#123;</div><div class="line">        this.errorMessage = errorMessage;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 覆盖方法：getMessage</div><div class="line">     * @return String</div><div class="line">     */</div><div class="line">    @Override</div><div class="line">    public String getMessage() &#123;</div><div class="line">        if (errorMessage != null) &#123;</div><div class="line">            return errorMessage;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        //异常信息以资源文件的形式保存，并且支持国际化，此处通过errorCode去读取国际化异常信息</div><div class="line">        if (errorCode != null &amp;&amp; !errorCode.trim().equals(&quot;&quot;)) &#123;</div><div class="line">            setErrorMessage(AppLang.getLU().getMessage(errorCode, errorParam,Locale.SIMPLIFIED_CHINESE));</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        return getErrorMessage();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li>参考文章：<ul>
+<li><a href="http://blog.csdn.net/javaloveiphone/article/details/52607396" target="_blank" rel="external">实际springMVC项目中自定义异常、spring事务与异常的简单应用</a></li>
+<li><a href="http://www.cnblogs.com/AlanLee/p/6104492.html" target="_blank" rel="external">Java异常之自定义异常</a></li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>如何定义一个服务是否具有高可用性？</li>
+</ol>
+<blockquote>
+<p>计算机系统的可用性定义为：MTTF/(MTTF+MTTR) * 100%。由此可见，计算机系统的可用性定义为系统保持正常运行时间的百分比。</p>
+<p>例如某个系统的可用性为4个9（99.99%），相当于系统一年停服务的时间不超过365<em>24</em>60/10000=52.56分钟。系统的可用性往往体现了系统的整体的代码质量和容错能力。</p>
+</blockquote>
+<ol>
+<li>MySQL不同存储引擎的区别？</li>
+</ol>
+<blockquote>
+<p>MySQL有多种存储引擎，每种存储引擎有各自的优缺点，可以择优选择使用：<br>MyISAM、InnoDB、MERGE、MEMORY(HEAP)、BDB(BerkeleyDB)、EXAMPLE、FEDERATED、ARCHIVE、CSV、BLACKHOLE</p>
+</blockquote>
+<p>MyISAM与InnoDB的区别是什么？</p>
+<ol>
+<li><p>存储结构<br>MyISAM：每个MyISAM在磁盘上存储成三个文件。第一个文件的名字以表的名字开始，扩展名指出文件类型。.frm文件存储表定义。数据文件的扩展名为.MYD (MYData)。索引文件的扩展名是.MYI (MYIndex)。<br>InnoDB：所有的表都保存在同一个数据文件中（也可能是多个文件，或者是独立的表空间文件），InnoDB表的大小只受限于操作系统文件的大小，一般为2GB。</p>
+</li>
+<li><p>存储空间<br>MyISAM：可被压缩，存储空间较小。支持三种不同的存储格式：静态表(默认，但是注意数据末尾不能有空格，会被去掉)、动态表、压缩表。<br>InnoDB：需要更多的内存和存储，它会在主内存中建立其专用的缓冲池用于高速缓冲数据和索引。</p>
+</li>
+<li><p>可移植性、备份及恢复<br>MyISAM：数据是以文件的形式存储，所以在跨平台的数据转移中会很方便。在备份和恢复时可单独针对某个表进行操作。<br>InnoDB：免费的方案可以是拷贝数据文件、备份 binlog，或者用 mysqldump，在数据量达到几十G的时候就相对痛苦了。</p>
+</li>
+<li><p>事务支持<br>MyISAM：强调的是性能，每次查询具有原子性,其执行数度比InnoDB类型更快，但是不提供事务支持。<br>InnoDB：提供事务支持事务，外部键等高级数据库功能。 具有事务(commit)、回滚(rollback)和崩溃修复能力(crash recovery capabilities)的事务安全(transaction-safe (ACID compliant))型表。</p>
+</li>
+<li><p>AUTO_INCREMENT<br>MyISAM：可以和其他字段一起建立联合索引。引擎的自动增长列必须是索引，如果是组合索引，自动增长可以不是第一列，他可以根据前面几列进行排序后递增。<br>InnoDB：InnoDB中必须包含只有该字段的索引。引擎的自动增长列必须是索引，如果是组合索引也必须是组合索引的第一列。</p>
+</li>
+<li><p>表锁差异<br>MyISAM：只支持表级锁，用户在操作myisam表时，select，update，delete，insert语句都会给表自动加锁，如果加锁以后的表满足insert并发的情况下，可以在表的尾部插入新的数据。<br>InnoDB：支持事务和行级锁，是innodb的最大特色。行锁大幅度提高了多用户并发操作的新能。但是InnoDB的行锁，只是在WHERE的主键是有效的，非主键的WHERE都会锁全表的。</p>
+</li>
+<li><p>全文索引<br>MyISAM：支持 FULLTEXT类型的全文索引<br>InnoDB：不支持FULLTEXT类型的全文索引，但是innodb可以使用sphinx插件支持全文索引，并且效果更好。</p>
+</li>
+<li><p>表主键<br>MyISAM：允许没有任何索引和主键的表存在，索引都是保存行的地址。<br>InnoDB：如果没有设定主键或者非空唯一索引，就会自动生成一个6字节的主键(用户不可见)，数据是主索引的一部分，附加索引保存的是主索引的值。</p>
+</li>
+<li><p>表的具体行数<br>MyISAM：保存有表的总行数，如果select count(<em>) from table;会直接取出出该值。<br>InnoDB：没有保存表的总行数，如果使用select count(</em>) from table；就会遍历整个表，消耗相当大，但是在加了wehre条件后，myisam和innodb处理的方式都一样。</p>
+</li>
+<li><p>CURD操作<br>MyISAM：如果执行大量的SELECT，MyISAM是更好的选择。<br>InnoDB：如果你的数据执行大量的INSERT或UPDATE，出于性能方面的考虑，应该使用InnoDB表。DELETE 从性能上InnoDB更优，但DELETE FROM table时，InnoDB不会重新建立表，而是一行一行的删除，在innodb上如果要清空保存有大量数据的表，最好使用truncate table这个命令。</p>
+</li>
+<li><p>外键<br>MyISAM：不支持<br>InnoDB：支持</p>
+</li>
+</ol>
+<blockquote>
+<p>通过上述的分析，基本上可以考虑使用InnoDB来替代MyISAM引擎了，原因是InnoDB自身很多良好的特点，比如事务支持、存储过程、视图、行级锁定等等，在并发很多的情况下，相信InnoDB的表现肯定要比MyISAM强很多。</p>
+</blockquote>
+<ul>
+<li>参考文章：<a href="http://www.jb51.net/article/62457.htm" target="_blank" rel="external">MySQL存储引擎中的MyISAM和InnoDB区别详解</a></li>
+</ul>
+<ol>
+<li>存储过程使用场景？</li>
+</ol>
+<blockquote>
+<p>存储过程有利有弊，最大的利处在于运算过程中不需要将数据取出数据库，会获得较高的性能，因为数据库IO通道效率一向很差，大量数据取出来很费时间。</p>
+<p>开发规范中要求，所有牵涉到业务逻辑部分的数据库操作，必须在数据库层由存储过程实现（就所面向的金融行业而言，工商银行、中国银行、交通银行，都在开发规范中严格指定）</p>
+<p>存储过程优点：</p>
+<ol>
+<li>执行速度快。因为存储过程不需要解析。预先编译了</li>
+<li>安全性。避免了sql注入，避免了暴露表结构和字段</li>
+</ol>
+<p>存储过程缺点：</p>
+<ol>
+<li>调试困难。</li>
+<li>迁移困难。</li>
+</ol>
+<p>针对于分布式数据库，如果业务逻辑封装在存储过程中。由于存储过程是依赖于某个具体的数据库的，这样实现起来难度较大。把计算层放到web层，那么web端的程序只是从多个数据库服务器聚合数据即可了。</p>
+<p>敏捷开发在互联网公司业务开发中非常常见，而银行业，金融业不会频繁的修改功能。</p>
+<p><strong>解决性能瓶颈，互联网大部分还是通过使用缓存来解决的，这跟银行类系统”花费大价钱提高硬件和数据库软件的承载能力”思路是不同的。</strong></p>
+</blockquote>
+<ul>
+<li>参考文章：<ul>
+<li><a href="https://www.zhihu.com/question/19749126" target="_blank" rel="external">大型系统必须得要存储过程和触发器吗？</a></li>
+<li><a href="http://blog.csdn.net/u013814158/article/details/70171756" target="_blank" rel="external">在开发过程中为什么需要写存储过程</a> 非常好的文章！</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>如何使用日志？</li>
+</ol>
+<blockquote>
+<p>Java日志框架：</p>
+<ul>
+<li>JDK的java.util.logging包</li>
+<li>第三方日志工具（commons-logging/slf4j，log4j/logback）</li>
+</ul>
+<p>通过Logger.getLogger(name)方法可以获取logger对象，logger对象有三个比较重要的概念：level、handler、formatter。level称为日志级别，在java.util.logging包中定义了java.util.logging.Level类，里面包含SEVERE/WARNING/INFO/CONFIG/FINE/FINER/FINEST（从高到低）7种日志级别。设置日志级别会过滤掉一部分日志，例如当日志级别设置为INFO级别时，CONFIG/FINE/FINER/FINEST级别的日志就会被忽略。handler解决的问题是日志输出到哪里，是到控制台（java.util.logging.ConsoleHandler），还是到文件（java.util.logging.FileHandler），或者是写到Socket中（java.util.logging.SocketHandler）。formatter定义了日志输出的格式，可以是XML（java.util.logging.XMLFormatter），也可以自己实现JSON格式的Fomatter。</p>
+<p>log对象初始化过程</p>
+</blockquote>
+<p><img src="http://images0.cnblogs.com/blog2015/504484/201508/041735151423967.jpg" alt=""></p>
+<blockquote>
+<p>SL4J/COMMONS-LOGGING、LOG4J、LOGBACK、JUL都是常用的Java日志工具，基本思想都是通过Factory生成logger对象，然后由LogManager管理/缓存logger对象，同时维护一个父子结构方便复用配置。logger对象包含三要素：日志级别、输出到哪里、格式化。</p>
+</blockquote>
+<ul>
+<li>参考文章：<a href="http://www.cnblogs.com/zhao1949/p/5952385.html" target="_blank" rel="external">Java日志 (zhuan)</a></li>
+</ul>
+<ol>
+<li>为什么选择这个岗位？</li>
+</ol>
+<h2 id="二面"><a href="#二面" class="headerlink" title="二面"></a>二面</h2><ol>
+<li>针对于每日产出文件，由于数据不完整的重新产出，如何比较两个文件不一样的内容？</li>
+</ol>
+<ul>
+<li>Linux方式：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">diff 123.txt 234.txt</div><div class="line"></div><div class="line">通常输出由下述形式的行组成：</div><div class="line">n1 a n3，n4</div><div class="line">n1，n2 d n3</div><div class="line">n1，n2 c n3，n4 这些行类似ed命令把filel转换成file2。字母(a、d和c)之前的行号(n1，n2)是针对file1的，其后面的行号(n3，n4)是针对file2的。字母a、d和c分别表示附加、删除和修改操作。</div><div class="line"></div><div class="line">在上述形式的每一行的后面跟随受到影响的若干行，以”&lt;”打头的行属于第一个文件，以”&gt;”打头的行属于第二个文件。</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>注意：在使用diff命令时候，也需要预先对文件进行sort排序，不然输出可能出错。</p>
+</blockquote>
+<ul>
+<li><p>linux下MD5计算：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">:~/maling/test$ md5sum 234.txt </div><div class="line">8fb63e502ae6ad0c6268c128f559e7fd  234.txt</div></pre></td></tr></table></figure>
+</li>
+<li><p>Java方式：<br>1) 先比较两个文件内容的长度；<br>2) 在长度相同的情况下，再比较两个文件的MD5值。</p>
+</li>
+</ul>
+<blockquote>
+<p>MD5，Message Digest Algorithm 5，是一种被广泛使用的信息摘要算法，可以将给定的任意长度数据通过一定的算法计算得出一个 128 位固定长度的散列值。 </p>
+</blockquote>
+<h2 id="三面"><a href="#三面" class="headerlink" title="三面"></a>三面</h2><ol>
+<li>为什么你的定位是业务偏数据？</li>
+</ol>
+<blockquote>
+<p>其实这样的感觉是自己技术深度不够造成的，需要完善自己的技术深度。</p>
+<p>未来的时代是数据的时代，目前的自己还需要从业务做起熟悉流程。</p>
+<p>题外话：金融型IT人才这类的复合型人才，职业生涯周期会更长。</p>
+<p>认同这个观点，懂金融的不懂IT正常，做金融IT的不仅懂金融，还必须更懂金融（偏业务的金融），相对于专业的金融人才，还需要补充自己的专业性。</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;招银科技面试&quot;&gt;&lt;a href=&quot;#招银科技面试&quot; class=&quot;headerlink&quot; title=&quot;招银科技面试&quot;&gt;&lt;/a&gt;招银科技面试&lt;/h1&gt;&lt;blockq
+    
+    </summary>
+    
+      <category term="面试记录" scheme="http://lincentma.men/categories/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95/"/>
+    
+    
+      <category term="interview" scheme="http://lincentma.men/tags/interview/"/>
+    
+      <category term="zhaoyinkeji" scheme="http://lincentma.men/tags/zhaoyinkeji/"/>
+    
+  </entry>
   
   <entry>
     <title>滴滴现场面试记录</title>
@@ -1677,9 +1863,9 @@
       <category term="面试记录" scheme="http://lincentma.men/categories/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95/"/>
     
     
-      <category term="interview" scheme="http://lincentma.men/tags/interview/"/>
-    
       <category term="baidu" scheme="http://lincentma.men/tags/baidu/"/>
+    
+      <category term="interview" scheme="http://lincentma.men/tags/interview/"/>
     
   </entry>
   
