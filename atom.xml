@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lincentma.men/"/>
-  <updated>2017-09-21T08:32:02.230Z</updated>
+  <updated>2017-09-24T12:11:42.127Z</updated>
   <id>http://lincentma.men/</id>
   
   <author>
@@ -14,6 +14,100 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>中移物联网一面</title>
+    <link href="http://lincentma.men/zhongyiwulianwang_interview.html"/>
+    <id>http://lincentma.men/zhongyiwulianwang_interview.html</id>
+    <published>2017-09-24T12:10:28.000Z</published>
+    <updated>2017-09-24T12:11:42.127Z</updated>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="中移物联网一面"><a href="#中移物联网一面" class="headerlink" title="中移物联网一面"></a>中移物联网一面</h1><blockquote>
+<p>不断努力完善自己</p>
+</blockquote>
+<h2 id="1-MapReduce的启动类是什么？"><a href="#1-MapReduce的启动类是什么？" class="headerlink" title="1. MapReduce的启动类是什么？"></a>1. MapReduce的启动类是什么？</h2><blockquote>
+<p>自己的理解是Java的MapReduce程序如何启动。</p>
+<p>例如wordcount：</p>
+<p>Job的初始化过程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Job job = new Job(conf, &quot;word count&quot;); </div><div class="line">job.setJarByClass(WordCount.class);</div><div class="line">job.setMapperClass(TokenizerMapper.class);</div><div class="line">job.setCombinerClass(IntSumReducer.class);</div><div class="line">job.setReducerClass(IntSumReducer.class);</div><div class="line">job.setOutputKeyClass(Text.class);</div><div class="line">job.setOutputValueClass(IntWritable.class);</div><div class="line">FileInputFormat.addInputPath(job, new Path(otherArgs[0]));</div><div class="line">FileOutputFormat.setOutputPath(job, new Path(otherArgs[1]));</div><div class="line"></div><div class="line">System.exit(job.waitForCompletion(true) ? 0 : 1);</div></pre></td></tr></table></figure></p>
+<p>Hadoop Streaming 运行方式：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">hadoop jar hadoop-streaming-2.4.1.jar \</div><div class="line">-files mapperPythonScript.py, reducerPythonScript.py</div><div class="line">-input myInputDirs \</div><div class="line">    -output myOutputDir \</div><div class="line">    -mapper mapperPythonScript.py \</div><div class="line">    -reducer reducerPythonScript.py</div></pre></td></tr></table></figure>
+<blockquote>
+<ol>
+<li>用-file分发文件</li>
+<li>用-cacheFile分发文件</li>
+<li>用-cacheArchive分发压缩包</li>
+</ol>
+</blockquote>
+<h2 id="2-谈谈你对与Hive的理解？"><a href="#2-谈谈你对与Hive的理解？" class="headerlink" title="2. 谈谈你对与Hive的理解？"></a>2. 谈谈你对与Hive的理解？</h2><blockquote>
+<p>Hive是一个基于Hadoop文件系统上的数据仓库架构。</p>
+<p>它为数据仓库的管理提供了许多功能：数据ETL（抽取、转换、加载）工具、数据存储管理、大型数据集的查询与分析能力、类SQL语言（HQL，允许自定义mapper 和 reducer 来处理内建的 mapper 和 reducer 无法完成的复杂的分析工作）。</p>
+<p>Hive执行过程：</p>
+<ol>
+<li><p>操作符是Hive的最小处理单元</p>
+</li>
+<li><p>每个操作符处理代表HDFS操作或MR作业</p>
+</li>
+<li><p>编译器把HQL转换成一组操作符</p>
+</li>
+<li><p>Hive通过ExecMapper和ExecReducer来执行MapReduce任务 </p>
+</li>
+</ol>
+</blockquote>
+<p><img src="https://pic1.zhimg.com/50/47dbdb72838e5cefc4fc7fde465cfe58_hd.png" alt=""></p>
+<h2 id="3-网站上网页版人工客服窗口后端的实现原理是什么？"><a href="#3-网站上网页版人工客服窗口后端的实现原理是什么？" class="headerlink" title="3. 网站上网页版人工客服窗口后端的实现原理是什么？"></a>3. 网站上网页版人工客服窗口后端的实现原理是什么？</h2><blockquote>
+<p>ajax交互：使用ajax长轮询实现网页实时聊天。<br><img src="http://images2015.cnblogs.com/blog/819496/201511/819496-20151114110929165-1485612934.jpg" alt=""></p>
+<p>websocket实现。WebSocket protocol 是HTML5一种新的协议。它实现了浏览器与服务器全双工通信(full-duplex)。</p>
+<p>　XMLHttpRequest 对象用于在后台与服务器交换数据。</p>
+<ul>
+<li>在不重新加载页面的情况下更新网页</li>
+<li>在页面已加载后从服务器请求数据</li>
+<li>在页面已加载后从服务器接收数据</li>
+<li>在后台向服务器发送数据</li>
+</ul>
+</blockquote>
+<h2 id="4-如何理解父类-new-子类这样的方式？（乱入下新华三的笔试选择题）"><a href="#4-如何理解父类-new-子类这样的方式？（乱入下新华三的笔试选择题）" class="headerlink" title="4. 如何理解父类 =  new 子类这样的方式？（乱入下新华三的笔试选择题）"></a>4. 如何理解父类 =  new 子类这样的方式？（乱入下新华三的笔试选择题）</h2><blockquote>
+<p>父类 xx = new 子类（）的定义对象</p>
+<p>这个问题体现了成员变量继承和方法继承的区别。</p>
+<p>在实例化一个子类的同时，系统会给子类所有实例变量分配内存，也会给它的父类的实例变量分配内存，即使父子类中存在重名的实例变量，也会两个都分配内存的，这个时候子类只是隐藏了父类的这个变量，但还是会给它分配内存，然后可以用super来访问属于父类的变量。</p>
+<p>父类 xx = new 子类（）定义的对象只能调用继承来的方法。父类 xx = new 子类（）定义的对象调用的是子类的方法，而不是父类的。</p>
+<p>总结：访问变量看声明，访问方法看实际对象类型（new出来的类型）</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">public class Test &#123;</div><div class="line"> </div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        Father a = new Father();</div><div class="line">        Chilren b = new Chilren();</div><div class="line">        Father c = new Chilren();</div><div class="line">        a.getAge();</div><div class="line">        System.out.println(a.age);</div><div class="line">        b.getAge();</div><div class="line">        System.out.println(b.age);</div><div class="line">        c.getAge();</div><div class="line">        System.out.println(c.age);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">class Father &#123;</div><div class="line">    int age = 40;</div><div class="line"> </div><div class="line">    public void getAge() &#123;</div><div class="line">        System.out.println(age);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">class Chilren extends Father &#123;</div><div class="line">    int age = 18;</div><div class="line"> </div><div class="line">    public void getAge() &#123;</div><div class="line">        System.out.println(age);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"> 输出</div><div class="line"> </div><div class="line">40</div><div class="line">40</div><div class="line">18</div><div class="line">18</div><div class="line">18</div><div class="line">40</div></pre></td></tr></table></figure>
+<h2 id="5-面对薪资的问题：你对于薪资要求是否有一个具体的数组？这种问题最好的回答是什么？"><a href="#5-面对薪资的问题：你对于薪资要求是否有一个具体的数组？这种问题最好的回答是什么？" class="headerlink" title="5. 面对薪资的问题：你对于薪资要求是否有一个具体的数组？这种问题最好的回答是什么？"></a>5. 面对薪资的问题：你对于薪资要求是否有一个具体的数组？这种问题最好的回答是什么？</h2><blockquote>
+<p>态度：谦逊平和真诚。</p>
+<p>做好内功，做一个真正的人才！这是谈薪资最强大的依仗。</p>
+<p>当hr问我期望薪资时，我会在回答之前，先咨询公司的薪资结构。</p>
+<p>了解一下市场上这个职位的薪酬范围。了解一下这家公司的薪酬情况。然后在一定范围内谈。</p>
+<p>询问公司工作时间、加班频率、福利待遇等其他条件，让自己有更多的考虑时间。</p>
+<p>掌握了公司的薪酬结构之后，你已经能够据此判断出公司工作的完善程度。那么你可以根据这些信息，结合自己的预期，做一个有利于自己的计算和判断。当然很多信息、预案是需要在面试之前去做收集、准备的。</p>
+<p>您这个职位预算区间大概多少？</p>
+<p>一定是让对方先说。薪资谈判中，千万别做先提数字的一方。</p>
+<p>面试中薪资的问与答只是面试中展示你自身价值的15%而已，剩余的展示环节更要做足才对，毕竟最终的目的是把自己“卖出去”，顺便“卖个好价钱”。</p>
+<p>你不必提具体数字；取而代之，你可以回答一个区间。比如说，“我期望的薪水是月薪7K～10K。”</p>
+<p>站在HR的角度，只要期望薪资在岗位预算范围里，就差不多了。那种绕来绕去的面试者，我觉得很傻又很不坦诚。</p>
+<p>多看知乎！！！</p>
+</blockquote>
+<p><img src="https://pic1.zhimg.com/50/v2-7da5935e3bb423e2365171f4d2cc0558_hd.png" alt=""></p>
+<ul>
+<li>参考文章：<a href="https://www.zhihu.com/question/20890139" target="_blank" rel="external">面试谈工资的时候，对方问你的期望薪资，如果反问对方「根据自己的能力能给多少」，合适吗？</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;中移物联网一面&quot;&gt;&lt;a href=&quot;#中移物联网一面&quot; class=&quot;headerlink&quot; title=&quot;中移物联网一面&quot;&gt;&lt;/a&gt;中移物联网一面&lt;/h1&gt;&lt;bl
+    
+    </summary>
+    
+      <category term="面试记录" scheme="http://lincentma.men/categories/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95/"/>
+    
+    
+      <category term="interview" scheme="http://lincentma.men/tags/interview/"/>
+    
+      <category term="中移物联网" scheme="http://lincentma.men/tags/%E4%B8%AD%E7%A7%BB%E7%89%A9%E8%81%94%E7%BD%91/"/>
+    
+  </entry>
   
   <entry>
     <title>招银科技面试记录</title>
@@ -1863,9 +1957,9 @@
       <category term="面试记录" scheme="http://lincentma.men/categories/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95/"/>
     
     
-      <category term="baidu" scheme="http://lincentma.men/tags/baidu/"/>
-    
       <category term="interview" scheme="http://lincentma.men/tags/interview/"/>
+    
+      <category term="baidu" scheme="http://lincentma.men/tags/baidu/"/>
     
   </entry>
   
