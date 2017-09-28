@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lincentma.men/"/>
-  <updated>2017-09-28T03:12:17.133Z</updated>
+  <updated>2017-09-28T04:13:10.473Z</updated>
   <id>http://lincentma.men/</id>
   
   <author>
@@ -14,6 +14,67 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>同花顺一面记录</title>
+    <link href="http://lincentma.men/tonghuashun_interview.html"/>
+    <id>http://lincentma.men/tonghuashun_interview.html</id>
+    <published>2017-09-28T04:11:45.000Z</published>
+    <updated>2017-09-28T04:13:10.473Z</updated>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="同花顺一面"><a href="#同花顺一面" class="headerlink" title="同花顺一面"></a>同花顺一面</h1><blockquote>
+<p>墨菲定律的含义就是，不能有侥幸心理。</p>
+</blockquote>
+<h2 id="1-手撕代码：Jdbc加载过程实现查询语句"><a href="#1-手撕代码：Jdbc加载过程实现查询语句" class="headerlink" title="1. 手撕代码：Jdbc加载过程实现查询语句"></a>1. 手撕代码：Jdbc加载过程实现查询语句</h2><blockquote>
+<p>所需步骤：</p>
+</blockquote>
+<ul>
+<li>有以下步骤需要创建一个新的数据库使用JDBC应用程序： </li>
+</ul>
+<ol>
+<li>导入包: 需要包括软件包包含了数据库编程所需的JDBC类。大多数情况下，使用导入的java.sql.*就足够了。    </li>
+<li>注册JDBC驱动: 需要初始化驱动程序，这样就可以打开与数据库的通信通道。</li>
+<li>打开一个连接: 需要使用DriverManager.getConnection()方法来创建一个Connection对象，它代表一个与数据库服务器的物理连接。   </li>
+<li>执行一个查询: 需要使用的对象的类型声明用于构建和提交一个SQL语句来选择（即取）从表中的记录。</li>
+<li>提取数据 . 一旦执行SQL查询，可以从表中获取记录。   </li>
+<li>清理环境 . 需要明确关闭所有的数据库资源，对依赖于JVM的垃圾收集。   </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line">//STEP 1. Import required packages</div><div class="line">import java.sql.*;</div><div class="line"></div><div class="line">public class JDBCExample &#123;</div><div class="line">   // JDBC driver name and database URL</div><div class="line">   static final String JDBC_DRIVER = &quot;com.mysql.jdbc.Driver&quot;;  </div><div class="line">   static final String DB_URL = &quot;jdbc:mysql://localhost/STUDENTS&quot;;</div><div class="line"></div><div class="line">   //  Database credentials</div><div class="line">   static final String USER = &quot;username&quot;;</div><div class="line">   static final String PASS = &quot;password&quot;;</div><div class="line">   </div><div class="line">   public static void main(String[] args) &#123;</div><div class="line">   Connection conn = null;</div><div class="line">   Statement stmt = null;</div><div class="line">   try&#123;</div><div class="line">      //STEP 2: Register JDBC driver</div><div class="line">      Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</div><div class="line"></div><div class="line">      //STEP 3: Open a connection</div><div class="line">      System.out.println(&quot;Connecting to a selected database...&quot;);</div><div class="line">      conn = DriverManager.getConnection(DB_URL, USER, PASS);</div><div class="line">      System.out.println(&quot;Connected database successfully...&quot;);</div><div class="line">      </div><div class="line">      //STEP 4: Execute a query</div><div class="line">      System.out.println(&quot;Creating statement...&quot;);</div><div class="line">      stmt = conn.createStatement();</div><div class="line"></div><div class="line">      String sql = &quot;SELECT id, first, last, age FROM Registration&quot;;</div><div class="line">      ResultSet rs = stmt.executeQuery(sql);</div><div class="line">      //STEP 5: Extract data from result set</div><div class="line">      while(rs.next())&#123;</div><div class="line">         //Retrieve by column name</div><div class="line">         int id  = rs.getInt(&quot;id&quot;);</div><div class="line">         int age = rs.getInt(&quot;age&quot;);</div><div class="line">         String first = rs.getString(&quot;first&quot;);</div><div class="line">         String last = rs.getString(&quot;last&quot;);</div><div class="line"></div><div class="line">         //Display values</div><div class="line">         System.out.print(&quot;ID: &quot; + id);</div><div class="line">         System.out.print(&quot;, Age: &quot; + age);</div><div class="line">         System.out.print(&quot;, First: &quot; + first);</div><div class="line">         System.out.println(&quot;, Last: &quot; + last);</div><div class="line">      &#125;</div><div class="line">      rs.close();</div><div class="line">   &#125;catch(SQLException se)&#123;</div><div class="line">      //Handle errors for JDBC</div><div class="line">      se.printStackTrace();</div><div class="line">   &#125;catch(Exception e)&#123;</div><div class="line">      //Handle errors for Class.forName</div><div class="line">      e.printStackTrace();</div><div class="line">   &#125;finally&#123;</div><div class="line">      //finally block used to close resources</div><div class="line">      try&#123;</div><div class="line">         if(stmt!=null)</div><div class="line">            conn.close();</div><div class="line">      &#125;catch(SQLException se)&#123;</div><div class="line">      &#125;// do nothing</div><div class="line">      try&#123;</div><div class="line">         if(conn!=null)</div><div class="line">            conn.close();</div><div class="line">      &#125;catch(SQLException se)&#123;</div><div class="line">         se.printStackTrace();</div><div class="line">      &#125;//end finally try</div><div class="line">   &#125;//end try</div><div class="line">   System.out.println(&quot;Goodbye!&quot;);</div><div class="line">&#125;//end main</div><div class="line">&#125;//end JDBCExample by www.yiibai.com</div></pre></td></tr></table></figure>
+<ul>
+<li>参考文章：<a href="http://www.yiibai.com/jdbc/jdbc_select_records.html" target="_blank" rel="external">JDBC - Select查询数据记录例子</a></li>
+</ul>
+<h2 id="2-Spring-bean加载过程"><a href="#2-Spring-bean加载过程" class="headerlink" title="2. Spring bean加载过程"></a>2. Spring bean加载过程</h2><blockquote>
+<ol>
+<li>加载XML文件，封装成Resource对象</li>
+<li>调用Reader对象方法读取XML文件内容，并将相关属性放到BeanDefinition实例</li>
+<li>将BeanDefinition对象放到BeanFactory对象</li>
+</ol>
+</blockquote>
+<p><img src="https://pic1.zhimg.com/754a34e03cfaa40008de8e2b9c1b815c_r.jpg" alt=""></p>
+<p><img src="http://img.bbs.csdn.net/upload/201606/01/1464750811_98595.jpg" alt=""></p>
+<p><img src="http://img.bbs.csdn.net/upload/201606/01/1464750849_208504.jpg" alt=""></p>
+<h2 id="3-你认为一个好的团队是什么样子的？"><a href="#3-你认为一个好的团队是什么样子的？" class="headerlink" title="3. 你认为一个好的团队是什么样子的？"></a>3. 你认为一个好的团队是什么样子的？</h2><blockquote>
+<p>好的团队，我的理解，就是互相学习，互相沟通，互相信任。leader是开放包容，开发是专注坚持。</p>
+</blockquote>
+<ul>
+<li>参考文章：<a href="https://zhuanlan.zhihu.com/p/27481885" target="_blank" rel="external">据说一个成功的研发团队应具备这9大属性</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;同花顺一面&quot;&gt;&lt;a href=&quot;#同花顺一面&quot; class=&quot;headerlink&quot; title=&quot;同花顺一面&quot;&gt;&lt;/a&gt;同花顺一面&lt;/h1&gt;&lt;blockquote
+    
+    </summary>
+    
+      <category term="面试记录" scheme="http://lincentma.men/categories/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95/"/>
+    
+    
+      <category term="interview" scheme="http://lincentma.men/tags/interview/"/>
+    
+      <category term="tonghuashun" scheme="http://lincentma.men/tags/tonghuashun/"/>
+    
+  </entry>
   
   <entry>
     <title>海康威视一面记录</title>
