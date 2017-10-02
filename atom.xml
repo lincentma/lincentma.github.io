@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lincentma.men/"/>
-  <updated>2017-09-30T16:07:23.778Z</updated>
+  <updated>2017-10-02T16:17:38.512Z</updated>
   <id>http://lincentma.men/</id>
   
   <author>
@@ -14,6 +14,168 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>腾讯一面</title>
+    <link href="http://lincentma.men/tencent_interview.html"/>
+    <id>http://lincentma.men/tencent_interview.html</id>
+    <published>2017-10-02T16:16:01.000Z</published>
+    <updated>2017-10-02T16:17:38.512Z</updated>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="腾讯一面"><a href="#腾讯一面" class="headerlink" title="腾讯一面"></a>腾讯一面</h1><blockquote>
+<p>意外之喜，让自己有机会去感受鹅厂的面试文化，让自己受益匪浅，非常感谢！</p>
+</blockquote>
+<h2 id="1-谈一个你自己觉得最满意的项目"><a href="#1-谈一个你自己觉得最满意的项目" class="headerlink" title="1. 谈一个你自己觉得最满意的项目"></a>1. 谈一个你自己觉得最满意的项目</h2><blockquote>
+<p>实习时候完成的日志分析的项目</p>
+</blockquote>
+<h2 id="2-遇到哪些难题？"><a href="#2-遇到哪些难题？" class="headerlink" title="2. 遇到哪些难题？"></a>2. 遇到哪些难题？</h2><blockquote>
+<p>数据倾斜</p>
+</blockquote>
+<h2 id="3-你认为这样的方式对于准确性来说是否有影响？日志统计的准确性是如何保证的？"><a href="#3-你认为这样的方式对于准确性来说是否有影响？日志统计的准确性是如何保证的？" class="headerlink" title="3. 你认为这样的方式对于准确性来说是否有影响？日志统计的准确性是如何保证的？"></a>3. 你认为这样的方式对于准确性来说是否有影响？日志统计的准确性是如何保证的？</h2><blockquote>
+<p>自己当时的理解是针对于项目需求来说统计频次，采用hash均分再统计，对于频次来说应该是准确的。</p>
+<p>关于日志的准确性，自己是根据数据统计指标的定义公式进行统计计算，应该问题不大。</p>
+<p>此外公司级别的日志分析平台，也可以作为测试数据的评判标准。</p>
+</blockquote>
+<ul>
+<li><a href="http://geek.csdn.net/news/detail/71155" target="_blank" rel="external">一篇关于百度Hadoop日志分析的文章</a></li>
+<li>借用文章里面的话，自己的日志分析就是“洪荒时代的产物”，不完善的地方太多。</li>
+<li>这篇文章真的很赞，自己用到的数据源都是这个大佬的作品，敬佩。</li>
+</ul>
+<h2 id="4-日志统计指标还有其他一些什么指标？"><a href="#4-日志统计指标还有其他一些什么指标？" class="headerlink" title="4. 日志统计指标还有其他一些什么指标？"></a>4. 日志统计指标还有其他一些什么指标？</h2><blockquote>
+<p>（PC端以及移动端）PV和UV、登录用户占比、非登录用户占比、平均响应时间、历史Query占比、推荐Query占比、Query平均长度、Sug平均前缀长度、用户平均输入长度、输入长度占比、sug影响面等等。</p>
+</blockquote>
+<h2 id="5-日志源是后台打印日志还是WebService打印日志？"><a href="#5-日志源是后台打印日志还是WebService打印日志？" class="headerlink" title="5. 日志源是后台打印日志还是WebService打印日志？"></a>5. 日志源是后台打印日志还是WebService打印日志？</h2><blockquote>
+<p>公司统一生成的日志，规范化日志格式。</p>
+<p>日志来源：1. webservice调用打印日志；2. nginx的access.log日志</p>
+</blockquote>
+<h2 id="6-你这样处理日志流程是否有了解过有相似功能的开源框架呢？"><a href="#6-你这样处理日志流程是否有了解过有相似功能的开源框架呢？" class="headerlink" title="6. 你这样处理日志流程是否有了解过有相似功能的开源框架呢？"></a>6. 你这样处理日志流程是否有了解过有相似功能的开源框架呢？</h2><blockquote>
+<p>没有了解ELK，自己的探索精神还需要加强。</p>
+<p>ELK是三个开源工具组成，简单解释如下：</p>
+<ul>
+<li>Elasticsearch是个开源分布式搜索引擎，它的特点有：分布式，零配置，自动发现，索引自动分片，索引副本机制，restful风格接口，多数据源，自动搜索负载等。</li>
+<li>Logstash是一个完全开源的工具，它可以对你的日志进行收集、过滤，并将其存储供以后使用（如，搜索）。</li>
+<li>Kibana 也是一个开源和免费的工具，它可以为 Logstash 和 ElasticSearch 提供的日志分析友好的 Web 界面，可以帮助您汇总、分析和搜索重要数据日志。</li>
+</ul>
+</blockquote>
+<ul>
+<li>参考文章：<a href="http://blog.chinaunix.net/uid-23916356-id-5764256.html" target="_blank" rel="external">ELK部署参考文档</a></li>
+</ul>
+<h2 id="7-报表邮件需要绘制图形吗？"><a href="#7-报表邮件需要绘制图形吗？" class="headerlink" title="7. 报表邮件需要绘制图形吗？"></a>7. 报表邮件需要绘制图形吗？</h2><blockquote>
+<p>自己用到的是xlrd和xlwt这两个python第三方库，用于绘制邮件正文数据表格。</p>
+<p>smtplib模块负责连接服务器和发送邮件</p>
+<ol>
+<li>MIMEAudio：定义邮件的音频数据</li>
+<li>MIMEImage：定义邮件的图片数据</li>
+<li>MIMEText：定义邮件的文字数据</li>
+<li>MIMEMultipart：负责将文字图片音频组装在一起和添加附件</li>
+</ol>
+<p>python邮件中绘制Html表格：python构造html<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">html = &quot;&quot;&quot;\</div><div class="line">&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;</div><div class="line">&lt;head&gt;</div><div class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;</div><div class="line">&lt;title&gt;萌店AB环境&lt;/title&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;div id=&quot;container&quot;&gt;</div><div class="line">&lt;p&gt;&lt;strong&gt;萌店sla状态统计&lt;/strong&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;采集时间: &quot;&quot;&quot; + timezone + &quot;&quot;&quot;&lt;/p&gt;</div><div class="line">&lt;div id=&quot;content&quot;&gt;</div><div class="line"> &lt;table width=&quot;500&quot; border=&quot;2&quot; bordercolor=&quot;red&quot; cellspacing=&quot;2&quot;&gt;</div><div class="line">&lt;tr&gt;</div><div class="line">  &lt;td&gt;&lt;strong&gt;站点&lt;/strong&gt;&lt;/td&gt;</div><div class="line">  &lt;td&gt;&lt;strong&gt;总访问量&lt;/strong&gt;&lt;/td&gt;</div><div class="line">  &lt;td&gt;&lt;strong&gt;正常数&lt;/strong&gt;&lt;/td&gt;</div><div class="line">  &lt;td&gt;&lt;strong&gt;正常百分比&lt;/strong&gt;&lt;/td&gt;</div><div class="line">  &lt;td&gt;&lt;strong&gt;异常数&lt;/strong&gt;&lt;/td&gt;</div><div class="line">  &lt;td&gt;&lt;strong&gt;异常百分比&lt;/strong&gt;&lt;/td&gt;</div><div class="line">&lt;/tr&gt;</div><div class="line">&lt;tr&gt;</div><div class="line">  &lt;td&gt;&lt;a href=&quot;http://log.xxx.com/#/dashboard/file/node.json&quot;&gt;node&lt;/a&gt;&lt;/td&gt;</div><div class="line">  &lt;td&gt;&quot;&quot;&quot; + a[4] + &quot;&quot;&quot;&lt;/td&gt;</div><div class="line">  &lt;td&gt;&quot;&quot;&quot; + a[0] + &quot;&quot;&quot;&lt;/td&gt;</div><div class="line">  &lt;td&gt;&quot;&quot;&quot; + a[1] + &quot;&quot;&quot;&lt;/td&gt;</div><div class="line">  &lt;td&gt;&quot;&quot;&quot; + a[2] + &quot;&quot;&quot;&lt;/td&gt;</div><div class="line">  &lt;td&gt;&quot;&quot;&quot; + a[3] + &quot;&quot;&quot;&lt;/td&gt;</div><div class="line">&lt;/tr&gt;</div><div class="line">&lt;/table&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;p&gt;&lt;strong&gt;点击站点名可查看详细表图&lt;/strong&gt; &lt;/p&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div><div class="line">      &quot;&quot;&quot;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li>参考文章：<a href="http://www.jianshu.com/p/a04eafcc2f69" target="_blank" rel="external">用python发送表格数据到邮箱</a><blockquote>
+<p>python邮件中绘制excel表格：pyhton构建附件</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line"># -*- coding:utf-8 -*-</div><div class="line"></div><div class="line">import smtplib</div><div class="line">from email.mime.multipart import MIMEMultipart</div><div class="line">from email.mime.text import MIMEText</div><div class="line">from email.mime.application import MIMEApplication</div><div class="line"></div><div class="line">class Mailer(object):</div><div class="line">  def __init__(self,maillist,mailtitle,mailcontent):</div><div class="line">    self.mail_list = maillist</div><div class="line">    self.mail_title = mailtitle</div><div class="line">    self.mail_content = mailcontent</div><div class="line"></div><div class="line">    self.mail_host = &quot;smtp.163.com&quot;</div><div class="line">    self.mail_user = &quot;your email name&quot;</div><div class="line">    self.mail_pass = &quot;your email password&quot;</div><div class="line">    self.mail_postfix = &quot;163.com&quot;</div><div class="line"></div><div class="line">  def sendMail(self):</div><div class="line"></div><div class="line">    me = self.mail_user + &quot;&lt;&quot; + self.mail_user + &quot;@&quot; + self.mail_postfix + &quot;&gt;&quot;</div><div class="line">    msg = MIMEMultipart()</div><div class="line">    msg[&apos;Subject&apos;] = &apos;Python mail Test&apos;</div><div class="line">    msg[&apos;From&apos;] = me</div><div class="line">    msg[&apos;To&apos;] = &quot;;&quot;.join(self.mail_list)</div><div class="line"></div><div class="line">    #puretext = MIMEText(&apos;&lt;h1&gt;你好，&lt;br/&gt;&apos;+self.mail_content+&apos;&lt;/h1&gt;&apos;,&apos;html&apos;,&apos;utf-8&apos;)</div><div class="line">    puretext = MIMEText(&apos;纯文本内容&apos;+self.mail_content)</div><div class="line">    msg.attach(puretext)</div><div class="line"></div><div class="line">    # jpg类型的附件</div><div class="line">    jpgpart = MIMEApplication(open(&apos;/home/mypan/1949777163775279642.jpg&apos;, &apos;rb&apos;).read())</div><div class="line">    jpgpart.add_header(&apos;Content-Disposition&apos;, &apos;attachment&apos;, filename=&apos;beauty.jpg&apos;)</div><div class="line">    msg.attach(jpgpart)</div><div class="line"></div><div class="line">    # 首先是xlsx类型的附件</div><div class="line">    #xlsxpart = MIMEApplication(open(&apos;test.xlsx&apos;, &apos;rb&apos;).read())</div><div class="line">    #xlsxpart.add_header(&apos;Content-Disposition&apos;, &apos;attachment&apos;, filename=&apos;test.xlsx&apos;)</div><div class="line">    #msg.attach(xlsxpart)</div><div class="line"></div><div class="line">    # mp3类型的附件</div><div class="line">    #mp3part = MIMEApplication(open(&apos;kenny.mp3&apos;, &apos;rb&apos;).read())</div><div class="line">    #mp3part.add_header(&apos;Content-Disposition&apos;, &apos;attachment&apos;, filename=&apos;benny.mp3&apos;)</div><div class="line">    #msg.attach(mp3part)</div><div class="line"></div><div class="line">    # pdf类型附件</div><div class="line">    #part = MIMEApplication(open(&apos;foo.pdf&apos;, &apos;rb&apos;).read())</div><div class="line">    #part.add_header(&apos;Content-Disposition&apos;, &apos;attachment&apos;, filename=&quot;foo.pdf&quot;)</div><div class="line">    #msg.attach(part)</div><div class="line"></div><div class="line">    try:</div><div class="line">      s = smtplib.SMTP() #创建邮件服务器对象</div><div class="line">      s.connect(self.mail_host) #连接到指定的smtp服务器。参数分别表示smpt主机和端口</div><div class="line">      s.login(self.mail_user, self.mail_pass) #登录到你邮箱</div><div class="line">      s.sendmail(me, self.mail_list, msg.as_string()) #发送内容</div><div class="line">      s.close()</div><div class="line">      return True</div><div class="line">    except Exception, e:</div><div class="line">      print str(e)</div><div class="line">      return False</div><div class="line"></div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">  #send list</div><div class="line">  mailto_list = [&quot;aaa@lsh123.com&quot;,&quot;bbb@163.com&quot;]</div><div class="line">  mail_title = &apos;Hey subject&apos;</div><div class="line">  mail_content = &apos;Hey this is content&apos;</div><div class="line">  mm = Mailer(mailto_list,mail_title,mail_content)</div><div class="line">  res = mm.sendMail()</div><div class="line">  print res</div></pre></td></tr></table></figure>
+<ul>
+<li>参考文章：<a href="http://www.jb51.net/article/114022.htm" target="_blank" rel="external">python实现发送邮件及附件功能</a></li>
+</ul>
+<blockquote>
+<p>python邮件中绘制图形：</p>
+<p>生成图片作为附件发送。</p>
+<p>python的绘图包matplotlib绘制图像。保存图像plt.savefig(‘test.png’)。</p>
+</blockquote>
+<h2 id="8-是否了解Java虚拟机的功能？垃圾回收有了解？"><a href="#8-是否了解Java虚拟机的功能？垃圾回收有了解？" class="headerlink" title="8. 是否了解Java虚拟机的功能？垃圾回收有了解？"></a>8. 是否了解Java虚拟机的功能？垃圾回收有了解？</h2><blockquote>
+<p>JVM将java字节码解释为具体平台的具体指令。JVM负责重新解译由Java编译器生成的字节码，并和底层平台协调工作。也就是说，尽管Java编译器生成的结果是平台独立的，但JVM与特定平台相关的。</p>
+<p>描述垃圾回收的流程：</p>
+</blockquote>
+<ol>
+<li>对象在Eden区完成内存分配；</li>
+<li>当Eden区满了，再创建对象，会因为申请不到空间，触发minorGC，进行young(eden+1survivor)区的垃圾回收；</li>
+<li>minorGC时，Eden不能被回收的对象被放入到空的survivor（Eden肯定会被清空），另一个survivor里不能被GC回收的对象也会被放入这个survivor，始终保证一个survivor是空的；</li>
+<li>当做第3步的时候，如果发现survivor满了，将这些对象copy到old区，或者survivor并没有满，但是有些对象已经足够Old，也被放入Old区 XX:MaxTenuringThreshold；</li>
+<li>当Old区被放满的之后，进行fullGC；</li>
+</ol>
+<ul>
+<li>参考文章：<a href="http://blog.csdn.net/woshichuanqihan/article/details/50946449" target="_blank" rel="external">垃圾回收过程</a></li>
+</ul>
+<p><img src="http://dl2.iteye.com/upload/attachment/0014/5805/2763425e-034b-3505-937a-f152d1a8fef6.jpg" alt=""></p>
+<h2 id="9-现在内存有一个引用链，链上有一个个的内存实例，对它进行垃圾回收，流程或者是顺序是什么？"><a href="#9-现在内存有一个引用链，链上有一个个的内存实例，对它进行垃圾回收，流程或者是顺序是什么？" class="headerlink" title="9. 现在内存有一个引用链，链上有一个个的内存实例，对它进行垃圾回收，流程或者是顺序是什么？"></a>9. 现在内存有一个引用链，链上有一个个的内存实例，对它进行垃圾回收，流程或者是顺序是什么？</h2><blockquote>
+<p>采用可达性分析法。</p>
+<p>通过一系列称为“GC Roots”的对象作为起始点，从这些节点向下搜索，搜索所走过的路径称为引用链，当一个对象到GC Roots没有任何引用链（即GC Roots到对象不可达）时，则证明此对象是不可用的。</p>
+<p>GC Roots:<br>1) 虚拟机栈（栈帧中的局部变量区，也叫做局部变量表）中引用的对象。<br>2) 方法区中的类静态属性引用的对象。<br>3) 方法区中常量引用的对象。<br>4) 本地方法栈中JNI(Native方法)引用的对象。</p>
+<p>关于引用链上的所有对象的回收时机，JVM程序无法精确控制垃圾回收的运行，垃圾回收会在合适的时候进行。当对象永久性地失去引用后，系统会在合适的时候回收它所占的内存。</p>
+<p>当一个对象到GC Roots不可达时，在下一个垃圾回收周期中尝试回收该对象，如果该对象重写了finalize()方法，并在这个方法中成功自救(将自身赋予某个引用)，那么这个对象不会被回收。但如果这个对象没有重写finalize()方法或者已经执行过这个方法，也自救失败，该对象将会被回收。</p>
+<p>对象在内存中的状态:<br>当一个对象在堆内存中运行时，根据它被引用变量所引用的状态，可以把它所处的状态分成如下三种：</p>
+<ol>
+<li>可达状态：当一个对象被创建后，若有一个以上的引用变量引用它，则这个对象在程序中处于可达状态，程序可通过引用变量来调用该对象的Field和方法。</li>
+<li>可恢复状态：如果程序中某个对象不再有任何引用变量引用它，它就进入了可恢复状态。在这种状态下，系统的垃圾回收机制准备回收该对象所占用的内存，在回收该对象之前，系统会调用所有可恢复状态对象的finalize()方法进行资源清理。如果系统在调用finalize()方法时重新让一个引用变量引用该对象，则这个对象再次变为可达状态;否则，该对象将进入不可达状态。</li>
+<li>不可达状态：当对象与所有引用变量的关联都被切断，且系统已经调用所有对象的finalize()方法后依然没有使该对象变成可达状态，那么这个对象将永久性地失去引用，最后变成不可达状态。只有当一个对象处于不可达状态时，系统才会真正回收该对象所占有的资源。</li>
+</ol>
+<p>当发现对象不在引用链上时，将会发生一次标记，如果该对象没有必要执行finalize()方法时即：该对象没有finalize()方法或者finalize()方法已经被调用过，则进行回收。</p>
+</blockquote>
+<p>当发现有finalize()方法时，则会将该对象放在一个专有的finalize线程中去执行。该线程会触发此方法，但是不保证执行成功。如果在finalize()方法中，该对象重新被引用，则逃过一劫，否则将会被回收掉。</p>
+<ul>
+<li>参考文章：<a href="http://blog.163.com/ldw21cn@126/blog/static/24295648201352961632378/" target="_blank" rel="external">【Java】对象与垃圾回收</a></li>
+</ul>
+<h2 id="10-垃圾回收是一次性标记完成的吗？"><a href="#10-垃圾回收是一次性标记完成的吗？" class="headerlink" title="10. 垃圾回收是一次性标记完成的吗？"></a>10. 垃圾回收是一次性标记完成的吗？</h2><blockquote>
+<p>在垃圾回收阶段，应用程序的执行会暂停，等待回收执行完毕后，再恢复程序的执行。一次性标记完成。</p>
+<p>标记清除算法。在此阶段，垃圾回收器会从mutator（应用程序）根对象开始遍历。每一个可以从根对象访问到的对象都会被添加一个标识，于是这个对象就被标识为可到达对象。在清除阶段阶段中，垃圾回收器，会对堆内存从头到尾进行线性遍历，如果发现有对象没有被标识为可到达对象，那么就将此对象占用的内存回收，并且将原来标记为可到达对象的标识清除，以便进行下一次垃圾回收操作。</p>
+<p>在使用标记清除算法时,未引用对象并不会被立即回收.取而代之的做法是,垃圾对象将一直累计到内存耗尽为止.当内存耗尽时,程序将会被挂起,垃圾回收开始执行。</p>
+</blockquote>
+<h2 id="11-关于集合类，关于concurrent集合类为什么没有array的线程安全实现？"><a href="#11-关于集合类，关于concurrent集合类为什么没有array的线程安全实现？" class="headerlink" title="11. 关于集合类，关于concurrent集合类为什么没有array的线程安全实现？"></a>11. 关于集合类，关于concurrent集合类为什么没有array的线程安全实现？</h2><ul>
+<li>非常有意思的一个问题，重点我的理解是解决并发瓶颈。</li>
+</ul>
+<blockquote>
+<p>ConcurrentHashMap是线程安全的HashMap的实现。</p>
+<p>CopyOnWriteArrayList是一个线程安全、并且在读操作时无锁的ArrayList。</p>
+<p>ArrayBlockingQueue是一个基于数组、先进先出、线程安全的集合类，其特点是实现指定时间的阻塞读写，并且容量是可以限制的。</p>
+<p>在java.util.concurrent包中没有加入并发的ArrayList实现的主要原因是：很难去开发一个通用并且没有并发瓶颈的线程安全的List。</p>
+<p>像ConcurrentHashMap这样的类的真正价值（The real point / value of classes）并不是它们保证了线程安全。而在于它们在保证线程安全的同时不存在并发瓶颈。举个例子，ConcurrentHashMap采用了锁分段技术和弱一致性的Map迭代器去规避并发瓶颈。</p>
+<p>CopyOnWriteArrayList是一个有趣的例子，它规避了只读操作（如get/contains）并发的瓶颈，但是它为了做到这点，在修改操作中做了很多工作和修改可见性规则。 此外，修改操作还会锁住整个List，因此这也是一个并发瓶颈。所以从理论上来说，CopyOnWriteArrayList并不算是一个通用的并发List。</p>
+</blockquote>
+<ul>
+<li>参考文章：<a href="http://ifeve.com/why-is-there-not-concurrent-arraylist-in-java-util-concurrent-package/" target="_blank" rel="external">为什么java.util.concurrent 包里没有并发的ArrayList实现？</a></li>
+</ul>
+<h2 id="12-MySQL与Redis你在项目是如何使用的？"><a href="#12-MySQL与Redis你在项目是如何使用的？" class="headerlink" title="12. MySQL与Redis你在项目是如何使用的？"></a>12. MySQL与Redis你在项目是如何使用的？</h2><blockquote>
+<p>mysql存储在磁盘里，redis存储在内存里，redis既可以用来做持久存储，也可以做缓存，而目前大多数公司的存储都是mysql + redis，mysql作为主存储，redis作为辅助存储被用作缓存，加快访问读取的速度，提高性能。</p>
+<p>自己在项目中任务提交模块接口，上传文件功能采用redis存储文件内容，结果处理调用redis提高接口响应速度。</p>
+</blockquote>
+<h2 id="13-你有没有考虑用其他方式来实现这样的数据缓存方式？"><a href="#13-你有没有考虑用其他方式来实现这样的数据缓存方式？" class="headerlink" title="13. 你有没有考虑用其他方式来实现这样的数据缓存方式？"></a>13. 你有没有考虑用其他方式来实现这样的数据缓存方式？</h2><blockquote>
+<p>线上系统php、nginx的配置无法更改，所以采用redis的方式。</p>
+<p>或者可以文件上传到服务器，存储文件路径名称，这样不用存储文件流内容。</p>
+<p>nginx 有个文件上传的<a href="https://github.com/vkholodkov/nginx-upload-module/tree/2.2" target="_blank" rel="external">module</a>，利用这个模块，文件上传接收处理就直接交给nginx，nginx 直接把文件的相关参数传给php，这样php只接收文件相关参数，如文件大小、临时保存位置、类型等，不需处理提交过来的文件流</p>
+</blockquote>
+<ul>
+<li>参考文章：<ul>
+<li><a href="http://blog.csdn.net/cckevincyh/article/details/70212945" target="_blank" rel="external">ajaxFileUpload 异步上传文件配合PHP的使用</a></li>
+<li><a href="http://blog.csdn.net/cckevincyh/article/details/70212945" target="_blank" rel="external">Web前后端缓存技术</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="14-和面试官的交流"><a href="#14-和面试官的交流" class="headerlink" title="14. 和面试官的交流"></a>14. 和面试官的交流</h2><pre><code>- Java、Golang、python，以后需要熟练使用。
+- 学习的能力，学习的潜力更加重要！
+- 除了后端，针对于后台业务，仍需要掌握前端的一些基本的知识，框架，css，js等。
+- 针对于后台逻辑，掌握框架。
+- 针对高并发的数据处理，spark streaming等。
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;腾讯一面&quot;&gt;&lt;a href=&quot;#腾讯一面&quot; class=&quot;headerlink&quot; title=&quot;腾讯一面&quot;&gt;&lt;/a&gt;腾讯一面&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p
+    
+    </summary>
+    
+      <category term="面试记录" scheme="http://lincentma.men/categories/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95/"/>
+    
+    
+      <category term="interview" scheme="http://lincentma.men/tags/interview/"/>
+    
+      <category term="tencent" scheme="http://lincentma.men/tags/tencent/"/>
+    
+  </entry>
   
   <entry>
     <title>有赞一面</title>
