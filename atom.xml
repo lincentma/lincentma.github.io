@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lincentma.men/"/>
-  <updated>2017-10-20T13:16:49.211Z</updated>
+  <updated>2017-11-02T15:59:00.870Z</updated>
   <id>http://lincentma.men/</id>
   
   <author>
@@ -14,6 +14,73 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>微策略面试记录</title>
+    <link href="http://lincentma.men/Microstrategy_interview.html"/>
+    <id>http://lincentma.men/Microstrategy_interview.html</id>
+    <published>2017-11-02T15:53:56.000Z</published>
+    <updated>2017-11-02T15:59:00.870Z</updated>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="微策略面试"><a href="#微策略面试" class="headerlink" title="微策略面试"></a>微策略面试</h1><blockquote>
+<p>这是一次知道自己不足不去弥补的主观性失利，没有善始善终是一个遗憾。</p>
+</blockquote>
+<h2 id="1-英文自我介绍"><a href="#1-英文自我介绍" class="headerlink" title="1. 英文自我介绍"></a>1. 英文自我介绍</h2><p>临时拼凑，还是努力刷6级</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">Good afternoon!</div><div class="line">Thank you for giving me this opportunity for this (phone) interview.</div><div class="line"></div><div class="line">//自我介绍</div><div class="line">My Name is MaLing, I am a student from Southwest Jiaotong University. My major is computer science and technology. I am very glad to make a simple self-introduction in two ways.</div><div class="line"></div><div class="line">//学校项目</div><div class="line">During 3 years undergraduate education, I worked hard and I was always active in various projects and competitions.</div><div class="line"></div><div class="line">The intelligent delivery box system</div><div class="line">In order to Improve the level of campus express delivery terminal. The intelligent delivery box system is used FS_S5PC100 embedded development platform of ARM with a combination of display module, barcode scanning module and GSM module. It also can use express data management system to unify management data information through the sever-side by Java SSH framework.</div><div class="line"></div><div class="line">Social Network Analysis System</div><div class="line">Based on the user reply information from Baidu Tieba, </div><div class="line">Used Java for data acquisition, format conversion</div><div class="line">Used MapReduce model for PageRank algorithm as a classic social network analysis algorithm can deal with and analyze social network data information</div><div class="line"></div><div class="line">//公司实习</div><div class="line">Between 2016.09 and 2017.05 I&apos;m an intern at Baidu Inc.</div><div class="line">In the Baidu Nuomi, the main work is the Xiongji data interface development and data processing work based on ODP framework. And some script development, </div><div class="line">And participated in the development of online business activities.</div><div class="line"></div><div class="line">In Baidu Web search, I’m mainly responsible for the development of the monitoring report work of Suggestion log, which mainly used Python and Hadoop Streaming model,</div><div class="line">And Web tools platform development.</div><div class="line"></div><div class="line">//总结</div><div class="line">The Associate Software Engineer is my ideal job, I believe that I can do the job.</div><div class="line">That’s all my introduction. Thank you.</div></pre></td></tr></table></figure>
+<h2 id="2-算法"><a href="#2-算法" class="headerlink" title="2. 算法"></a>2. 算法</h2><p>就是非常简单的题，却说不清楚。</p>
+<blockquote>
+<p>二叉树最近公共父节点</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line"> * 获取二叉树中两个节点的最近公共父节点,root和两个节点的值(x, y)已知</div><div class="line"> */</div><div class="line">public static Node getFather(Node root,int x,int y)&#123;</div><div class="line">	if(root==null)</div><div class="line">		return null;</div><div class="line">	if(root.data==x||root.data==y)</div><div class="line">		return root;</div><div class="line">	Node left=getFather(root.left,x,y);//递归遍历root节点左侧</div><div class="line">	Node right=getFather(root.right,x,y);//递归遍历root节点右侧</div><div class="line">	if(left!=null&amp;&amp;right!=null)//两个节点分别在root节点的两侧，父节点不是两个节点中的一个</div><div class="line">		return root;			</div><div class="line">	return left!=null? left:right;//两个节点在root节点的同一侧（左侧或右侧），父节点是两个节点中的一个</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>思路：</p>
+<blockquote>
+<p>最长递增子序列的长度</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">public static int lis(int [] array)</div><div class="line">&#123;</div><div class="line">	Integer []lis = new Integer[array.length];</div><div class="line">	for(int i =0;i&lt;array.length;i++)</div><div class="line">	&#123;</div><div class="line">		lis[i]=1;</div><div class="line">		for(int j=0;j&lt;i;j++)</div><div class="line">		&#123;</div><div class="line">			if(array[j]&lt;array[i]&amp;&amp;(lis[j]+1&gt;lis[i]))</div><div class="line">			lis[i]=lis[j]+1;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	int max=0;</div><div class="line">	for(int k=0;k&lt;lis.length;k++)</div><div class="line">	&#123;</div><div class="line">		if(lis[k]&gt;max)</div><div class="line">		max=lis[k];</div><div class="line">	&#125;</div><div class="line">	return max;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>优化思路：</p>
+<ul>
+<li>在一列数中寻找一些数，这些数满足：任意两个数a[i]和a[j]，若i&lt;j，必有a[i]&lt;a[j]，这样最长的子序列称为最长递增子序列。</li>
+<li>设dp[i]表示以i为结尾的最长递增子序列的长度，则状态转移方程为：</li>
+<li>dp[i] = max{dp[j]+1}, 1&lt;=j&lt;i,a[j]&lt;a[i]。</li>
+<li>考虑两个数a[x]和a[y]，x&lt;y且a[x]&lt;a[y],且dp[x]=dp[y]，当a[t]要选择时，到底取哪一个构成最优的呢？显然选取a[x]更有潜力，因为可能存在a[x]&lt;a[z]&lt;a[y]，这样a[t]可以获得更优的值。在这里给我们一个启示，当dp[t]一样时，尽量选择更小的a[x]。</li>
+<li><p>按dp[t]=k来分类，只需保留dp[t]=k的所有a[t]中的最小值，设g[k]记录这个值，g[k]=min{a[t],dp[t]=k}。</p>
+</li>
+<li><p>这时注意到g的两个特点（重点）：</p>
+</li>
+</ul>
+<ol>
+<li><p>g[k]在计算过程中单调不升；           </p>
+</li>
+<li><p>g数组是有序的，g[1]&lt;g[2]&lt;..g[n]。</p>
+</li>
+</ol>
+<ul>
+<li>利用这两个性质，可以很方便的求解：</li>
+</ul>
+<ol>
+<li>设当前已求出的最长上升子序列的长度为len（初始时为1），每次读入一个新元素x：</li>
+<li>若x&gt;g[len]，则直接加入到d的末尾，且len++；（利用性质2）否则，在g中二分查找，找到第一个比x小的数g[k]，并g[k+1]=x，在这里x&lt;=g[k+1]一定成立（性质1,2）。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">import java.util.*;</div><div class="line"></div><div class="line">public class LIS &#123;</div><div class="line">    public static int lengthofLCS(int[] arr)&#123;</div><div class="line">        // 辅助变量</div><div class="line">        int[] MaxV = new int [arr.length+1]; // 记录递增子序列 LIS 的末尾元素最小值 </div><div class="line">        int nMaxLength = 1; // 当前LIS的长度</div><div class="line">        int [] LIS = new int[arr.length+1]; //LIS[i]记录的是以第i个元素为结尾的最长序列的长度</div><div class="line">        // 初始化</div><div class="line">        MaxV[0] = -100;</div><div class="line">        MaxV[nMaxLength] = arr[0];</div><div class="line">        LIS[0] = 0;LIS[1] = 1;</div><div class="line"></div><div class="line">        for(int i=1;i&lt;arr.length;i++)&#123;</div><div class="line">            if(arr[i] &gt;MaxV[nMaxLength])&#123;</div><div class="line">                MaxV[++nMaxLength] = arr[i];</div><div class="line">                LIS[i] = LIS[i-1]+1;</div><div class="line">            &#125;</div><div class="line">            else&#123;</div><div class="line">                // 新元素 更小，更有“潜力”，替换大的元素</div><div class="line">                int index = binarySearch(MaxV,arr[i],0,nMaxLength);     </div><div class="line">                //*     </div><div class="line">                LIS[i] =index;</div><div class="line">                MaxV[index] = arr[i];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        Arrays.sort(LIS);</div><div class="line">        return LIS[LIS.length-1];</div><div class="line">    &#125;</div><div class="line">    // 在MaxV数组中查找一个元素刚刚大于arr[i]</div><div class="line">    // 返回这个元素的index</div><div class="line">    public static int binarySearch(int []arr, int n, int start, int end)&#123;</div><div class="line">        while(start&lt;end)&#123;</div><div class="line">            int mid = (start + end)/2;</div><div class="line">            if(arr[mid]&lt; n)&#123;</div><div class="line">                start = mid+1;</div><div class="line">            &#125;</div><div class="line">            else if(arr[mid]&gt; n) &#123;</div><div class="line">                end = mid -1;</div><div class="line">            &#125;</div><div class="line">            else </div><div class="line">                return mid;</div><div class="line">        &#125;</div><div class="line">        return end;</div><div class="line">    &#125;</div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        int[] arr = &#123;2,1,5,3,6,4,8,9,7&#125;;</div><div class="line">        System.out.println(lengthofLCS(arr));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>参考文章：<a href="https://segmentfault.com/a/1190000002641054" target="_blank" rel="external">算法设计 - LCS 最长公共子序列&amp;&amp;最长公共子串 &amp;&amp;LIS 最长递增子序列</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;微策略面试&quot;&gt;&lt;a href=&quot;#微策略面试&quot; class=&quot;headerlink&quot; title=&quot;微策略面试&quot;&gt;&lt;/a&gt;微策略面试&lt;/h1&gt;&lt;blockquote
+    
+    </summary>
+    
+      <category term="面试记录" scheme="http://lincentma.men/categories/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95/"/>
+    
+    
+      <category term="Microstrategy" scheme="http://lincentma.men/tags/Microstrategy/"/>
+    
+      <category term="interview" scheme="http://lincentma.men/tags/interview/"/>
+    
+  </entry>
   
   <entry>
     <title>饿了么面试记录（继续完善）</title>
