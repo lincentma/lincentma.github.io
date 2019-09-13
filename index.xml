@@ -1,14 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Lincentma</title>
+    <title>Lincentma on Lincentma</title>
     <link>http://lincentma.men/</link>
-    <description>Recent content on Lincentma</description>
+    <description>Recent content in Lincentma on Lincentma</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    
-	<atom:link href="http://lincentma.men/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="http://lincentma.men/" rel="self" type="application/rss+xml" />
     
   </channel>
 </rss>
